@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { Phone, Mail, MapPin, Facebook, Instagram, Linkedin, Youtube } from "lucide-react";
 import footerBg from "@/assets/footer-bg.jpg";
+import logo from "@/assets/logo.jpg";
 
 const Footer = () => {
   return (
@@ -11,7 +12,10 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
           {/* Brand */}
           <div>
-            <h3 className="font-heading text-2xl font-bold mb-4">Pravaas International</h3>
+            <div className="flex items-center gap-3 mb-4">
+              <img src={logo} alt="Pravaas International" className="h-14 w-auto rounded-lg" />
+              <h3 className="font-heading text-2xl font-bold">Pravaas International</h3>
+            </div>
             <p className="text-background/70 text-sm leading-relaxed mb-6">
               Your trusted partner for international education. We guide students towards globally recognized degrees and successful careers abroad.
             </p>

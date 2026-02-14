@@ -22,7 +22,7 @@ const Navbar = () => {
     <header className="sticky top-0 z-50 bg-card/95 backdrop-blur-md border-b border-border shadow-card">
       <nav className="container mx-auto flex items-center justify-between py-3 px-4">
         <Link to="/" className="flex items-center">
-          <img src={logo} alt="Pravaas International Education Consultancy" className="h-14 w-auto" />
+          <img src={logo} alt="Pravaas International Education Consultancy" className="h-20 w-auto" />
         </Link>
 
         {/* Desktop nav */}
