@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { Phone, Mail, MapPin, Facebook, Instagram, Linkedin, Youtube } from "lucide-react";
+import { motion } from "framer-motion";
 import footerBg from "@/assets/footer-bg.jpg";
 import logo from "@/assets/logo.jpg";
 
@@ -11,25 +12,34 @@ const Footer = () => {
       <div className="relative container mx-auto px-4 py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
           {/* Brand */}
-          <div>
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            viewport={{ once: true }}
+          >
             <div className="flex items-center gap-3 mb-4">
               <img src={logo} alt="Pravaas International" className="h-14 w-auto rounded-lg" />
-              <h3 className="font-heading text-2xl font-bold">Pravaas International</h3>
             </div>
             <p className="text-background/70 text-sm leading-relaxed mb-6">
               Your trusted partner for international education. We guide students towards globally recognized degrees and successful careers abroad.
             </p>
             <div className="flex gap-3">
               {[Facebook, Instagram, Linkedin, Youtube].map((Icon, i) => (
-                <a key={i} href="#" className="w-9 h-9 rounded-full bg-background/10 flex items-center justify-center hover:bg-primary transition-colors">
+                <a key={i} href="#" className="w-9 h-9 rounded-full bg-background/10 flex items-center justify-center hover:bg-accent hover:scale-110 transition-all duration-300">
                   <Icon className="w-4 h-4" />
                 </a>
               ))}
             </div>
-          </div>
+          </motion.div>
 
           {/* Quick Links */}
-          <div>
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            viewport={{ once: true }}
+          >
             <h4 className="font-heading text-lg font-semibold mb-4">Quick Links</h4>
             <ul className="space-y-2.5">
               {[
@@ -38,14 +48,19 @@ const Footer = () => {
                 { label: "Contact", path: "/contact" },
               ].map((link) => (
                 <li key={link.path}>
-                  <Link to={link.path} className="text-sm text-background/70 hover:text-accent transition-colors">{link.label}</Link>
+                  <Link to={link.path} className="text-sm text-background/70 hover:text-accent hover:translate-x-1 inline-block transition-all duration-300">{link.label}</Link>
                 </li>
               ))}
             </ul>
-          </div>
+          </motion.div>
 
           {/* Destinations */}
-          <div>
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            viewport={{ once: true }}
+          >
             <h4 className="font-heading text-lg font-semibold mb-4">Study Destinations</h4>
             <ul className="space-y-2.5">
               {[
@@ -55,30 +70,35 @@ const Footer = () => {
                 { label: "Study in Germany", path: "/study-in-germany" },
               ].map((link) => (
                 <li key={link.path}>
-                  <Link to={link.path} className="text-sm text-background/70 hover:text-accent transition-colors">{link.label}</Link>
+                  <Link to={link.path} className="text-sm text-background/70 hover:text-accent hover:translate-x-1 inline-block transition-all duration-300">{link.label}</Link>
                 </li>
               ))}
             </ul>
-          </div>
+          </motion.div>
 
           {/* Contact Info */}
-          <div>
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.3 }}
+            viewport={{ once: true }}
+          >
             <h4 className="font-heading text-lg font-semibold mb-4">Contact Us</h4>
             <ul className="space-y-3">
               <li className="flex items-start gap-3 text-sm text-background/70">
-                <MapPin className="w-4 h-4 mt-0.5 text-primary shrink-0" />
+                <MapPin className="w-4 h-4 mt-0.5 text-accent shrink-0" />
                 <span>Pravaas International Education Consultancy</span>
               </li>
               <li className="flex items-center gap-3 text-sm text-background/70">
-                <Phone className="w-4 h-4 text-primary shrink-0" />
+                <Phone className="w-4 h-4 text-accent shrink-0" />
                 <a href="tel:+910000000000" className="hover:text-accent transition-colors">+91 00000 00000</a>
               </li>
               <li className="flex items-center gap-3 text-sm text-background/70">
-                <Mail className="w-4 h-4 text-primary shrink-0" />
+                <Mail className="w-4 h-4 text-accent shrink-0" />
                 <a href="mailto:info@pravaasinternational.com" className="hover:text-accent transition-colors">info@pravaasinternational.com</a>
               </li>
             </ul>
-          </div>
+          </motion.div>
         </div>
 
         <div className="mt-12 text-center text-sm text-primary-foreground bg-accent py-4 px-6 font-medium -mx-4 -mb-16">
