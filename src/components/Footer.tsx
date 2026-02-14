@@ -81,7 +81,7 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="border-t border-background/10 mt-12 pt-8 text-center text-sm text-background/50">
+        <div className="border-t border-background/10 mt-12 pt-8 text-center text-sm text-accent-foreground bg-accent rounded-lg py-4 px-6 font-medium">
           © {new Date().getFullYear()} Pravaas International Education Consultancy. All rights reserved.
         </div>
       </div>
