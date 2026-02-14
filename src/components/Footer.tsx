@@ -1,10 +1,13 @@
 import { Link } from "react-router-dom";
 import { Phone, Mail, MapPin, Facebook, Instagram, Linkedin, Youtube } from "lucide-react";
+import footerBg from "@/assets/footer-bg.jpg";
 
 const Footer = () => {
   return (
-    <footer className="bg-foreground text-background">
-      <div className="container mx-auto px-4 py-16">
+    <footer className="relative text-background">
+      <img src={footerBg} alt="" className="absolute inset-0 w-full h-full object-cover" aria-hidden="true" />
+      <div className="absolute inset-0 bg-foreground/90" />
+      <div className="relative container mx-auto px-4 py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
           {/* Brand */}
           <div>
