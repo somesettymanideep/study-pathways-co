@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { GraduationCap, Globe, BookOpen, Users, Star, ArrowRight, CheckCircle2, MapPin } from "lucide-react";
 import Layout from "@/components/Layout";
 import EnquiryPopup from "@/components/EnquiryPopup";
+import AnimatedSection from "@/components/AnimatedSection";
 import heroImage from "@/assets/hero-students.jpg";
 import ukHero from "@/assets/uk-hero.jpg";
 import australiaHero from "@/assets/australia-hero.jpg";
@@ -69,113 +70,123 @@ const Index = () => {
       </section>
 
       {/* Why Study Abroad */}
-      <section className="py-20">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="font-heading text-3xl md:text-4xl font-bold mb-4">Why Study Abroad?</h2>
-            <p className="text-muted-foreground max-w-xl mx-auto">Studying abroad opens doors to world-class education and international career opportunities.</p>
+      <AnimatedSection>
+        <section className="py-20">
+          <div className="container mx-auto px-4">
+            <div className="text-center mb-12">
+              <h2 className="font-heading text-3xl md:text-4xl font-bold mb-4">Why Study Abroad?</h2>
+              <p className="text-muted-foreground max-w-xl mx-auto">Studying abroad opens doors to world-class education and international career opportunities.</p>
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 max-w-5xl mx-auto">
+              {whyStudyAbroad.map((item, i) => (
+                <div key={i} className="bg-card rounded-xl p-6 border border-border shadow-card text-center hover:shadow-soft transition-shadow">
+                  <CheckCircle2 className="w-8 h-8 text-primary mx-auto mb-3" />
+                  <p className="text-sm font-medium">{item}</p>
+                </div>
+              ))}
+            </div>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 max-w-5xl mx-auto">
-            {whyStudyAbroad.map((item, i) => (
-              <div key={i} className="bg-card rounded-xl p-6 border border-border shadow-card text-center hover:shadow-soft transition-shadow">
-                <CheckCircle2 className="w-8 h-8 text-primary mx-auto mb-3" />
-                <p className="text-sm font-medium">{item}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+        </section>
+      </AnimatedSection>
 
       {/* Popular Destinations */}
-      <section className="py-20 bg-warm-gradient">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="font-heading text-3xl md:text-4xl font-bold mb-4">Popular Destinations</h2>
-            <p className="text-muted-foreground max-w-xl mx-auto">Choose from top study destinations around the world</p>
-          </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {destinations.map((dest) => (
-              <Link key={dest.path} to={dest.path} className="group bg-card rounded-2xl overflow-hidden border border-border shadow-card hover:shadow-elevated transition-all hover:-translate-y-1">
-                <div className="h-48 overflow-hidden">
-                  <img src={dest.image} alt={dest.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
-                </div>
-                <div className="p-5">
-                  <div className="flex items-center gap-2 mb-2">
-                    <MapPin className="w-4 h-4 text-primary" />
-                    <h3 className="font-heading text-lg font-bold">{dest.name}</h3>
+      <AnimatedSection>
+        <section className="py-20 bg-warm-gradient">
+          <div className="container mx-auto px-4">
+            <div className="text-center mb-12">
+              <h2 className="font-heading text-3xl md:text-4xl font-bold mb-4">Popular Destinations</h2>
+              <p className="text-muted-foreground max-w-xl mx-auto">Choose from top study destinations around the world</p>
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+              {destinations.map((dest) => (
+                <Link key={dest.path} to={dest.path} className="group bg-card rounded-2xl overflow-hidden border border-border shadow-card hover:shadow-elevated transition-all hover:-translate-y-1">
+                  <div className="h-48 overflow-hidden">
+                    <img src={dest.image} alt={dest.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
                   </div>
-                  <p className="text-sm text-muted-foreground mb-3">{dest.desc}</p>
-                  <span className="text-primary text-sm font-semibold flex items-center gap-1 group-hover:gap-2 transition-all">
-                    Explore <ArrowRight className="w-4 h-4" />
-                  </span>
-                </div>
-              </Link>
-            ))}
+                  <div className="p-5">
+                    <div className="flex items-center gap-2 mb-2">
+                      <MapPin className="w-4 h-4 text-primary" />
+                      <h3 className="font-heading text-lg font-bold">{dest.name}</h3>
+                    </div>
+                    <p className="text-sm text-muted-foreground mb-3">{dest.desc}</p>
+                    <span className="text-primary text-sm font-semibold flex items-center gap-1 group-hover:gap-2 transition-all">
+                      Explore <ArrowRight className="w-4 h-4" />
+                    </span>
+                  </div>
+                </Link>
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      </AnimatedSection>
 
       {/* Services */}
-      <section className="py-20">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="font-heading text-3xl md:text-4xl font-bold mb-4">Our Services</h2>
-            <p className="text-muted-foreground max-w-xl mx-auto">Comprehensive support at every step of your study abroad journey</p>
-          </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {services.map((service, i) => (
-              <div key={i} className="bg-card rounded-2xl p-8 border border-border shadow-card hover:shadow-soft transition-shadow text-center">
-                <div className="w-14 h-14 bg-hero-gradient rounded-xl flex items-center justify-center mx-auto mb-5 text-primary-foreground">
-                  {service.icon}
+      <AnimatedSection>
+        <section className="py-20">
+          <div className="container mx-auto px-4">
+            <div className="text-center mb-12">
+              <h2 className="font-heading text-3xl md:text-4xl font-bold mb-4">Our Services</h2>
+              <p className="text-muted-foreground max-w-xl mx-auto">Comprehensive support at every step of your study abroad journey</p>
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+              {services.map((service, i) => (
+                <div key={i} className="bg-card rounded-2xl p-8 border border-border shadow-card hover:shadow-soft transition-shadow text-center">
+                  <div className="w-14 h-14 bg-hero-gradient rounded-xl flex items-center justify-center mx-auto mb-5 text-primary-foreground">
+                    {service.icon}
+                  </div>
+                  <h3 className="font-heading text-lg font-bold mb-2">{service.title}</h3>
+                  <p className="text-sm text-muted-foreground">{service.desc}</p>
                 </div>
-                <h3 className="font-heading text-lg font-bold mb-2">{service.title}</h3>
-                <p className="text-sm text-muted-foreground">{service.desc}</p>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      </AnimatedSection>
 
       {/* Testimonials */}
-      <section className="py-20 bg-warm-gradient">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="font-heading text-3xl md:text-4xl font-bold mb-4">Student Testimonials</h2>
-            <p className="text-muted-foreground max-w-xl mx-auto">Hear from students who achieved their dreams with Pravaas</p>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
-            {testimonials.map((t, i) => (
-              <div key={i} className="bg-card rounded-2xl p-8 border border-border shadow-card">
-                <div className="flex gap-1 mb-4">
-                  {Array.from({ length: t.rating }).map((_, j) => (
-                    <Star key={j} className="w-4 h-4 fill-primary text-primary" />
-                  ))}
+      <AnimatedSection>
+        <section className="py-20 bg-warm-gradient">
+          <div className="container mx-auto px-4">
+            <div className="text-center mb-12">
+              <h2 className="font-heading text-3xl md:text-4xl font-bold mb-4">Student Testimonials</h2>
+              <p className="text-muted-foreground max-w-xl mx-auto">Hear from students who achieved their dreams with Pravaas</p>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+              {testimonials.map((t, i) => (
+                <div key={i} className="bg-card rounded-2xl p-8 border border-border shadow-card">
+                  <div className="flex gap-1 mb-4">
+                    {Array.from({ length: t.rating }).map((_, j) => (
+                      <Star key={j} className="w-4 h-4 fill-primary text-primary" />
+                    ))}
+                  </div>
+                  <p className="text-foreground mb-6 leading-relaxed">"{t.text}"</p>
+                  <div>
+                    <p className="font-semibold text-sm">{t.name}</p>
+                    <p className="text-xs text-muted-foreground">Studying in {t.country}</p>
+                  </div>
                 </div>
-                <p className="text-foreground mb-6 leading-relaxed">"{t.text}"</p>
-                <div>
-                  <p className="font-semibold text-sm">{t.name}</p>
-                  <p className="text-xs text-muted-foreground">Studying in {t.country}</p>
-                </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      </AnimatedSection>
 
       {/* CTA */}
-      <section className="py-20">
-        <div className="container mx-auto px-4">
-          <div className="bg-hero-gradient rounded-3xl p-12 md:p-16 text-center text-primary-foreground">
-            <h2 className="font-heading text-3xl md:text-4xl font-bold mb-4">Ready to Start Your Journey?</h2>
-            <p className="text-primary-foreground/80 max-w-xl mx-auto mb-8 text-lg">
-              Book a free consultation with our expert counsellors today
-            </p>
-            <Link to="/contact" className="inline-block px-10 py-4 bg-card text-primary font-bold rounded-xl hover:bg-background transition-colors text-lg shadow-elevated">
-              Book Free Consultation
-            </Link>
+      <AnimatedSection>
+        <section className="py-20">
+          <div className="container mx-auto px-4">
+            <div className="bg-hero-gradient rounded-3xl p-12 md:p-16 text-center text-primary-foreground">
+              <h2 className="font-heading text-3xl md:text-4xl font-bold mb-4">Ready to Start Your Journey?</h2>
+              <p className="text-primary-foreground/80 max-w-xl mx-auto mb-8 text-lg">
+                Book a free consultation with our expert counsellors today
+              </p>
+              <Link to="/contact" className="inline-block px-10 py-4 bg-card text-primary font-bold rounded-xl hover:bg-background transition-colors text-lg shadow-elevated">
+                Book Free Consultation
+              </Link>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      </AnimatedSection>
     </Layout>
   );
 };
