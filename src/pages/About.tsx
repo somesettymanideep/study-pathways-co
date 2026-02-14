@@ -1,6 +1,7 @@
 import { CheckCircle2, Target, Eye, Award, Users } from "lucide-react";
 import Layout from "@/components/Layout";
 import AnimatedSection from "@/components/AnimatedSection";
+import { StaggeredList, StaggeredItem } from "@/components/StaggeredList";
 import { Link } from "react-router-dom";
 
 const values = [
@@ -14,6 +15,14 @@ const team = [
   { name: "Counsellor 1", role: "Senior Education Consultant", speciality: "UK & Australia" },
   { name: "Counsellor 2", role: "Visa & Immigration Expert", speciality: "Canada & Germany" },
   { name: "Counsellor 3", role: "Career Guidance Specialist", speciality: "Course Selection" },
+];
+
+const servicesList = [
+  "Free profile evaluation and career counselling",
+  "Course and university selection guidance",
+  "Application and documentation support",
+  "Visa guidance and interview preparation",
+  "Pre-departure support and assistance",
 ];
 
 const About = () => {
@@ -30,11 +39,11 @@ const About = () => {
       </section>
 
       {/* Mission & Vision */}
-      <AnimatedSection>
-        <section className="py-20">
-          <div className="container mx-auto px-4">
-            <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-              <div className="bg-card rounded-2xl p-10 border border-border shadow-card">
+      <section className="py-20">
+        <div className="container mx-auto px-4">
+          <StaggeredList className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto" staggerDelay={0.15}>
+            <StaggeredItem>
+              <div className="bg-card rounded-2xl p-10 border border-border shadow-card h-full">
                 <div className="w-12 h-12 bg-hero-gradient rounded-xl flex items-center justify-center mb-5 text-primary-foreground">
                   <Target className="w-6 h-6" />
                 </div>
@@ -43,7 +52,9 @@ const About = () => {
                   To provide honest, personalized, and end-to-end study abroad guidance, helping students make informed academic and career decisions.
                 </p>
               </div>
-              <div className="bg-card rounded-2xl p-10 border border-border shadow-card">
+            </StaggeredItem>
+            <StaggeredItem>
+              <div className="bg-card rounded-2xl p-10 border border-border shadow-card h-full">
                 <div className="w-12 h-12 bg-hero-gradient rounded-xl flex items-center justify-center mb-5 text-primary-foreground">
                   <Eye className="w-6 h-6" />
                 </div>
@@ -52,63 +63,63 @@ const About = () => {
                   To guide students with transparency and integrity towards globally recognized education and successful international careers.
                 </p>
               </div>
-            </div>
-          </div>
-        </section>
-      </AnimatedSection>
+            </StaggeredItem>
+          </StaggeredList>
+        </div>
+      </section>
 
       {/* Why Choose Us */}
-      <AnimatedSection>
-        <section className="py-20 bg-warm-gradient">
-          <div className="container mx-auto px-4">
+      <section className="py-20 bg-warm-gradient">
+        <div className="container mx-auto px-4">
+          <AnimatedSection>
             <h2 className="font-heading text-3xl md:text-4xl font-bold text-center mb-12">Why Choose Pravaas?</h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto">
-              {values.map((v, i) => (
-                <div key={i} className="bg-card rounded-2xl p-8 border border-border shadow-card text-center">
+          </AnimatedSection>
+          <StaggeredList className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto" staggerDelay={0.1}>
+            {values.map((v, i) => (
+              <StaggeredItem key={i}>
+                <div className="bg-card rounded-2xl p-8 border border-border shadow-card text-center h-full">
                   <div className="w-14 h-14 bg-secondary rounded-xl flex items-center justify-center mx-auto mb-5 text-primary">
                     {v.icon}
                   </div>
                   <h3 className="font-heading text-lg font-bold mb-2">{v.title}</h3>
                   <p className="text-sm text-muted-foreground">{v.desc}</p>
                 </div>
-              ))}
-            </div>
-          </div>
-        </section>
-      </AnimatedSection>
+              </StaggeredItem>
+            ))}
+          </StaggeredList>
+        </div>
+      </section>
 
       {/* Services list */}
-      <AnimatedSection>
-        <section className="py-20">
-          <div className="container mx-auto px-4">
+      <section className="py-20">
+        <div className="container mx-auto px-4">
+          <AnimatedSection>
             <h2 className="font-heading text-3xl md:text-4xl font-bold text-center mb-4">What We Offer</h2>
             <p className="text-center text-muted-foreground mb-12 max-w-xl mx-auto">Comprehensive support at every stage of your study abroad journey</p>
-            <div className="max-w-3xl mx-auto space-y-4">
-              {[
-                "Free profile evaluation and career counselling",
-                "Course and university selection guidance",
-                "Application and documentation support",
-                "Visa guidance and interview preparation",
-                "Pre-departure support and assistance",
-              ].map((s, i) => (
-                <div key={i} className="flex items-center gap-4 bg-card rounded-xl p-5 border border-border shadow-card">
+          </AnimatedSection>
+          <StaggeredList className="max-w-3xl mx-auto space-y-4" staggerDelay={0.08}>
+            {servicesList.map((s, i) => (
+              <StaggeredItem key={i}>
+                <div className="flex items-center gap-4 bg-card rounded-xl p-5 border border-border shadow-card">
                   <CheckCircle2 className="w-5 h-5 text-primary shrink-0" />
                   <span className="font-medium">{s}</span>
                 </div>
-              ))}
-            </div>
-          </div>
-        </section>
-      </AnimatedSection>
+              </StaggeredItem>
+            ))}
+          </StaggeredList>
+        </div>
+      </section>
 
       {/* Team */}
-      <AnimatedSection>
-        <section className="py-20 bg-warm-gradient">
-          <div className="container mx-auto px-4">
+      <section className="py-20 bg-warm-gradient">
+        <div className="container mx-auto px-4">
+          <AnimatedSection>
             <h2 className="font-heading text-3xl md:text-4xl font-bold text-center mb-12">Our Counsellors</h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
-              {team.map((member, i) => (
-                <div key={i} className="bg-card rounded-2xl p-8 border border-border shadow-card text-center">
+          </AnimatedSection>
+          <StaggeredList className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto" staggerDelay={0.15}>
+            {team.map((member, i) => (
+              <StaggeredItem key={i}>
+                <div className="bg-card rounded-2xl p-8 border border-border shadow-card text-center">
                   <div className="w-20 h-20 bg-secondary rounded-full flex items-center justify-center mx-auto mb-5">
                     <Users className="w-8 h-8 text-primary" />
                   </div>
@@ -116,11 +127,11 @@ const About = () => {
                   <p className="text-sm text-primary font-medium mb-1">{member.role}</p>
                   <p className="text-xs text-muted-foreground">{member.speciality}</p>
                 </div>
-              ))}
-            </div>
-          </div>
-        </section>
-      </AnimatedSection>
+              </StaggeredItem>
+            ))}
+          </StaggeredList>
+        </div>
+      </section>
 
       {/* CTA */}
       <AnimatedSection>
