@@ -3,6 +3,7 @@ import { GraduationCap, Globe, BookOpen, Users, Star, ArrowRight, CheckCircle2, 
 import Layout from "@/components/Layout";
 import EnquiryPopup from "@/components/EnquiryPopup";
 import AnimatedSection from "@/components/AnimatedSection";
+import { StaggeredList, StaggeredItem } from "@/components/StaggeredList";
 import heroImage from "@/assets/hero-students.jpg";
 import ukHero from "@/assets/uk-hero.jpg";
 import australiaHero from "@/assets/australia-hero.jpg";
@@ -70,36 +71,40 @@ const Index = () => {
       </section>
 
       {/* Why Study Abroad */}
-      <AnimatedSection>
-        <section className="py-20">
-          <div className="container mx-auto px-4">
+      <section className="py-20">
+        <div className="container mx-auto px-4">
+          <AnimatedSection>
             <div className="text-center mb-12">
               <h2 className="font-heading text-3xl md:text-4xl font-bold mb-4">Why Study Abroad?</h2>
               <p className="text-muted-foreground max-w-xl mx-auto">Studying abroad opens doors to world-class education and international career opportunities.</p>
             </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 max-w-5xl mx-auto">
-              {whyStudyAbroad.map((item, i) => (
-                <div key={i} className="bg-card rounded-xl p-6 border border-border shadow-card text-center hover:shadow-soft transition-shadow">
+          </AnimatedSection>
+          <StaggeredList className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 max-w-5xl mx-auto">
+            {whyStudyAbroad.map((item, i) => (
+              <StaggeredItem key={i}>
+                <div className="bg-card rounded-xl p-6 border border-border shadow-card text-center hover:shadow-soft transition-shadow">
                   <CheckCircle2 className="w-8 h-8 text-primary mx-auto mb-3" />
                   <p className="text-sm font-medium">{item}</p>
                 </div>
-              ))}
-            </div>
-          </div>
-        </section>
-      </AnimatedSection>
+              </StaggeredItem>
+            ))}
+          </StaggeredList>
+        </div>
+      </section>
 
       {/* Popular Destinations */}
-      <AnimatedSection>
-        <section className="py-20 bg-warm-gradient">
-          <div className="container mx-auto px-4">
+      <section className="py-20 bg-warm-gradient">
+        <div className="container mx-auto px-4">
+          <AnimatedSection>
             <div className="text-center mb-12">
               <h2 className="font-heading text-3xl md:text-4xl font-bold mb-4">Popular Destinations</h2>
               <p className="text-muted-foreground max-w-xl mx-auto">Choose from top study destinations around the world</p>
             </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-              {destinations.map((dest) => (
-                <Link key={dest.path} to={dest.path} className="group bg-card rounded-2xl overflow-hidden border border-border shadow-card hover:shadow-elevated transition-all hover:-translate-y-1">
+          </AnimatedSection>
+          <StaggeredList className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6" staggerDelay={0.12}>
+            {destinations.map((dest) => (
+              <StaggeredItem key={dest.path}>
+                <Link to={dest.path} className="group bg-card rounded-2xl overflow-hidden border border-border shadow-card hover:shadow-elevated transition-all hover:-translate-y-1 block">
                   <div className="h-48 overflow-hidden">
                     <img src={dest.image} alt={dest.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
                   </div>
@@ -114,46 +119,50 @@ const Index = () => {
                     </span>
                   </div>
                 </Link>
-              ))}
-            </div>
-          </div>
-        </section>
-      </AnimatedSection>
+              </StaggeredItem>
+            ))}
+          </StaggeredList>
+        </div>
+      </section>
 
       {/* Services */}
-      <AnimatedSection>
-        <section className="py-20">
-          <div className="container mx-auto px-4">
+      <section className="py-20">
+        <div className="container mx-auto px-4">
+          <AnimatedSection>
             <div className="text-center mb-12">
               <h2 className="font-heading text-3xl md:text-4xl font-bold mb-4">Our Services</h2>
               <p className="text-muted-foreground max-w-xl mx-auto">Comprehensive support at every step of your study abroad journey</p>
             </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-              {services.map((service, i) => (
-                <div key={i} className="bg-card rounded-2xl p-8 border border-border shadow-card hover:shadow-soft transition-shadow text-center">
+          </AnimatedSection>
+          <StaggeredList className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6" staggerDelay={0.12}>
+            {services.map((service, i) => (
+              <StaggeredItem key={i}>
+                <div className="bg-card rounded-2xl p-8 border border-border shadow-card hover:shadow-soft transition-shadow text-center">
                   <div className="w-14 h-14 bg-hero-gradient rounded-xl flex items-center justify-center mx-auto mb-5 text-primary-foreground">
                     {service.icon}
                   </div>
                   <h3 className="font-heading text-lg font-bold mb-2">{service.title}</h3>
                   <p className="text-sm text-muted-foreground">{service.desc}</p>
                 </div>
-              ))}
-            </div>
-          </div>
-        </section>
-      </AnimatedSection>
+              </StaggeredItem>
+            ))}
+          </StaggeredList>
+        </div>
+      </section>
 
       {/* Testimonials */}
-      <AnimatedSection>
-        <section className="py-20 bg-warm-gradient">
-          <div className="container mx-auto px-4">
+      <section className="py-20 bg-warm-gradient">
+        <div className="container mx-auto px-4">
+          <AnimatedSection>
             <div className="text-center mb-12">
               <h2 className="font-heading text-3xl md:text-4xl font-bold mb-4">Student Testimonials</h2>
               <p className="text-muted-foreground max-w-xl mx-auto">Hear from students who achieved their dreams with Pravaas</p>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
-              {testimonials.map((t, i) => (
-                <div key={i} className="bg-card rounded-2xl p-8 border border-border shadow-card">
+          </AnimatedSection>
+          <StaggeredList className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto" staggerDelay={0.15}>
+            {testimonials.map((t, i) => (
+              <StaggeredItem key={i}>
+                <div className="bg-card rounded-2xl p-8 border border-border shadow-card">
                   <div className="flex gap-1 mb-4">
                     {Array.from({ length: t.rating }).map((_, j) => (
                       <Star key={j} className="w-4 h-4 fill-primary text-primary" />
@@ -165,11 +174,11 @@ const Index = () => {
                     <p className="text-xs text-muted-foreground">Studying in {t.country}</p>
                   </div>
                 </div>
-              ))}
-            </div>
-          </div>
-        </section>
-      </AnimatedSection>
+              </StaggeredItem>
+            ))}
+          </StaggeredList>
+        </div>
+      </section>
 
       {/* CTA */}
       <AnimatedSection>
