@@ -5,6 +5,7 @@ import EnquiryPopup from "@/components/EnquiryPopup";
 import AnimatedSection from "@/components/AnimatedSection";
 import { StaggeredList, StaggeredItem } from "@/components/StaggeredList";
 import heroImage from "@/assets/hero-students.jpg";
+import heroIllustration from "@/assets/hero-illustration.jpg";
 import ukHero from "@/assets/uk-hero.jpg";
 import australiaHero from "@/assets/australia-hero.jpg";
 import canadaHero from "@/assets/canada-hero.jpg";
@@ -48,23 +49,38 @@ const Index = () => {
         <img src={heroImage} alt="Start your global education journey" className="absolute inset-0 w-full h-full object-cover" />
         <div className="absolute inset-0 bg-overlay-dark" />
         <div className="relative container mx-auto px-4 py-20">
-          <div className="max-w-2xl">
-            <span className="inline-block px-4 py-1.5 bg-primary/20 text-primary-foreground text-sm font-medium rounded-full mb-6 animate-fade-in-up backdrop-blur-sm border border-primary-foreground/20">
-              🎓 Trusted by 1000+ Students
-            </span>
-            <h1 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold text-background leading-tight mb-6 animate-fade-in-up" style={{ animationDelay: "0.1s" }}>
-              Start Your Global Education Journey
-            </h1>
-            <p className="text-lg md:text-xl text-background/80 mb-8 leading-relaxed animate-fade-in-up" style={{ animationDelay: "0.2s" }}>
-              Expert guidance for studying in the UK, Australia, Canada & Germany. Free counselling for your dream university.
-            </p>
-            <div className="flex flex-wrap gap-4 animate-fade-in-up" style={{ animationDelay: "0.3s" }}>
-              <Link to="/contact" className="px-8 py-4 bg-hero-gradient text-primary-foreground font-semibold rounded-xl hover:opacity-90 transition-opacity text-lg">
-                Book Free Consultation
-              </Link>
-              <Link to="/about" className="px-8 py-4 border-2 border-background/30 text-background font-semibold rounded-xl hover:bg-background/10 transition-colors text-lg">
-                Learn More
-              </Link>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div>
+              <span className="inline-block px-4 py-1.5 bg-primary/20 text-primary-foreground text-sm font-medium rounded-full mb-6 animate-fade-in-up backdrop-blur-sm border border-primary-foreground/20">
+                🎓 Trusted by 1000+ Students
+              </span>
+              <h1 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold text-background leading-tight mb-6 animate-fade-in-up" style={{ animationDelay: "0.1s" }}>
+                Start Your Global Education Journey
+              </h1>
+              <p className="text-lg md:text-xl text-background/80 mb-8 leading-relaxed animate-fade-in-up" style={{ animationDelay: "0.2s" }}>
+                Expert guidance for studying in the UK, Australia, Canada & Germany. Free counselling for your dream university.
+              </p>
+              <div className="flex flex-wrap gap-4 animate-fade-in-up" style={{ animationDelay: "0.3s" }}>
+                <Link to="/contact" className="px-8 py-4 bg-hero-gradient text-primary-foreground font-semibold rounded-xl hover:opacity-90 transition-opacity text-lg">
+                  Book Free Consultation
+                </Link>
+                <Link to="/about" className="px-8 py-4 border-2 border-background/30 text-background font-semibold rounded-xl hover:bg-background/10 transition-colors text-lg">
+                  Learn More
+                </Link>
+              </div>
+            </div>
+            <div className="hidden lg:block animate-fade-in-up" style={{ animationDelay: "0.4s" }}>
+              <div className="relative">
+                <div className="rounded-2xl overflow-hidden shadow-elevated border-4 border-background/20">
+                  <img src={heroIllustration} alt="Successful international graduates celebrating" className="w-full h-auto object-cover" />
+                </div>
+                <div className="absolute -bottom-4 -left-4 bg-hero-gradient text-primary-foreground px-5 py-3 rounded-xl shadow-elevated font-semibold text-sm">
+                  🌍 4+ Countries
+                </div>
+                <div className="absolute -top-4 -right-4 bg-card text-foreground px-5 py-3 rounded-xl shadow-elevated font-semibold text-sm">
+                  ✅ 98% Visa Success
+                </div>
+              </div>
             </div>
           </div>
         </div>
