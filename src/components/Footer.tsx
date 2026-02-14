@@ -38,7 +38,7 @@ const Footer = () => {
                 { label: "Contact", path: "/contact" },
               ].map((link) => (
                 <li key={link.path}>
-                  <Link to={link.path} className="text-sm text-background/70 hover:text-primary transition-colors">{link.label}</Link>
+                  <Link to={link.path} className="text-sm text-background/70 hover:text-accent transition-colors">{link.label}</Link>
                 </li>
               ))}
             </ul>
@@ -55,7 +55,7 @@ const Footer = () => {
                 { label: "Study in Germany", path: "/study-in-germany" },
               ].map((link) => (
                 <li key={link.path}>
-                  <Link to={link.path} className="text-sm text-background/70 hover:text-primary transition-colors">{link.label}</Link>
+                  <Link to={link.path} className="text-sm text-background/70 hover:text-accent transition-colors">{link.label}</Link>
                 </li>
               ))}
             </ul>
@@ -71,11 +71,11 @@ const Footer = () => {
               </li>
               <li className="flex items-center gap-3 text-sm text-background/70">
                 <Phone className="w-4 h-4 text-primary shrink-0" />
-                <a href="tel:+910000000000" className="hover:text-primary transition-colors">+91 00000 00000</a>
+                <a href="tel:+910000000000" className="hover:text-accent transition-colors">+91 00000 00000</a>
               </li>
               <li className="flex items-center gap-3 text-sm text-background/70">
                 <Mail className="w-4 h-4 text-primary shrink-0" />
-                <a href="mailto:info@pravaasinternational.com" className="hover:text-primary transition-colors">info@pravaasinternational.com</a>
+                <a href="mailto:info@pravaasinternational.com" className="hover:text-accent transition-colors">info@pravaasinternational.com</a>
               </li>
             </ul>
           </div>
