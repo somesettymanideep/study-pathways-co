@@ -1,15 +1,49 @@
+import { useState, useEffect, useCallback } from "react";
 import { Link } from "react-router-dom";
-import { GraduationCap, Globe, BookOpen, Users, Star, ArrowRight, CheckCircle2, MapPin } from "lucide-react";
+import { GraduationCap, Globe, BookOpen, Users, Star, ArrowRight, CheckCircle2, MapPin, ChevronLeft, ChevronRight } from "lucide-react";
 import Layout from "@/components/Layout";
 import EnquiryPopup from "@/components/EnquiryPopup";
 import AnimatedSection from "@/components/AnimatedSection";
 import { StaggeredList, StaggeredItem } from "@/components/StaggeredList";
-import heroImage from "@/assets/hero-students.jpg";
-import heroIllustration from "@/assets/hero-illustration.jpg";
 import ukHero from "@/assets/uk-hero.jpg";
 import australiaHero from "@/assets/australia-hero.jpg";
 import canadaHero from "@/assets/canada-hero.jpg";
 import germanyHero from "@/assets/germany-hero.jpg";
+
+const heroSlides = [
+  {
+    image: ukHero,
+    country: "United Kingdom",
+    tagline: "🇬🇧 Study in the UK",
+    heading: "World-Class Education in the United Kingdom",
+    description: "Home to Oxford, Cambridge & top Russell Group universities. Shorter course durations, post-study work visa & global recognition.",
+    path: "/study-in-uk",
+  },
+  {
+    image: australiaHero,
+    country: "Australia",
+    tagline: "🇦🇺 Study in Australia",
+    heading: "Discover Opportunities in Australia",
+    description: "Student-friendly environment with globally ranked universities, part-time work rights & post-study PR pathways.",
+    path: "/study-in-australia",
+  },
+  {
+    image: canadaHero,
+    country: "Canada",
+    tagline: "🇨🇦 Study in Canada",
+    heading: "Build Your Future in Canada",
+    description: "Affordable tuition, multicultural campuses, generous post-graduation work permits & permanent residency options.",
+    path: "/study-in-canada",
+  },
+  {
+    image: germanyHero,
+    country: "Germany",
+    tagline: "🇩🇪 Study in Germany",
+    heading: "Engineering Excellence in Germany",
+    description: "Near-zero tuition at public universities, world-leading STEM programmes & Europe's strongest economy.",
+    path: "/study-in-germany",
+  },
+];
 
 const destinations = [
   { name: "United Kingdom", image: ukHero, path: "/study-in-uk", desc: "World-class degrees with shorter course duration" },
@@ -40,49 +74,104 @@ const whyStudyAbroad = [
 ];
 
 const Index = () => {
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [isTransitioning, setIsTransitioning] = useState(false);
+
+  const goToSlide = useCallback((index: number) => {
+    if (isTransitioning) return;
+    setIsTransitioning(true);
+    setCurrentSlide(index);
+    setTimeout(() => setIsTransitioning(false), 600);
+  }, [isTransitioning]);
+
+  const nextSlide = useCallback(() => {
+    goToSlide((currentSlide + 1) % heroSlides.length);
+  }, [currentSlide, goToSlide]);
+
+  const prevSlide = useCallback(() => {
+    goToSlide((currentSlide - 1 + heroSlides.length) % heroSlides.length);
+  }, [currentSlide, goToSlide]);
+
+  useEffect(() => {
+    const timer = setInterval(nextSlide, 5000);
+    return () => clearInterval(timer);
+  }, [nextSlide]);
+
+  const slide = heroSlides[currentSlide];
+
   return (
     <Layout>
       <EnquiryPopup />
 
-      {/* Hero */}
-      <section className="relative min-h-[85vh] flex items-center">
-        <img src={heroImage} alt="Start your global education journey" className="absolute inset-0 w-full h-full object-cover" />
+      {/* Hero Slider */}
+      <section className="relative min-h-[85vh] flex items-center overflow-hidden">
+        {heroSlides.map((s, i) => (
+          <img
+            key={i}
+            src={s.image}
+            alt={s.country}
+            className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ${i === currentSlide ? "opacity-100" : "opacity-0"}`}
+          />
+        ))}
         <div className="absolute inset-0 bg-overlay-dark" />
+
         <div className="relative container mx-auto px-4 py-20">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <span className="inline-block px-4 py-1.5 bg-primary/20 text-primary-foreground text-sm font-medium rounded-full mb-6 animate-fade-in-up backdrop-blur-sm border border-primary-foreground/20">
-                🎓 Trusted by 1000+ Students
-              </span>
-              <h1 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold text-background leading-tight mb-6 animate-fade-in-up" style={{ animationDelay: "0.1s" }}>
-                Start Your Global Education Journey
-              </h1>
-              <p className="text-lg md:text-xl text-background/80 mb-8 leading-relaxed animate-fade-in-up" style={{ animationDelay: "0.2s" }}>
-                Expert guidance for studying in the UK, Australia, Canada & Germany. Free counselling for your dream university.
-              </p>
-              <div className="flex flex-wrap gap-4 animate-fade-in-up" style={{ animationDelay: "0.3s" }}>
-                <Link to="/contact" className="px-8 py-4 bg-hero-gradient text-primary-foreground font-semibold rounded-xl hover:opacity-90 transition-opacity text-lg">
-                  Book Free Consultation
-                </Link>
-                <Link to="/about" className="px-8 py-4 border-2 border-background/30 text-background font-semibold rounded-xl hover:bg-background/10 transition-colors text-lg">
-                  Learn More
-                </Link>
-              </div>
-            </div>
-            <div className="hidden lg:block animate-fade-in-up" style={{ animationDelay: "0.4s" }}>
-              <div className="relative">
-                <div className="rounded-2xl overflow-hidden shadow-elevated border-4 border-background/20">
-                  <img src={heroIllustration} alt="Successful international graduates celebrating" className="w-full h-auto object-cover" />
-                </div>
-                <div className="absolute -bottom-4 -left-4 bg-hero-gradient text-primary-foreground px-5 py-3 rounded-xl shadow-elevated font-semibold text-sm">
-                  🌍 4+ Countries
-                </div>
-                <div className="absolute -top-4 -right-4 bg-card text-foreground px-5 py-3 rounded-xl shadow-elevated font-semibold text-sm">
-                  ✅ 98% Visa Success
-                </div>
-              </div>
+          <div className="max-w-2xl">
+            <span
+              key={`tag-${currentSlide}`}
+              className="inline-block px-4 py-1.5 bg-primary/20 text-primary-foreground text-sm font-medium rounded-full mb-6 backdrop-blur-sm border border-primary-foreground/20 animate-fade-in"
+            >
+              {slide.tagline}
+            </span>
+            <h1
+              key={`h-${currentSlide}`}
+              className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold text-background leading-tight mb-6 animate-fade-in"
+            >
+              {slide.heading}
+            </h1>
+            <p
+              key={`p-${currentSlide}`}
+              className="text-lg md:text-xl text-background/80 mb-8 leading-relaxed animate-fade-in"
+            >
+              {slide.description}
+            </p>
+            <div key={`cta-${currentSlide}`} className="flex flex-wrap gap-4 animate-fade-in">
+              <Link to={slide.path} className="px-8 py-4 bg-hero-gradient text-primary-foreground font-semibold rounded-xl hover:opacity-90 transition-opacity text-lg">
+                Explore {slide.country}
+              </Link>
+              <Link to="/contact" className="px-8 py-4 border-2 border-background/30 text-background font-semibold rounded-xl hover:bg-background/10 transition-colors text-lg">
+                Book Free Consultation
+              </Link>
             </div>
           </div>
+        </div>
+
+        {/* Slider Controls */}
+        <button
+          onClick={prevSlide}
+          className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-background/20 backdrop-blur-sm text-background flex items-center justify-center hover:bg-background/30 transition-colors"
+          aria-label="Previous slide"
+        >
+          <ChevronLeft className="w-6 h-6" />
+        </button>
+        <button
+          onClick={nextSlide}
+          className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-background/20 backdrop-blur-sm text-background flex items-center justify-center hover:bg-background/30 transition-colors"
+          aria-label="Next slide"
+        >
+          <ChevronRight className="w-6 h-6" />
+        </button>
+
+        {/* Dots */}
+        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex gap-3">
+          {heroSlides.map((_, i) => (
+            <button
+              key={i}
+              onClick={() => goToSlide(i)}
+              className={`w-3 h-3 rounded-full transition-all ${i === currentSlide ? "bg-primary w-8" : "bg-background/50 hover:bg-background/70"}`}
+              aria-label={`Go to slide ${i + 1}`}
+            />
+          ))}
         </div>
       </section>
 
