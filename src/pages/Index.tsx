@@ -17,7 +17,6 @@ const heroSlides = [
     tagline: "🇬🇧 Study in the UK",
     heading: "World-Class Education in the United Kingdom",
     description: "Home to Oxford, Cambridge & top Russell Group universities. Shorter course durations, post-study work visa & global recognition.",
-    path: "/study-in-uk",
   },
   {
     image: australiaHero,
@@ -25,7 +24,6 @@ const heroSlides = [
     tagline: "🇦🇺 Study in Australia",
     heading: "Discover Opportunities in Australia",
     description: "Student-friendly environment with globally ranked universities, part-time work rights & post-study PR pathways.",
-    path: "/study-in-australia",
   },
   {
     image: canadaHero,
@@ -33,7 +31,6 @@ const heroSlides = [
     tagline: "🇨🇦 Study in Canada",
     heading: "Build Your Future in Canada",
     description: "Affordable tuition, multicultural campuses, generous post-graduation work permits & permanent residency options.",
-    path: "/study-in-canada",
   },
   {
     image: germanyHero,
@@ -41,15 +38,14 @@ const heroSlides = [
     tagline: "🇩🇪 Study in Germany",
     heading: "Engineering Excellence in Germany",
     description: "Near-zero tuition at public universities, world-leading STEM programmes & Europe's strongest economy.",
-    path: "/study-in-germany",
   },
 ];
 
 const destinations = [
-  { name: "United Kingdom", image: ukHero, path: "/study-in-uk", desc: "World-class degrees with shorter course duration" },
-  { name: "Australia", image: australiaHero, path: "/study-in-australia", desc: "Student-friendly environment with global recognition" },
-  { name: "Canada", image: canadaHero, path: "/study-in-canada", desc: "Affordable education with PR opportunities" },
-  { name: "Germany", image: germanyHero, path: "/study-in-germany", desc: "Low tuition fees with engineering excellence" },
+  { name: "United Kingdom", image: ukHero, desc: "World-class degrees with shorter course duration" },
+  { name: "Australia", image: australiaHero, desc: "Student-friendly environment with global recognition" },
+  { name: "Canada", image: canadaHero, desc: "Affordable education with PR opportunities" },
+  { name: "Germany", image: germanyHero, desc: "Low tuition fees with engineering excellence" },
 ];
 
 const services = [
@@ -73,9 +69,12 @@ const whyStudyAbroad = [
   "Better career opportunities",
 ];
 
+type ProgramTab = "bachelors" | "masters";
+
 const Index = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
+  const [activeTab, setActiveTab] = useState<ProgramTab>("bachelors");
 
   const goToSlide = useCallback((index: number) => {
     if (isTransitioning) return;
@@ -98,6 +97,7 @@ const Index = () => {
   }, [nextSlide]);
 
   const slide = heroSlides[currentSlide];
+  const programPath = activeTab === "bachelors" ? "/bachelors" : "/masters";
 
   return (
     <Layout>
@@ -136,11 +136,14 @@ const Index = () => {
               {slide.description}
             </p>
             <div key={`cta-${currentSlide}`} className="flex flex-wrap gap-4 animate-fade-in">
-              <Link to={slide.path} className="px-8 py-4 bg-hero-gradient text-primary-foreground font-semibold rounded-xl hover:opacity-90 transition-opacity text-lg">
-                Explore {slide.country}
+              <Link to="/masters" className="px-8 py-4 bg-hero-gradient text-primary-foreground font-semibold rounded-xl hover:opacity-90 transition-opacity text-lg">
+                Masters
               </Link>
-              <Link to="/contact" className="px-8 py-4 border-2 border-background/30 text-background font-semibold rounded-xl hover:bg-background/10 transition-colors text-lg">
-                Book Free Consultation
+              <Link to="/bachelors" className="px-8 py-4 bg-card text-primary font-semibold rounded-xl hover:bg-background transition-colors text-lg shadow-elevated">
+                Bachelors
+              </Link>
+              <Link to="/mbbs" className="px-8 py-4 border-2 border-background/30 text-background font-semibold rounded-xl hover:bg-background/10 transition-colors text-lg">
+                MBBS
               </Link>
             </div>
           </div>
@@ -197,19 +200,43 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Popular Destinations */}
+      {/* Popular Destinations with Tabs */}
       <section className="py-20 bg-warm-gradient">
         <div className="container mx-auto px-4">
           <AnimatedSection>
-            <div className="text-center mb-12">
+            <div className="text-center mb-8">
               <h2 className="font-heading text-3xl md:text-4xl font-bold mb-4">Popular Destinations</h2>
-              <p className="text-muted-foreground max-w-xl mx-auto">Choose from top study destinations around the world</p>
+              <p className="text-muted-foreground max-w-xl mx-auto mb-8">Choose from top study destinations around the world</p>
+              
+              {/* Tabs */}
+              <div className="inline-flex bg-card rounded-xl border border-border shadow-card p-1.5 gap-1">
+                <button
+                  onClick={() => setActiveTab("bachelors")}
+                  className={`px-6 py-2.5 text-sm font-semibold rounded-lg transition-all ${
+                    activeTab === "bachelors"
+                      ? "bg-hero-gradient text-primary-foreground shadow-soft"
+                      : "text-muted-foreground hover:text-foreground hover:bg-secondary"
+                  }`}
+                >
+                  Bachelors
+                </button>
+                <button
+                  onClick={() => setActiveTab("masters")}
+                  className={`px-6 py-2.5 text-sm font-semibold rounded-lg transition-all ${
+                    activeTab === "masters"
+                      ? "bg-hero-gradient text-primary-foreground shadow-soft"
+                      : "text-muted-foreground hover:text-foreground hover:bg-secondary"
+                  }`}
+                >
+                  Masters
+                </button>
+              </div>
             </div>
           </AnimatedSection>
           <StaggeredList className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6" staggerDelay={0.12}>
             {destinations.map((dest) => (
-              <StaggeredItem key={dest.path}>
-                <Link to={dest.path} className="group bg-card rounded-2xl overflow-hidden border border-border shadow-card hover:shadow-elevated transition-all hover:-translate-y-1 block">
+              <StaggeredItem key={dest.name}>
+                <Link to={programPath} className="group bg-card rounded-2xl overflow-hidden border border-border shadow-card hover:shadow-elevated transition-all hover:-translate-y-1 block">
                   <div className="h-48 overflow-hidden">
                     <img src={dest.image} alt={dest.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
                   </div>
@@ -220,7 +247,7 @@ const Index = () => {
                     </div>
                     <p className="text-sm text-muted-foreground mb-3">{dest.desc}</p>
                     <span className="text-primary text-sm font-semibold flex items-center gap-1 group-hover:gap-2 transition-all">
-                      Explore <ArrowRight className="w-4 h-4" />
+                      Explore {activeTab === "bachelors" ? "Bachelors" : "Masters"} <ArrowRight className="w-4 h-4" />
                     </span>
                   </div>
                 </Link>
@@ -290,13 +317,21 @@ const Index = () => {
         <section className="py-20">
           <div className="container mx-auto px-4">
             <div className="bg-hero-gradient rounded-3xl p-12 md:p-16 text-center text-primary-foreground">
-              <h2 className="font-heading text-3xl md:text-4xl font-bold mb-4">Ready to Start Your Journey?</h2>
+              <h2 className="font-heading text-3xl md:text-4xl font-bold mb-4">Start Your Study Abroad Journey Today</h2>
               <p className="text-primary-foreground/80 max-w-xl mx-auto mb-8 text-lg">
                 Book a free consultation with our expert counsellors today
               </p>
-              <Link to="/contact" className="inline-block px-10 py-4 bg-card text-primary font-bold rounded-xl hover:bg-background transition-colors text-lg shadow-elevated">
-                Book Free Consultation
-              </Link>
+              <div className="flex flex-wrap justify-center gap-4">
+                <Link to="/contact" className="px-10 py-4 bg-card text-primary font-bold rounded-xl hover:bg-background transition-colors text-lg shadow-elevated">
+                  Free Counseling
+                </Link>
+                <Link to="/contact" className="px-10 py-4 border-2 border-primary-foreground/30 text-primary-foreground font-bold rounded-xl hover:bg-primary-foreground/10 transition-colors text-lg">
+                  Contact Us
+                </Link>
+                <Link to="/contact" className="px-10 py-4 bg-card text-primary font-bold rounded-xl hover:bg-background transition-colors text-lg shadow-elevated">
+                  Apply Now
+                </Link>
+              </div>
             </div>
           </div>
         </section>

@@ -61,13 +61,12 @@ const Footer = () => {
             transition={{ duration: 0.5, delay: 0.2 }}
             viewport={{ once: true }}
           >
-            <h4 className="font-heading text-lg font-semibold mb-4">Study Destinations</h4>
+            <h4 className="font-heading text-lg font-semibold mb-4">Study Abroad</h4>
             <ul className="space-y-2.5">
               {[
-                { label: "Study in UK", path: "/study-in-uk" },
-                { label: "Study in Australia", path: "/study-in-australia" },
-                { label: "Study in Canada", path: "/study-in-canada" },
-                { label: "Study in Germany", path: "/study-in-germany" },
+                { label: "Masters", path: "/masters" },
+                { label: "Bachelors", path: "/bachelors" },
+                { label: "MBBS", path: "/mbbs" },
               ].map((link) => (
                 <li key={link.path}>
                   <Link to={link.path} className="text-sm text-background/70 hover:text-accent hover:translate-x-1 inline-block transition-all duration-300">{link.label}</Link>

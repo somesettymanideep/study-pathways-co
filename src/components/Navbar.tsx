@@ -3,11 +3,10 @@ import { Link, useLocation } from "react-router-dom";
 import { Menu, X, ChevronDown } from "lucide-react";
 import logo from "@/assets/logo.jpg";
 
-const destinations = [
-  { name: "Study in UK", path: "/study-in-uk" },
-  { name: "Study in Australia", path: "/study-in-australia" },
-  { name: "Study in Canada", path: "/study-in-canada" },
-  { name: "Study in Germany", path: "/study-in-germany" },
+const studyAbroad = [
+  { name: "Masters", path: "/masters" },
+  { name: "Bachelors", path: "/bachelors" },
+  { name: "MBBS", path: "/mbbs" },
 ];
 
 const Navbar = () => {
@@ -16,7 +15,7 @@ const Navbar = () => {
   const location = useLocation();
 
   const isActive = (path: string) => location.pathname === path;
-  const isDestActive = destinations.some((d) => location.pathname === d.path);
+  const isStudyActive = studyAbroad.some((d) => location.pathname === d.path);
 
   return (
     <header className="sticky top-0 z-50 bg-card/95 backdrop-blur-md border-b border-border shadow-card">
@@ -30,18 +29,18 @@ const Navbar = () => {
           <NavItem to="/" active={isActive("/")}>Home</NavItem>
           <NavItem to="/about" active={isActive("/about")}>About</NavItem>
           
-          {/* Destinations dropdown */}
+          {/* Study Abroad dropdown */}
           <div className="relative group">
             <button
               className={`px-4 py-2 text-sm font-medium rounded-lg transition-colors flex items-center gap-1 ${
-                isDestActive ? "text-primary bg-secondary" : "text-foreground hover:text-primary hover:bg-secondary"
+                isStudyActive ? "text-primary bg-secondary" : "text-foreground hover:text-primary hover:bg-secondary"
               }`}
             >
-              Destinations <ChevronDown className="w-3.5 h-3.5" />
+              Study Abroad <ChevronDown className="w-3.5 h-3.5" />
             </button>
             <div className="absolute top-full left-0 pt-1 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
               <div className="bg-card rounded-xl border border-border shadow-elevated p-2 min-w-[200px]">
-                {destinations.map((dest) => (
+                {studyAbroad.map((dest) => (
                   <Link
                     key={dest.path}
                     to={dest.path}
@@ -82,9 +81,9 @@ const Navbar = () => {
               onClick={() => setDestOpen(!destOpen)}
               className="flex items-center justify-between px-4 py-3 text-sm font-medium text-foreground rounded-lg hover:bg-secondary"
             >
-              Destinations <ChevronDown className={`w-4 h-4 transition-transform ${destOpen ? "rotate-180" : ""}`} />
+              Study Abroad <ChevronDown className={`w-4 h-4 transition-transform ${destOpen ? "rotate-180" : ""}`} />
             </button>
-            {destOpen && destinations.map((dest) => (
+            {destOpen && studyAbroad.map((dest) => (
               <MobileNavItem key={dest.path} to={dest.path} active={isActive(dest.path)} onClick={() => setIsOpen(false)} className="pl-8">
                 {dest.name}
               </MobileNavItem>
