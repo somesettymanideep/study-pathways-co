@@ -149,14 +149,14 @@ const Index = () => {
         {/* Slider Controls */}
         <button
           onClick={prevSlide}
-          className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-background/20 backdrop-blur-sm text-background flex items-center justify-center hover:bg-background/30 transition-colors"
+          className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 md:w-12 md:h-12 rounded-full bg-background/20 backdrop-blur-sm text-background hidden md:flex items-center justify-center hover:bg-background/30 transition-colors"
           aria-label="Previous slide"
         >
           <ChevronLeft className="w-6 h-6" />
         </button>
         <button
           onClick={nextSlide}
-          className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-background/20 backdrop-blur-sm text-background flex items-center justify-center hover:bg-background/30 transition-colors"
+          className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 md:w-12 md:h-12 rounded-full bg-background/20 backdrop-blur-sm text-background hidden md:flex items-center justify-center hover:bg-background/30 transition-colors"
           aria-label="Next slide"
         >
           <ChevronRight className="w-6 h-6" />
