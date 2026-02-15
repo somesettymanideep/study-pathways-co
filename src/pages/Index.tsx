@@ -1,10 +1,11 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import { Link } from "react-router-dom";
 import { GraduationCap, Globe, BookOpen, Users, Star, ArrowRight, CheckCircle2, MapPin, ChevronLeft, ChevronRight, Shield, CircleCheck, Handshake, HeartHandshake } from "lucide-react";
 import Layout from "@/components/Layout";
 import EnquiryPopup from "@/components/EnquiryPopup";
 import AnimatedSection from "@/components/AnimatedSection";
 import { StaggeredList, StaggeredItem } from "@/components/StaggeredList";
+import { useCountUp } from "@/hooks/useCountUp";
 import ukHero from "@/assets/uk-hero.jpg";
 import australiaHero from "@/assets/australia-hero.jpg";
 import canadaHero from "@/assets/canada-hero.jpg";
@@ -56,9 +57,12 @@ const services = [
 ];
 
 const testimonials = [
-  { name: "Ananya Sharma", country: "UK", text: "Pravaas made my dream of studying in London a reality. Their guidance was invaluable!", rating: 5 },
-  { name: "Rahul Patel", country: "Canada", text: "From course selection to visa approval, they handled everything professionally.", rating: 5 },
-  { name: "Priya Nair", country: "Australia", text: "The team was so supportive throughout the entire process. Highly recommend!", rating: 5 },
+  { name: "Ananya Sharma", country: "UK", text: "Pravaas made my dream of studying in London a reality. Their guidance was invaluable!", rating: 5, initials: "AS" },
+  { name: "Rahul Patel", country: "Canada", text: "From course selection to visa approval, they handled everything professionally.", rating: 5, initials: "RP" },
+  { name: "Priya Nair", country: "Australia", text: "The team was so supportive throughout the entire process. Highly recommend!", rating: 5, initials: "PN" },
+  { name: "Vikram Singh", country: "Germany", text: "Thanks to Pravaas, I got admission in one of the top engineering universities in Germany!", rating: 5, initials: "VS" },
+  { name: "Sneha Reddy", country: "UK", text: "The visa process was so smooth. I couldn't have done it without their expert guidance.", rating: 5, initials: "SR" },
+  { name: "Arjun Mehta", country: "Australia", text: "Excellent support from start to finish. They truly care about each student's success.", rating: 5, initials: "AM" },
 ];
 
 const whyChooseUs = [
@@ -69,18 +73,36 @@ const whyChooseUs = [
 ];
 
 const stats = [
-  { value: "5000+", label: "Students Placed", variant: "primary" as const },
-  { value: "10+", label: "Years Experience", variant: "accent" as const },
-  { value: "50+", label: "Partner Universities", variant: "accent" as const },
-  { value: "98%", label: "Visa Success", variant: "primary" as const },
+  { value: 5000, suffix: "+", label: "Students Placed", variant: "primary" as const },
+  { value: 10, suffix: "+", label: "Years Experience", variant: "accent" as const },
+  { value: 50, suffix: "+", label: "Partner Universities", variant: "accent" as const },
+  { value: 98, suffix: "%", label: "Visa Success", variant: "primary" as const },
 ];
 
 type ProgramTab = "bachelors" | "masters";
+
+const CountUpStat = ({ value, suffix, label, variant }: { value: number; suffix: string; label: string; variant: "primary" | "accent" }) => {
+  const { count, ref } = useCountUp(value, 2000);
+  return (
+    <div
+      ref={ref}
+      className={`rounded-2xl p-8 text-center ${
+        variant === "primary"
+          ? "bg-primary text-primary-foreground"
+          : "bg-accent text-primary-foreground"
+      }`}
+    >
+      <p className="font-heading text-3xl md:text-4xl font-bold mb-1">{count}{suffix}</p>
+      <p className="text-sm opacity-90">{label}</p>
+    </div>
+  );
+};
 
 const Index = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [activeTab, setActiveTab] = useState<ProgramTab>("bachelors");
+  const [testimonialIndex, setTestimonialIndex] = useState(0);
 
   const goToSlide = useCallback((index: number) => {
     if (isTransitioning) return;
@@ -218,17 +240,7 @@ const Index = () => {
             <AnimatedSection>
               <div className="grid grid-cols-2 gap-4">
                 {stats.map((stat, i) => (
-                  <div
-                    key={i}
-                    className={`rounded-2xl p-8 text-center ${
-                      stat.variant === "primary"
-                        ? "bg-primary text-primary-foreground"
-                        : "bg-accent text-primary-foreground"
-                    }`}
-                  >
-                    <p className="font-heading text-3xl md:text-4xl font-bold mb-1">{stat.value}</p>
-                    <p className="text-sm opacity-90">{stat.label}</p>
-                  </div>
+                  <CountUpStat key={i} value={stat.value} suffix={stat.suffix} label={stat.label} variant={stat.variant} />
                 ))}
               </div>
             </AnimatedSection>
@@ -318,7 +330,7 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Testimonials */}
+      {/* Testimonials Carousel */}
       <section className="py-20 bg-warm-gradient">
         <div className="container mx-auto px-4">
           <AnimatedSection>
@@ -327,24 +339,47 @@ const Index = () => {
               <p className="text-muted-foreground max-w-xl mx-auto">Hear from students who achieved their dreams with Pravaas</p>
             </div>
           </AnimatedSection>
-          <StaggeredList className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto" staggerDelay={0.15}>
-            {testimonials.map((t, i) => (
-              <StaggeredItem key={i}>
-                <div className="bg-card rounded-2xl p-8 border border-border shadow-card">
-                  <div className="flex gap-1 mb-4">
-                    {Array.from({ length: t.rating }).map((_, j) => (
-                      <Star key={j} className="w-4 h-4 fill-primary text-primary" />
-                    ))}
+          <div className="max-w-5xl mx-auto relative">
+            <div className="overflow-hidden">
+              <div
+                className="flex transition-transform duration-500 ease-out"
+                style={{ transform: `translateX(-${testimonialIndex * (100 / 3)}%)` }}
+              >
+                {testimonials.map((t, i) => (
+                  <div key={i} className="w-full md:w-1/3 flex-shrink-0 px-3">
+                    <div className="bg-card rounded-2xl p-8 border border-border shadow-card h-full">
+                      <div className="flex items-center gap-3 mb-5">
+                        <div className="w-12 h-12 rounded-full bg-primary text-primary-foreground flex items-center justify-center font-bold text-sm">
+                          {t.initials}
+                        </div>
+                        <div>
+                          <p className="font-semibold text-sm">{t.name}</p>
+                          <p className="text-xs text-muted-foreground">Studying in {t.country}</p>
+                        </div>
+                      </div>
+                      <div className="flex gap-1 mb-3">
+                        {Array.from({ length: t.rating }).map((_, j) => (
+                          <Star key={j} className="w-4 h-4 fill-accent text-accent" />
+                        ))}
+                      </div>
+                      <p className="text-foreground text-sm leading-relaxed">"{t.text}"</p>
+                    </div>
                   </div>
-                  <p className="text-foreground mb-6 leading-relaxed">"{t.text}"</p>
-                  <div>
-                    <p className="font-semibold text-sm">{t.name}</p>
-                    <p className="text-xs text-muted-foreground">Studying in {t.country}</p>
-                  </div>
-                </div>
-              </StaggeredItem>
-            ))}
-          </StaggeredList>
+                ))}
+              </div>
+            </div>
+            {/* Carousel Controls */}
+            <div className="flex justify-center gap-3 mt-8">
+              {Array.from({ length: testimonials.length - 2 }).map((_, i) => (
+                <button
+                  key={i}
+                  onClick={() => setTestimonialIndex(i)}
+                  className={`w-3 h-3 rounded-full transition-all ${i === testimonialIndex ? "bg-primary w-8" : "bg-primary/30 hover:bg-primary/50"}`}
+                  aria-label={`Testimonial page ${i + 1}`}
+                />
+              ))}
+            </div>
+          </div>
         </div>
       </section>
 
