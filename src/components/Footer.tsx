@@ -25,8 +25,13 @@ const Footer = () => {
               Your trusted partner for international education. We guide students towards globally recognized degrees and successful careers abroad.
             </p>
             <div className="flex gap-3">
-              {[Facebook, Instagram, Linkedin, Youtube].map((Icon, i) => (
-                <a key={i} href="#" className="w-9 h-9 rounded-full bg-background/10 flex items-center justify-center hover:bg-accent hover:scale-110 transition-all duration-300">
+              {[
+                { Icon: Facebook, href: "https://www.facebook.com/share/1AT1j1Ljys/" },
+                { Icon: Instagram, href: "https://www.instagram.com/pravaasinternational?igsh=Z2lzMTNuaGt2NXVi" },
+                { Icon: Linkedin, href: "#" },
+                { Icon: Youtube, href: "#" },
+              ].map(({ Icon, href }, i) => (
+                <a key={i} href={href} target="_blank" rel="noopener noreferrer" className="w-9 h-9 rounded-full bg-background/10 flex items-center justify-center hover:bg-accent hover:scale-110 transition-all duration-300">
                   <Icon className="w-4 h-4" />
                 </a>
               ))}
@@ -86,7 +91,7 @@ const Footer = () => {
             <ul className="space-y-3">
               <li className="flex items-start gap-3 text-sm text-background/70">
                 <MapPin className="w-4 h-4 mt-0.5 text-accent shrink-0" />
-                <span>SS Complex, Above Hyundai Showroom, Vidya Nagar, Kothagudem</span>
+                <span>SS Complex, Above Hyundai Car Showroom, Vidyanagar, Bhadradri Kotthagudem, Telangana, 507101</span>
               </li>
               <li className="flex items-center gap-3 text-sm text-background/70">
                 <Phone className="w-4 h-4 text-accent shrink-0" />
