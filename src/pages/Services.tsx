@@ -201,7 +201,7 @@ const Services = () => {
           <img src={servicesHero} alt="" className="absolute inset-0 w-full h-full object-cover" />
           <div className="absolute inset-0 bg-primary/85" />
           <div className="relative container mx-auto px-4">
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-10 md:gap-16 max-w-3xl mx-auto">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-10 md:gap-16 max-w-5xl mx-auto">
               {achievements.map((a, i) => (
                 <AchievementCounter key={i} value={a.value} suffix={a.suffix} label={a.label} icon={a.icon} />
               ))}
