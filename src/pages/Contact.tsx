@@ -144,7 +144,7 @@ const Contact = () => {
                             className="w-full px-4 py-3 rounded-lg border border-border bg-background text-foreground text-sm focus:outline-none focus:ring-2 focus:ring-primary/30" />
                         </div>
                         <div>
-                          <label className="block text-sm font-medium mb-2">Phone Number</label>
+                          <label className="block text-sm font-medium mb-2">Mobile Number</label>
                           <input type="tel" required maxLength={20} placeholder="+91 XXXXX XXXXX"
                             className="w-full px-4 py-3 rounded-lg border border-border bg-background text-foreground text-sm focus:outline-none focus:ring-2 focus:ring-primary/30" />
                         </div>
@@ -167,15 +167,19 @@ const Contact = () => {
                           </select>
                         </div>
                         <div>
-                          <label className="block text-sm font-medium mb-2">Preferred Country</label>
-                          <select required className="w-full px-4 py-3 rounded-lg border border-border bg-background text-foreground text-sm focus:outline-none focus:ring-2 focus:ring-primary/30">
-                            <option value="">Select country</option>
-                            <option>United Kingdom</option>
-                            <option>Australia</option>
-                            <option>Canada</option>
-                            <option>Germany</option>
-                          </select>
+                          <label className="block text-sm font-medium mb-2">Preferred Intake (Month & Year)</label>
+                          <input type="month" required
+                            className="w-full px-4 py-3 rounded-lg border border-border bg-background text-foreground text-sm focus:outline-none focus:ring-2 focus:ring-primary/30" />
                         </div>
+                      </div>
+                      <div>
+                        <label className="block text-sm font-medium mb-2">Year of Passing (Highest Qualification)</label>
+                        <select required className="w-full px-4 py-3 rounded-lg border border-border bg-background text-foreground text-sm focus:outline-none focus:ring-2 focus:ring-primary/30">
+                          <option value="">Select year</option>
+                          {Array.from({ length: 15 }, (_, i) => new Date().getFullYear() - i).map((year) => (
+                            <option key={year} value={year}>{year}</option>
+                          ))}
+                        </select>
                       </div>
                       <div>
                         <label className="block text-sm font-medium mb-2">Message</label>
