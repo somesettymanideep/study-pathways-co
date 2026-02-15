@@ -60,7 +60,7 @@ const Masters = () => {
   return (
     <Layout>
       {/* Hero */}
-      <section className="relative py-16 md:py-24 overflow-hidden">
+      <section className="relative h-[400px] overflow-hidden flex items-center">
         <div className="absolute inset-0">
           <img src={mastersHero} alt="Masters Programs" className="w-full h-full object-cover" />
           <div className="absolute inset-0 bg-overlay-dark" />
