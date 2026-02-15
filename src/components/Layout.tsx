@@ -3,6 +3,7 @@ import Navbar from "./Navbar";
 import Footer from "./Footer";
 import WhatsAppButton from "./WhatsAppButton";
 import ScrollToTopButton from "./ScrollToTopButton";
+import SocialSidebar from "./SocialSidebar";
 import Marquee from "./Marquee";
 
 const Layout = ({ children }: { children: ReactNode }) => {
@@ -14,6 +15,7 @@ const Layout = ({ children }: { children: ReactNode }) => {
       <Footer />
       <WhatsAppButton />
       <ScrollToTopButton />
+      <SocialSidebar />
     </div>
   );
 };
