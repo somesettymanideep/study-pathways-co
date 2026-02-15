@@ -2,8 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import {
   BookOpen, GraduationCap, Globe, FileText, Shield, Plane, Home,
-  Target, Star, CheckCircle2, ArrowRight, ChevronLeft, ChevronRight,
-  MapPin, Award, Users, Briefcase
+  Target, ArrowRight, Users, Briefcase, Award
 } from "lucide-react";
 import Layout from "@/components/Layout";
 import AnimatedSection from "@/components/AnimatedSection";
@@ -48,32 +47,26 @@ const servicesList = [
 ];
 
 const achievements = [
-  { value: 6, suffix: "+", label: "Years Experience", icon: <Star className="w-6 h-6" /> },
-  { value: 100, suffix: "%", label: "Visa Success Rate", icon: <CheckCircle2 className="w-6 h-6" /> },
-  { value: 50, suffix: "+", label: "University Partnerships", icon: <Globe className="w-6 h-6" /> },
-  { value: 5000, suffix: "+", label: "Students Placed", icon: <Users className="w-6 h-6" /> },
-];
-
-const testimonials = [
-  { name: "Ananya Sharma", country: "UK", text: "Pravaas made my dream of studying in London a reality. Their guidance was invaluable throughout the entire process!", rating: 5, initials: "AS" },
-  { name: "Rahul Patel", country: "Canada", text: "From course selection to visa approval, they handled everything professionally. Highly recommended!", rating: 5, initials: "RP" },
-  { name: "Priya Nair", country: "Australia", text: "The team was incredibly supportive. I got into my dream university thanks to their expert counselling.", rating: 5, initials: "PN" },
-  { name: "Vikram Singh", country: "Germany", text: "Thanks to Pravaas, I secured admission in one of Germany's top engineering universities!", rating: 5, initials: "VS" },
+  { value: 300, suffix: "+", label: "Visa Approved", icon: <Shield className="w-7 h-7" /> },
+  { value: 12, suffix: "+", label: "Countries", icon: <Globe className="w-7 h-7" /> },
+  { value: 99.5, suffix: "%", label: "Satisfied Clients", icon: <Users className="w-7 h-7" /> },
+  { value: 3, suffix: "+", label: "Offices", icon: <Home className="w-7 h-7" /> },
 ];
 
 const AchievementCounter = ({ value, suffix, label, icon }: { value: number; suffix: string; label: string; icon: React.ReactNode }) => {
   const { count, ref } = useCountUp(value, 2000);
   return (
-    <div ref={ref} className="text-center">
-      <div className="w-14 h-14 rounded-2xl bg-accent/15 flex items-center justify-center text-accent mx-auto mb-4">{icon}</div>
-      <p className="font-heading text-4xl md:text-5xl font-bold text-primary mb-2">{count}{suffix}</p>
-      <p className="text-muted-foreground font-medium">{label}</p>
+    <div ref={ref} className="flex items-center gap-5">
+      <div className="w-16 h-16 md:w-20 md:h-20 rounded-full bg-accent flex items-center justify-center text-primary-foreground shrink-0">{icon}</div>
+      <div>
+        <p className="font-heading text-4xl md:text-5xl font-bold text-primary-foreground">{count}{suffix}</p>
+        <p className="text-primary-foreground/80 font-medium text-sm md:text-base">{label}</p>
+      </div>
     </div>
   );
 };
 
 const Services = () => {
-  const [testimonialIndex, setTestimonialIndex] = useState(0);
   const [hoveredDest, setHoveredDest] = useState<number | null>(null);
 
   return (
@@ -203,13 +196,11 @@ const Services = () => {
 
       {/* 5. Achievements */}
       <AnimatedSection>
-        <section className="py-20 bg-secondary/40">
-          <div className="container mx-auto px-4">
-            <div className="text-center mb-12">
-              <span className="text-accent font-bold text-sm tracking-widest uppercase mb-3 block">Our Impact</span>
-              <h2 className="font-heading text-3xl md:text-4xl font-bold mb-4">Our Achievements</h2>
-            </div>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto">
+        <section className="relative py-16 md:py-20 overflow-hidden">
+          <img src={servicesHero} alt="" className="absolute inset-0 w-full h-full object-cover" />
+          <div className="absolute inset-0 bg-primary/85" />
+          <div className="relative container mx-auto px-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-10 md:gap-16 max-w-3xl mx-auto">
               {achievements.map((a, i) => (
                 <AchievementCounter key={i} value={a.value} suffix={a.suffix} label={a.label} icon={a.icon} />
               ))}
@@ -247,64 +238,6 @@ const Services = () => {
         </div>
       </section>
 
-      {/* 7. Testimonials */}
-      <AnimatedSection>
-        <section className="py-20">
-          <div className="container mx-auto px-4">
-            <div className="text-center mb-12">
-              <span className="text-accent font-bold text-sm tracking-widest uppercase mb-3 block">Student Reviews</span>
-              <h2 className="font-heading text-3xl md:text-4xl font-bold mb-4">What Our Students Say</h2>
-            </div>
-            <div className="max-w-3xl mx-auto relative">
-              <div className="bg-card rounded-2xl border border-border shadow-elevated p-8 md:p-12 text-center">
-                <div className="flex justify-center gap-1 mb-4">
-                  {[...Array(testimonials[testimonialIndex].rating)].map((_, i) => (
-                    <Star key={i} className="w-5 h-5 fill-accent text-accent" />
-                  ))}
-                </div>
-                <p className="text-lg md:text-xl text-foreground leading-relaxed mb-6 italic">
-                  "{testimonials[testimonialIndex].text}"
-                </p>
-                <div className="w-14 h-14 rounded-full bg-primary text-primary-foreground flex items-center justify-center font-heading font-bold text-lg mx-auto mb-3">
-                  {testimonials[testimonialIndex].initials}
-                </div>
-                <p className="font-heading font-bold">{testimonials[testimonialIndex].name}</p>
-                <p className="text-sm text-muted-foreground flex items-center justify-center gap-1">
-                  <MapPin className="w-3.5 h-3.5" /> Studying in {testimonials[testimonialIndex].country}
-                </p>
-              </div>
-
-              {/* Navigation */}
-              <div className="flex items-center justify-center gap-4 mt-6">
-                <button
-                  onClick={() => setTestimonialIndex((testimonialIndex - 1 + testimonials.length) % testimonials.length)}
-                  className="w-10 h-10 rounded-full bg-secondary flex items-center justify-center hover:bg-primary hover:text-primary-foreground transition-colors"
-                  aria-label="Previous testimonial"
-                >
-                  <ChevronLeft className="w-5 h-5" />
-                </button>
-                <div className="flex gap-2">
-                  {testimonials.map((_, i) => (
-                    <button
-                      key={i}
-                      onClick={() => setTestimonialIndex(i)}
-                      className={`w-2.5 h-2.5 rounded-full transition-all ${i === testimonialIndex ? "bg-primary w-6" : "bg-border hover:bg-muted-foreground"}`}
-                      aria-label={`Go to testimonial ${i + 1}`}
-                    />
-                  ))}
-                </div>
-                <button
-                  onClick={() => setTestimonialIndex((testimonialIndex + 1) % testimonials.length)}
-                  className="w-10 h-10 rounded-full bg-secondary flex items-center justify-center hover:bg-primary hover:text-primary-foreground transition-colors"
-                  aria-label="Next testimonial"
-                >
-                  <ChevronRight className="w-5 h-5" />
-                </button>
-              </div>
-            </div>
-          </div>
-        </section>
-      </AnimatedSection>
     </Layout>
   );
 };
