@@ -93,7 +93,36 @@ const Services = () => {
         </div>
       </section>
 
-      {/* 2. Our Expertise */}
+      {/* 2. Our Services */}
+      <AnimatedSection>
+        <section className="py-20">
+          <div className="container mx-auto px-4">
+            <div className="text-center mb-12">
+              <span className="text-accent font-bold text-sm tracking-widest uppercase mb-3 block">What We Offer</span>
+              <h2 className="font-heading text-3xl md:text-4xl font-bold mb-4">Our Services</h2>
+              <p className="text-muted-foreground max-w-xl mx-auto">Comprehensive support at every stage of your study abroad journey</p>
+            </div>
+            <StaggeredList className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto" staggerDelay={0.08}>
+              {servicesList.map((service, i) => (
+                <StaggeredItem key={i}>
+                  <div className="bg-card rounded-2xl border border-border shadow-card p-6 hover:shadow-elevated hover:-translate-y-1 transition-all group h-full flex flex-col">
+                    <div className="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center text-accent mb-4 group-hover:bg-accent group-hover:text-primary-foreground transition-colors">
+                      {service.icon}
+                    </div>
+                    <h3 className="font-heading text-base font-bold mb-2">{service.title}</h3>
+                    <p className="text-muted-foreground text-sm leading-relaxed flex-1">{service.desc}</p>
+                    <Link to="/contact" className="text-primary text-sm font-semibold flex items-center gap-1 mt-4 group-hover:gap-2 transition-all">
+                      Learn More <ArrowRight className="w-4 h-4" />
+                    </Link>
+                  </div>
+                </StaggeredItem>
+              ))}
+            </StaggeredList>
+          </div>
+        </section>
+      </AnimatedSection>
+
+      {/* 3. Our Expertise */}
       <AnimatedSection>
         <section className="py-20">
           <div className="container mx-auto px-4">
@@ -165,34 +194,6 @@ const Services = () => {
         </section>
       </AnimatedSection>
 
-      {/* 4. Our Services */}
-      <AnimatedSection>
-        <section className="py-20">
-          <div className="container mx-auto px-4">
-            <div className="text-center mb-12">
-              <span className="text-accent font-bold text-sm tracking-widest uppercase mb-3 block">What We Offer</span>
-              <h2 className="font-heading text-3xl md:text-4xl font-bold mb-4">Our Services</h2>
-              <p className="text-muted-foreground max-w-xl mx-auto">Comprehensive support at every stage of your study abroad journey</p>
-            </div>
-            <StaggeredList className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto" staggerDelay={0.08}>
-              {servicesList.map((service, i) => (
-                <StaggeredItem key={i}>
-                  <div className="bg-card rounded-2xl border border-border shadow-card p-6 hover:shadow-elevated hover:-translate-y-1 transition-all group h-full flex flex-col">
-                    <div className="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center text-accent mb-4 group-hover:bg-accent group-hover:text-primary-foreground transition-colors">
-                      {service.icon}
-                    </div>
-                    <h3 className="font-heading text-base font-bold mb-2">{service.title}</h3>
-                    <p className="text-muted-foreground text-sm leading-relaxed flex-1">{service.desc}</p>
-                    <Link to="/contact" className="text-primary text-sm font-semibold flex items-center gap-1 mt-4 group-hover:gap-2 transition-all">
-                      Learn More <ArrowRight className="w-4 h-4" />
-                    </Link>
-                  </div>
-                </StaggeredItem>
-              ))}
-            </StaggeredList>
-          </div>
-        </section>
-      </AnimatedSection>
 
       {/* 5. Achievements */}
       <AnimatedSection>
