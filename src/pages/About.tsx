@@ -1,10 +1,11 @@
-import { CheckCircle2, Target, Eye, Award, Users, Quote, UserCheck, BookOpen, FileText, Stamp, Plane } from "lucide-react";
+import { CheckCircle2, Target, Eye, Award, Users, Quote, UserCheck, BookOpen, FileText, Stamp, Plane, GraduationCap, Globe, MapPin } from "lucide-react";
 import Layout from "@/components/Layout";
 import AnimatedSection from "@/components/AnimatedSection";
 import { StaggeredList, StaggeredItem } from "@/components/StaggeredList";
 import { Link } from "react-router-dom";
 import aboutHero from "@/assets/about-hero.jpg";
 import founderPortrait from "@/assets/founder-portrait.jpg";
+import { useCountUp } from "@/hooks/useCountUp";
 
 const journeySteps = [
   { icon: <UserCheck className="w-6 h-6" />, step: "01", title: "Free Profile Evaluation", desc: "We assess your academic background, career goals, and preferences to create a personalized study abroad roadmap." },
@@ -20,6 +21,28 @@ const team = [
   { name: "Counsellor 3", role: "Career Guidance Specialist", speciality: "Course Selection" },
 ];
 
+const StatCircle = ({ end, suffix, label, icon }: { end: number; suffix: string; label: string; icon: React.ReactNode }) => {
+  const { count, ref } = useCountUp(end, 2000);
+  return (
+    <div className="flex flex-col items-center" ref={ref}>
+      <div className="relative w-36 h-36 md:w-44 md:h-44 mb-4">
+        {/* Outer ring */}
+        <div className="absolute inset-0 rounded-full border-[3px] border-primary/30" />
+        {/* Inner ring */}
+        <div className="absolute inset-3 rounded-full border-[3px] border-primary" />
+        {/* Center content */}
+        <div className="absolute inset-0 flex items-center justify-center">
+          <span className="font-heading text-3xl md:text-4xl font-bold text-primary">{count}{suffix}</span>
+        </div>
+        {/* Icon badge */}
+        <div className="absolute -top-1 right-1 w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+          {icon}
+        </div>
+      </div>
+      <span className="font-heading font-bold text-foreground text-center">{label}</span>
+    </div>
+  );
+};
 
 const About = () => {
   return (
@@ -168,6 +191,28 @@ const About = () => {
               ))}
             </StaggeredList>
           </div>
+        </div>
+      </section>
+
+      {/* Statistics Section */}
+      <section className="py-20 bg-secondary/30 overflow-hidden">
+        <div className="container mx-auto px-4">
+          <AnimatedSection>
+            <h2 className="font-heading text-3xl md:text-4xl font-bold text-center mb-4">Our Achievements</h2>
+            <p className="text-center text-muted-foreground mb-16 max-w-xl mx-auto">Numbers that reflect our commitment to student success</p>
+          </AnimatedSection>
+          <StaggeredList className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-5xl mx-auto" staggerDelay={0.12}>
+            {[
+              { end: 5000, suffix: "+", label: "Student Visa", icon: <Stamp className="w-6 h-6" /> },
+              { end: 75, suffix: "+", label: "Universities", icon: <GraduationCap className="w-6 h-6" /> },
+              { end: 30, suffix: "+", label: "Countries", icon: <MapPin className="w-6 h-6" /> },
+              { end: 300, suffix: "+", label: "Courses", icon: <BookOpen className="w-6 h-6" /> },
+            ].map((stat, i) => (
+              <StaggeredItem key={i}>
+                <StatCircle end={stat.end} suffix={stat.suffix} label={stat.label} icon={stat.icon} />
+              </StaggeredItem>
+            ))}
+          </StaggeredList>
         </div>
       </section>
 
