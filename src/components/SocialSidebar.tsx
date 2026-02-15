@@ -3,7 +3,7 @@ import { Facebook, Youtube, Linkedin } from "lucide-react";
 
 const socials = [
   { icon: Facebook, href: "https://www.facebook.com/share/1AT1j1Ljys/", bg: "bg-[#1877F2]", isYoutube: false, isInstagram: false },
-  { icon: null, href: "https://www.instagram.com/pravaasinternational?igsh=Z2lzMTNuaGt2NXVi", bg: "bg-[#E4405F]", isYoutube: false, isInstagram: true },
+  { icon: null, href: "https://www.instagram.com/pravaasinternational?igsh=Z2lzMTNuaGt2NXVi", bg: "bg-gradient-to-br from-[#f9ce34] via-[#ee2a7b] to-[#6228d7]", isYoutube: false, isInstagram: true },
   { icon: Youtube, href: "https://youtube.com", bg: "bg-[#FF0000]", isYoutube: true, isInstagram: false },
   { icon: Linkedin, href: "https://linkedin.com", bg: "bg-[#0A66C2]", isYoutube: false, isInstagram: false },
 ];
