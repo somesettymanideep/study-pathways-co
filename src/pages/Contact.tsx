@@ -68,6 +68,31 @@ const Contact = () => {
                   </div>
                 </div>
 
+                {/* Our Branches */}
+                <div className="bg-card rounded-2xl p-8 border border-border shadow-card">
+                  <h3 className="font-heading text-xl font-bold mb-6">Our Branches</h3>
+                  <div className="space-y-4">
+                    <div>
+                      <p className="text-sm font-semibold text-primary mb-1">Head Office:</p>
+                      <div className="flex items-start gap-2">
+                        <MapPin className="w-4 h-4 text-accent mt-0.5 shrink-0" />
+                        <p className="text-sm font-medium">Kothagudem, Khammam</p>
+                      </div>
+                    </div>
+                    <div>
+                      <p className="text-sm font-semibold text-muted-foreground mb-2">We Are Also Available In:</p>
+                      <div className="space-y-2">
+                        {["Hyderabad", "Karimnagar", "Warangal", "Nalgonda"].map((city) => (
+                          <div key={city} className="flex items-center gap-2">
+                            <MapPin className="w-4 h-4 text-accent shrink-0" />
+                            <p className="text-sm font-medium">{city}</p>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
                 {/* Map */}
                 <div className="bg-card rounded-2xl overflow-hidden border border-border shadow-card h-64">
                   <iframe
