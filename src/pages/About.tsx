@@ -3,6 +3,8 @@ import Layout from "@/components/Layout";
 import AnimatedSection from "@/components/AnimatedSection";
 import { StaggeredList, StaggeredItem } from "@/components/StaggeredList";
 import { Link } from "react-router-dom";
+import { motion, useInView } from "framer-motion";
+import { useRef } from "react";
 import aboutHero from "@/assets/about-hero.jpg";
 import founderPortrait from "@/assets/founder-portrait.jpg";
 import { useCountUp } from "@/hooks/useCountUp";
@@ -41,6 +43,43 @@ const StatCircle = ({ end, suffix, label, icon }: { end: number; suffix: string;
       </div>
       <span className="font-heading font-bold text-primary-foreground text-center">{label}</span>
     </div>
+  );
+};
+
+const PlaneTrail = () => {
+  const trailRef = useRef(null);
+  const isInView = useInView(trailRef, { once: true, margin: "-100px" });
+  return (
+    <svg
+      ref={trailRef}
+      className="absolute inset-0 w-full h-full pointer-events-none hidden md:block"
+      viewBox="0 0 1200 400"
+      preserveAspectRatio="xMidYMid meet"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <motion.path
+        d="M -20 350 Q 80 200 180 200 Q 280 200 320 200 Q 400 200 480 200 Q 560 200 640 200 Q 720 200 800 200 Q 880 200 960 200 Q 1040 200 1100 200 Q 1200 200 1250 100"
+        stroke="hsl(var(--accent))"
+        strokeWidth="2"
+        strokeDasharray="8 6"
+        opacity="0.4"
+        initial={{ pathLength: 0 }}
+        animate={isInView ? { pathLength: 1 } : { pathLength: 0 }}
+        transition={{ duration: 2, ease: "easeInOut" }}
+      />
+      <motion.g
+        initial={{ opacity: 0 }}
+        animate={isInView ? { opacity: 1 } : { opacity: 0 }}
+        transition={{ duration: 0.3 }}
+      >
+        <g transform="translate(0, 340) rotate(-45)">
+          <path d="M0 0 L12 -4 L10 0 L12 4 Z" fill="hsl(var(--accent))" />
+          <path d="M6 -2 L6 -8 L8 -2" fill="hsl(var(--accent))" />
+          <path d="M6 2 L6 8 L8 2" fill="hsl(var(--accent))" />
+        </g>
+      </motion.g>
+    </svg>
   );
 };
 
@@ -196,28 +235,7 @@ const About = () => {
 
       {/* Statistics Section */}
       <section className="py-20 bg-primary overflow-hidden relative">
-        {/* Plane trail SVG - desktop only */}
-        <svg
-          className="absolute inset-0 w-full h-full pointer-events-none hidden md:block"
-          viewBox="0 0 1200 400"
-          preserveAspectRatio="xMidYMid meet"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="M -20 350 Q 80 200 180 200 Q 280 200 320 200 Q 400 200 480 200 Q 560 200 640 200 Q 720 200 800 200 Q 880 200 960 200 Q 1040 200 1100 200 Q 1200 200 1250 100"
-            stroke="hsl(var(--accent))"
-            strokeWidth="2"
-            strokeDasharray="8 6"
-            opacity="0.4"
-          />
-          {/* Plane icon at start */}
-          <g transform="translate(0, 340) rotate(-45)">
-            <path d="M0 0 L12 -4 L10 0 L12 4 Z" fill="hsl(var(--accent))" />
-            <path d="M6 -2 L6 -8 L8 -2" fill="hsl(var(--accent))" />
-            <path d="M6 2 L6 8 L8 2" fill="hsl(var(--accent))" />
-          </g>
-        </svg>
+        <PlaneTrail />
 
         <div className="container mx-auto px-4 relative z-10">
           <AnimatedSection>
