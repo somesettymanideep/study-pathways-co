@@ -27,19 +27,19 @@ const StatCircle = ({ end, suffix, label, icon }: { end: number; suffix: string;
     <div className="flex flex-col items-center" ref={ref}>
       <div className="relative w-36 h-36 md:w-44 md:h-44 mb-4">
         {/* Outer ring */}
-        <div className="absolute inset-0 rounded-full border-[3px] border-primary/30" />
+        <div className="absolute inset-0 rounded-full border-[3px] border-accent/30" />
         {/* Inner ring */}
-        <div className="absolute inset-3 rounded-full border-[3px] border-primary" />
+        <div className="absolute inset-3 rounded-full border-[3px] border-accent" />
         {/* Center content */}
         <div className="absolute inset-0 flex items-center justify-center">
-          <span className="font-heading text-3xl md:text-4xl font-bold text-primary">{count}{suffix}</span>
+          <span className="font-heading text-3xl md:text-4xl font-bold text-accent">{count}{suffix}</span>
         </div>
         {/* Icon badge */}
-        <div className="absolute -top-1 right-1 w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+        <div className="absolute -top-1 right-1 w-10 h-10 rounded-full bg-accent/15 flex items-center justify-center text-accent">
           {icon}
         </div>
       </div>
-      <span className="font-heading font-bold text-foreground text-center">{label}</span>
+      <span className="font-heading font-bold text-primary-foreground text-center">{label}</span>
     </div>
   );
 };
@@ -195,11 +195,11 @@ const About = () => {
       </section>
 
       {/* Statistics Section */}
-      <section className="py-20 bg-secondary/30 overflow-hidden">
+      <section className="py-20 bg-primary overflow-hidden">
         <div className="container mx-auto px-4">
           <AnimatedSection>
-            <h2 className="font-heading text-3xl md:text-4xl font-bold text-center mb-4">Our Achievements</h2>
-            <p className="text-center text-muted-foreground mb-16 max-w-xl mx-auto">Numbers that reflect our commitment to student success</p>
+            <h2 className="font-heading text-3xl md:text-4xl font-bold text-center mb-4 text-primary-foreground">Our Achievements</h2>
+            <p className="text-center text-primary-foreground/70 mb-16 max-w-xl mx-auto">Numbers that reflect our commitment to student success</p>
           </AnimatedSection>
           <StaggeredList className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-5xl mx-auto" staggerDelay={0.12}>
             {[
