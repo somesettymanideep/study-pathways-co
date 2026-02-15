@@ -86,11 +86,11 @@ const Footer = () => {
             <ul className="space-y-3">
               <li className="flex items-start gap-3 text-sm text-background/70">
                 <MapPin className="w-4 h-4 mt-0.5 text-accent shrink-0" />
-                <span>Pravaas International Education Consultancy</span>
+                <span>SS Complex, Above Hyundai Showroom, Vidya Nagar, Kothagudem</span>
               </li>
               <li className="flex items-center gap-3 text-sm text-background/70">
                 <Phone className="w-4 h-4 text-accent shrink-0" />
-                <a href="tel:+910000000000" className="hover:text-accent transition-colors">+91 00000 00000</a>
+                <a href="tel:+918008249666" className="hover:text-accent transition-colors">+91 80082 49666</a>
               </li>
               <li className="flex items-center gap-3 text-sm text-background/70">
                 <Mail className="w-4 h-4 text-accent shrink-0" />

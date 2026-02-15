@@ -33,7 +33,7 @@ const Contact = () => {
                       </div>
                       <div>
                         <p className="text-sm text-muted-foreground">Phone</p>
-                        <a href="tel:+910000000000" className="font-medium hover:text-primary transition-colors">+91 00000 00000</a>
+                        <a href="tel:+918008249666" className="font-medium hover:text-primary transition-colors">+91 80082 49666</a>
                       </div>
                     </div>
                     <div className="flex items-start gap-4">
@@ -51,7 +51,7 @@ const Contact = () => {
                       </div>
                       <div>
                         <p className="text-sm text-muted-foreground">Address</p>
-                        <p className="font-medium">Pravaas International Education Consultancy</p>
+                        <p className="font-medium">SS Complex, Above Hyundai Showroom, Vidya Nagar, Kothagudem</p>
                       </div>
                     </div>
                     <div className="flex items-start gap-4">
@@ -60,7 +60,7 @@ const Contact = () => {
                       </div>
                       <div>
                         <p className="text-sm text-muted-foreground">WhatsApp</p>
-                        <a href="https://wa.me/910000000000" target="_blank" rel="noopener noreferrer" className="font-medium hover:text-primary transition-colors">
+                        <a href="https://wa.me/918008249666" target="_blank" rel="noopener noreferrer" className="font-medium hover:text-primary transition-colors">
                           Chat with us
                         </a>
                       </div>
