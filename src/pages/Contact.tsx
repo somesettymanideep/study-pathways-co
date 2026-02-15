@@ -159,9 +159,13 @@ const Contact = () => {
                           </select>
                         </div>
                         <div>
-                          <label className="block text-sm font-medium mb-2">Preferred Intake (Month & Year)</label>
-                          <input type="month" required
-                            className="w-full px-4 py-3 rounded-lg border border-border bg-background text-foreground text-sm focus:outline-none focus:ring-2 focus:ring-primary/30" />
+                          <label className="block text-sm font-medium mb-2">Preferred Intake</label>
+                          <select required
+                            className="w-full px-4 py-3 rounded-lg border border-border bg-background text-foreground text-sm focus:outline-none focus:ring-2 focus:ring-primary/30">
+                            <option value="">Select Intake</option>
+                            <option value="September">September</option>
+                            <option value="January">January</option>
+                          </select>
                         </div>
                       </div>
                       <div>
