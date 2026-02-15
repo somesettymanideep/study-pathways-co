@@ -11,7 +11,13 @@ import ukHero from "@/assets/uk-hero.jpg";
 import australiaHero from "@/assets/australia-hero.jpg";
 import canadaHero from "@/assets/canada-hero.jpg";
 import germanyHero from "@/assets/germany-hero.jpg";
+import usaHero from "@/assets/usa-hero.jpg";
 import faqStudents from "@/assets/faq-students.jpg";
+import flagUk from "@/assets/flag-uk.webp";
+import flagAustralia from "@/assets/flag-australia.webp";
+import flagCanada from "@/assets/flag-canada.svg";
+import flagGermany from "@/assets/flag-germany.png";
+import flagUsa from "@/assets/flag-usa.svg";
 
 const heroSlides = [
   {
@@ -45,10 +51,11 @@ const heroSlides = [
 ];
 
 const destinations = [
-  { name: "United Kingdom", image: ukHero, desc: "World-class degrees with shorter course duration" },
-  { name: "Australia", image: australiaHero, desc: "Student-friendly environment with global recognition" },
-  { name: "Canada", image: canadaHero, desc: "Affordable education with PR opportunities" },
-  { name: "Germany", image: germanyHero, desc: "Low tuition fees with engineering excellence" },
+  { name: "United Kingdom", image: ukHero, flag: flagUk, desc: "World-class degrees with shorter course duration" },
+  { name: "Australia", image: australiaHero, flag: flagAustralia, desc: "Student-friendly environment with global recognition" },
+  { name: "Canada", image: canadaHero, flag: flagCanada, desc: "Affordable education with PR opportunities" },
+  { name: "Germany", image: germanyHero, flag: flagGermany, desc: "Low tuition fees with engineering excellence" },
+  { name: "USA", image: usaHero, flag: flagUsa, desc: "Top-ranked universities with diverse career opportunities" },
 ];
 
 const services = [
@@ -292,12 +299,15 @@ const Index = () => {
               </div>
             </div>
           </AnimatedSection>
-          <StaggeredList className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6" staggerDelay={0.12}>
+          <StaggeredList className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6" staggerDelay={0.12}>
             {destinations.map((dest) => (
               <StaggeredItem key={dest.name}>
                 <Link to={programPath} className="group bg-card rounded-2xl overflow-hidden border border-border shadow-card hover:shadow-elevated transition-all hover:-translate-y-1 block">
-                  <div className="h-48 overflow-hidden">
+                  <div className="h-48 overflow-hidden relative">
                     <img src={dest.image} alt={dest.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                    <div className="absolute top-3 right-3 w-10 h-7 rounded-md overflow-hidden shadow-md border border-white/30">
+                      <img src={dest.flag} alt={`${dest.name} flag`} className="w-full h-full object-cover" />
+                    </div>
                   </div>
                   <div className="p-5">
                     <div className="flex items-center gap-2 mb-2">
