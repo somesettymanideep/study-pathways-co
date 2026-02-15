@@ -12,6 +12,7 @@ import australiaHero from "@/assets/australia-hero.jpg";
 import canadaHero from "@/assets/canada-hero.jpg";
 import germanyHero from "@/assets/germany-hero.jpg";
 import usaHero from "@/assets/usa-hero.jpg";
+import mbbsSliderHero from "@/assets/mbbs-slider-hero.jpg";
 import faqStudents from "@/assets/faq-students.jpg";
 import servicesHero from "@/assets/services-hero.jpg";
 import flagUk from "@/assets/flag-uk.webp";
@@ -27,6 +28,7 @@ const heroSlides = [
     tagline: "🇬🇧 Study in the UK",
     heading: "World-Class Education in the United Kingdom",
     description: "Home to Oxford, Cambridge & top Russell Group universities. Shorter course durations, post-study work visa & global recognition.",
+    type: "country" as const,
   },
   {
     image: australiaHero,
@@ -34,6 +36,7 @@ const heroSlides = [
     tagline: "🇦🇺 Study in Australia",
     heading: "Discover Opportunities in Australia",
     description: "Student-friendly environment with globally ranked universities, part-time work rights & post-study PR pathways.",
+    type: "country" as const,
   },
   {
     image: canadaHero,
@@ -41,6 +44,7 @@ const heroSlides = [
     tagline: "🇨🇦 Study in Canada",
     heading: "Build Your Future in Canada",
     description: "Affordable tuition, multicultural campuses, generous post-graduation work permits & permanent residency options.",
+    type: "country" as const,
   },
   {
     image: germanyHero,
@@ -48,6 +52,15 @@ const heroSlides = [
     tagline: "🇩🇪 Study in Germany",
     heading: "Engineering Excellence in Germany",
     description: "Near-zero tuition at public universities, world-leading STEM programmes & Europe's strongest economy.",
+    type: "country" as const,
+  },
+  {
+    image: mbbsSliderHero,
+    country: "MBBS Abroad",
+    tagline: "🩺 MBBS Abroad",
+    heading: "Pursue Your Medical Dream Abroad",
+    description: "Affordable MBBS programs in top medical universities across Kyrgyzstan, Kazakhstan, Georgia, Russia & more. NMC/WHO recognized degrees with complete support.",
+    type: "mbbs" as const,
   },
 ];
 
@@ -187,15 +200,20 @@ const Index = () => {
               {slide.description}
             </p>
             <div key={`cta-${currentSlide}`} className="flex flex-wrap gap-4 animate-fade-in">
-              <Link to="/masters" className="px-8 py-4 bg-hero-gradient text-primary-foreground font-semibold rounded-xl hover:opacity-90 transition-opacity text-lg">
-                Masters
-              </Link>
-              <Link to="/bachelors" className="px-8 py-4 bg-card text-primary font-semibold rounded-xl hover:bg-background transition-colors text-lg shadow-elevated">
-                Bachelors
-              </Link>
-              <Link to="/mbbs" className="px-8 py-4 border-2 border-background/30 text-background font-semibold rounded-xl hover:bg-background/10 transition-colors text-lg">
-                MBBS
-              </Link>
+              {slide.type === "mbbs" ? (
+                <Link to="/mbbs" className="px-8 py-4 bg-hero-gradient text-primary-foreground font-semibold rounded-xl hover:opacity-90 transition-opacity text-lg">
+                  MBBS
+                </Link>
+              ) : (
+                <>
+                  <Link to="/masters" className="px-8 py-4 bg-hero-gradient text-primary-foreground font-semibold rounded-xl hover:opacity-90 transition-opacity text-lg">
+                    Masters
+                  </Link>
+                  <Link to="/bachelors" className="px-8 py-4 bg-card text-primary font-semibold rounded-xl hover:bg-background transition-colors text-lg shadow-elevated">
+                    Bachelors
+                  </Link>
+                </>
+              )}
             </div>
           </div>
         </div>
