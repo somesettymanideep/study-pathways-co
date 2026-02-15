@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from "react";
 import { Link } from "react-router-dom";
-import { GraduationCap, Globe, BookOpen, Users, Star, ArrowRight, CheckCircle2, MapPin, ChevronLeft, ChevronRight } from "lucide-react";
+import { GraduationCap, Globe, BookOpen, Users, Star, ArrowRight, CheckCircle2, MapPin, ChevronLeft, ChevronRight, Shield, CircleCheck, Handshake, HeartHandshake } from "lucide-react";
 import Layout from "@/components/Layout";
 import EnquiryPopup from "@/components/EnquiryPopup";
 import AnimatedSection from "@/components/AnimatedSection";
@@ -61,12 +61,18 @@ const testimonials = [
   { name: "Priya Nair", country: "Australia", text: "The team was so supportive throughout the entire process. Highly recommend!", rating: 5 },
 ];
 
-const whyStudyAbroad = [
-  "Globally recognized education",
-  "Practical & industry-focused learning",
-  "Global exposure & confidence",
-  "Part-time & post-study work options",
-  "Better career opportunities",
+const whyChooseUs = [
+  { icon: <Shield className="w-6 h-6" />, title: "10+ Years Experience", desc: "Over a decade of expertise in international education consulting with proven track record." },
+  { icon: <CircleCheck className="w-6 h-6" />, title: "98% Visa Success Rate", desc: "Industry-leading visa approval rates backed by meticulous documentation and preparation." },
+  { icon: <Handshake className="w-6 h-6" />, title: "50+ University Partners", desc: "Exclusive partnerships with top-ranked universities in UK, Australia, and other destinations." },
+  { icon: <HeartHandshake className="w-6 h-6" />, title: "End-to-End Support", desc: "From university selection to post-arrival assistance, we're with you every step of the way." },
+];
+
+const stats = [
+  { value: "5000+", label: "Students Placed", variant: "primary" as const },
+  { value: "10+", label: "Years Experience", variant: "accent" as const },
+  { value: "50+", label: "Partner Universities", variant: "accent" as const },
+  { value: "98%", label: "Visa Success", variant: "primary" as const },
 ];
 
 type ProgramTab = "bachelors" | "masters";
@@ -178,25 +184,55 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Why Study Abroad */}
+      {/* Why Choose Us */}
       <section className="py-20">
         <div className="container mx-auto px-4">
-          <AnimatedSection>
-            <div className="text-center mb-12">
-              <h2 className="font-heading text-3xl md:text-4xl font-bold mb-4">Why Study Abroad?</h2>
-              <p className="text-muted-foreground max-w-xl mx-auto">Studying abroad opens doors to world-class education and international career opportunities.</p>
-            </div>
-          </AnimatedSection>
-          <StaggeredList className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 max-w-5xl mx-auto">
-            {whyStudyAbroad.map((item, i) => (
-              <StaggeredItem key={i}>
-                <div className="bg-card rounded-xl p-6 border border-border shadow-card text-center hover:shadow-soft transition-shadow">
-                  <CheckCircle2 className="w-8 h-8 text-primary mx-auto mb-3" />
-                  <p className="text-sm font-medium">{item}</p>
+          <div className="grid lg:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
+            {/* Left Content */}
+            <AnimatedSection>
+              <div>
+                <span className="text-accent font-bold text-sm tracking-widest uppercase mb-3 block">Why Choose Us</span>
+                <h2 className="font-heading text-3xl md:text-4xl lg:text-5xl font-bold mb-6 leading-tight">
+                  Your Success is Our <span className="text-accent">Priority</span>
+                </h2>
+                <p className="text-muted-foreground leading-relaxed mb-10">
+                  At Pravaas International, we don't just process applications – we build futures. Our dedicated team of counselors brings together expertise, empathy, and a genuine commitment to seeing every student succeed.
+                </p>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                  {whyChooseUs.map((item, i) => (
+                    <div key={i} className="flex items-start gap-3">
+                      <div className="w-10 h-10 rounded-lg bg-accent/10 flex items-center justify-center text-accent shrink-0">
+                        {item.icon}
+                      </div>
+                      <div>
+                        <h4 className="font-heading font-bold text-sm mb-1">{item.title}</h4>
+                        <p className="text-xs text-muted-foreground leading-relaxed">{item.desc}</p>
+                      </div>
+                    </div>
+                  ))}
                 </div>
-              </StaggeredItem>
-            ))}
-          </StaggeredList>
+              </div>
+            </AnimatedSection>
+
+            {/* Right Stats Grid */}
+            <AnimatedSection>
+              <div className="grid grid-cols-2 gap-4">
+                {stats.map((stat, i) => (
+                  <div
+                    key={i}
+                    className={`rounded-2xl p-8 text-center ${
+                      stat.variant === "primary"
+                        ? "bg-primary text-primary-foreground"
+                        : "bg-accent text-primary-foreground"
+                    }`}
+                  >
+                    <p className="font-heading text-3xl md:text-4xl font-bold mb-1">{stat.value}</p>
+                    <p className="text-sm opacity-90">{stat.label}</p>
+                  </div>
+                ))}
+              </div>
+            </AnimatedSection>
+          </div>
         </div>
       </section>
 
