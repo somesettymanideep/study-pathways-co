@@ -1,4 +1,4 @@
-import { CheckCircle2, Target, Eye, Award, Users, Quote } from "lucide-react";
+import { CheckCircle2, Target, Eye, Award, Users, Quote, UserCheck, BookOpen, FileText, Stamp, Plane } from "lucide-react";
 import Layout from "@/components/Layout";
 import AnimatedSection from "@/components/AnimatedSection";
 import { StaggeredList, StaggeredItem } from "@/components/StaggeredList";
@@ -6,11 +6,12 @@ import { Link } from "react-router-dom";
 import aboutHero from "@/assets/about-hero.jpg";
 import founderPortrait from "@/assets/founder-portrait.jpg";
 
-const values = [
-  { icon: <Award className="w-6 h-6" />, title: "Expert Counsellors", desc: "Experienced education experts with deep knowledge of global universities" },
-  { icon: <CheckCircle2 className="w-6 h-6" />, title: "Transparent Process", desc: "Honest, clear guidance with no hidden costs or misleading promises" },
-  { icon: <Users className="w-6 h-6" />, title: "Personalized Approach", desc: "Tailored solutions based on each student's profile and aspirations" },
-  { icon: <Target className="w-6 h-6" />, title: "End-to-End Support", desc: "From profile evaluation to pre-departure assistance, we're with you" },
+const journeySteps = [
+  { icon: <UserCheck className="w-6 h-6" />, step: "01", title: "Free Profile Evaluation", desc: "We assess your academic background, career goals, and preferences to create a personalized study abroad roadmap." },
+  { icon: <BookOpen className="w-6 h-6" />, step: "02", title: "Course & University Selection", desc: "Expert guidance to match you with the right courses and universities aligned with your aspirations and budget." },
+  { icon: <FileText className="w-6 h-6" />, step: "03", title: "Application & Documentation", desc: "End-to-end support with applications, SOPs, LORs, and all required documentation for a strong profile." },
+  { icon: <Stamp className="w-6 h-6" />, step: "04", title: "Visa Guidance & Interview Prep", desc: "Comprehensive visa application assistance and mock interview sessions to maximize your approval chances." },
+  { icon: <Plane className="w-6 h-6" />, step: "05", title: "Pre-Departure Support", desc: "From travel arrangements to accommodation guidance, we ensure you're fully prepared for your journey abroad." },
 ];
 
 const team = [
@@ -19,13 +20,6 @@ const team = [
   { name: "Counsellor 3", role: "Career Guidance Specialist", speciality: "Course Selection" },
 ];
 
-const servicesList = [
-  "Free profile evaluation and career counselling",
-  "Course and university selection guidance",
-  "Application and documentation support",
-  "Visa guidance and interview preparation",
-  "Pre-departure support and assistance",
-];
 
 const About = () => {
   return (
@@ -129,45 +123,51 @@ const About = () => {
         </div>
       </section>
 
-      {/* Why Choose Us */}
-      <section className="py-20 bg-warm-gradient">
-        <div className="container mx-auto px-4">
-          <AnimatedSection>
-            <h2 className="font-heading text-3xl md:text-4xl font-bold text-center mb-12">Why Choose Pravaas?</h2>
-          </AnimatedSection>
-          <StaggeredList className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto" staggerDelay={0.1}>
-            {values.map((v, i) => (
-              <StaggeredItem key={i}>
-                <div className="bg-card rounded-2xl p-8 border border-border shadow-card text-center h-full">
-                  <div className="w-14 h-14 bg-secondary rounded-xl flex items-center justify-center mx-auto mb-5 text-primary">
-                    {v.icon}
-                  </div>
-                  <h3 className="font-heading text-lg font-bold mb-2">{v.title}</h3>
-                  <p className="text-sm text-muted-foreground">{v.desc}</p>
-                </div>
-              </StaggeredItem>
-            ))}
-          </StaggeredList>
-        </div>
-      </section>
-
-      {/* Services list */}
+      {/* Why Choose Pravaas - Journey Timeline */}
       <section className="py-20">
         <div className="container mx-auto px-4">
           <AnimatedSection>
-            <h2 className="font-heading text-3xl md:text-4xl font-bold text-center mb-4">What We Offer</h2>
-            <p className="text-center text-muted-foreground mb-12 max-w-xl mx-auto">Comprehensive support at every stage of your study abroad journey</p>
+            <span className="block text-center text-xs font-bold tracking-[0.2em] uppercase text-primary mb-3">Your Journey With Us</span>
+            <h2 className="font-heading text-3xl md:text-4xl font-bold text-center mb-4">Why Choose Pravaas?</h2>
+            <p className="text-center text-muted-foreground mb-16 max-w-xl mx-auto">
+              A seamless five-step process designed to turn your study abroad dream into reality
+            </p>
           </AnimatedSection>
-          <StaggeredList className="max-w-3xl mx-auto space-y-4" staggerDelay={0.08}>
-            {servicesList.map((s, i) => (
-              <StaggeredItem key={i}>
-                <div className="flex items-center gap-4 bg-card rounded-xl p-5 border border-border shadow-card">
-                  <CheckCircle2 className="w-5 h-5 text-primary shrink-0" />
-                  <span className="font-medium">{s}</span>
-                </div>
-              </StaggeredItem>
-            ))}
-          </StaggeredList>
+
+          <div className="max-w-4xl mx-auto relative">
+            {/* Vertical timeline line */}
+            <div className="absolute left-6 md:left-1/2 top-0 bottom-0 w-px bg-border md:-translate-x-px hidden sm:block" />
+
+            <StaggeredList className="space-y-8 md:space-y-12" staggerDelay={0.12}>
+              {journeySteps.map((item, i) => (
+                <StaggeredItem key={i}>
+                  <div className={`relative flex flex-col sm:flex-row items-start gap-4 md:gap-8 ${i % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"}`}>
+                    {/* Step number circle on timeline */}
+                    <div className="hidden sm:flex absolute left-6 md:left-1/2 -translate-x-1/2 w-12 h-12 rounded-full bg-primary text-primary-foreground items-center justify-center font-heading font-bold text-sm z-10 shadow-lg">
+                      {item.step}
+                    </div>
+
+                    {/* Content card */}
+                    <div className={`sm:pl-20 md:pl-0 md:w-[calc(50%-2.5rem)] ${i % 2 === 0 ? "md:pr-0 md:text-right" : "md:pl-0 md:text-left"}`}>
+                      <div className="bg-card rounded-2xl p-6 md:p-8 border border-border shadow-card hover:shadow-lg transition-shadow group">
+                        <div className={`flex items-center gap-3 mb-3 ${i % 2 === 0 ? "md:flex-row-reverse" : ""}`}>
+                          <div className="w-10 h-10 rounded-xl bg-secondary flex items-center justify-center text-primary shrink-0 group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
+                            {item.icon}
+                          </div>
+                          <span className="sm:hidden text-xs font-bold text-primary">STEP {item.step}</span>
+                          <h3 className="font-heading text-lg font-bold">{item.title}</h3>
+                        </div>
+                        <p className="text-sm text-muted-foreground leading-relaxed">{item.desc}</p>
+                      </div>
+                    </div>
+
+                    {/* Spacer for opposite side */}
+                    <div className="hidden md:block md:w-[calc(50%-2.5rem)]" />
+                  </div>
+                </StaggeredItem>
+              ))}
+            </StaggeredList>
+          </div>
         </div>
       </section>
 
