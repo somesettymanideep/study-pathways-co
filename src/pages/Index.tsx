@@ -410,6 +410,35 @@ const Index = () => {
         </div>
       </section>
 
+      {/* CTA */}
+      <section className="relative py-20 overflow-hidden">
+        <img src={servicesHero} alt="" className="absolute inset-0 w-full h-full object-cover" />
+        <div className="absolute inset-0 bg-overlay-dark" />
+        <div className="relative container mx-auto px-4 text-center">
+          <AnimatedSection>
+            <h2 className="font-heading text-3xl md:text-4xl lg:text-5xl font-bold text-background mb-6">
+              Start Your Study Abroad Journey Today
+            </h2>
+            <p className="text-background/80 text-lg mb-8 max-w-xl mx-auto">
+              Take the first step towards your dream education. Our expert counselors are ready to guide you.
+            </p>
+            <div className="flex flex-wrap gap-4 justify-center">
+              <Link to="/contact" className="px-8 py-4 bg-hero-gradient text-primary-foreground font-semibold rounded-xl hover:opacity-90 transition-opacity text-lg">
+                Book Free Counselling
+              </Link>
+              <a
+                href="https://wa.me/919999999999"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-8 py-4 bg-card text-primary font-semibold rounded-xl hover:bg-background transition-colors text-lg shadow-elevated"
+              >
+                WhatsApp Now
+              </a>
+            </div>
+          </AnimatedSection>
+        </div>
+      </section>
+
       {/* FAQ Section */}
       <section className="py-20">
         <div className="container mx-auto px-4">
@@ -453,35 +482,6 @@ const Index = () => {
               </div>
             </AnimatedSection>
           </div>
-        </div>
-      </section>
-
-      {/* CTA */}
-      <section className="relative py-20 overflow-hidden">
-        <img src={servicesHero} alt="" className="absolute inset-0 w-full h-full object-cover" />
-        <div className="absolute inset-0 bg-overlay-dark" />
-        <div className="relative container mx-auto px-4 text-center">
-          <AnimatedSection>
-            <h2 className="font-heading text-3xl md:text-4xl lg:text-5xl font-bold text-background mb-6">
-              Start Your Study Abroad Journey Today
-            </h2>
-            <p className="text-background/80 text-lg mb-8 max-w-xl mx-auto">
-              Take the first step towards your dream education. Our expert counselors are ready to guide you.
-            </p>
-            <div className="flex flex-wrap gap-4 justify-center">
-              <Link to="/contact" className="px-8 py-4 bg-hero-gradient text-primary-foreground font-semibold rounded-xl hover:opacity-90 transition-opacity text-lg">
-                Book Free Counselling
-              </Link>
-              <a
-                href="https://wa.me/919999999999"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="px-8 py-4 bg-card text-primary font-semibold rounded-xl hover:bg-background transition-colors text-lg shadow-elevated"
-              >
-                WhatsApp Now
-              </a>
-            </div>
-          </AnimatedSection>
         </div>
       </section>
     </Layout>
