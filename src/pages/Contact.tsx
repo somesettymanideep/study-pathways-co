@@ -106,19 +106,6 @@ const Contact = () => {
                   </div>
                 </div>
 
-                {/* Map */}
-                <div className="bg-card rounded-2xl overflow-hidden border border-border shadow-card h-64">
-                  <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3671.902!2d72.5714!3d23.0225!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjPCsDAxJzIxLjAiTiA3MsKwMzQnMTcuMCJF!5e0!3m2!1sen!2sin!4v1234567890"
-                    width="100%"
-                    height="100%"
-                    style={{ border: 0 }}
-                    allowFullScreen
-                    loading="lazy"
-                    referrerPolicy="no-referrer-when-downgrade"
-                    title="Our Location"
-                  />
-                </div>
               </div>
 
               {/* Contact Form */}
@@ -194,6 +181,30 @@ const Contact = () => {
                   )}
                 </div>
               </div>
+            </div>
+          </div>
+        </section>
+      </AnimatedSection>
+
+      {/* Map Section */}
+      <AnimatedSection>
+        <section className="py-16 bg-secondary/30">
+          <div className="container mx-auto px-4 max-w-6xl">
+            <div className="text-center mb-8">
+              <h2 className="font-heading text-3xl md:text-4xl font-bold mb-3">Find Us on the Map</h2>
+              <p className="text-muted-foreground">Visit our head office in Kothagudem, Khammam</p>
+            </div>
+            <div className="bg-card rounded-2xl overflow-hidden border border-border shadow-elevated h-[400px]">
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3671.902!2d72.5714!3d23.0225!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjPCsDAxJzIxLjAiTiA3MsKwMzQnMTcuMCJF!5e0!3m2!1sen!2sin!4v1234567890"
+                width="100%"
+                height="100%"
+                style={{ border: 0 }}
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                title="Our Location"
+              />
             </div>
           </div>
         </section>
