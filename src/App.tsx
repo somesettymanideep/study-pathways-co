@@ -11,6 +11,7 @@ import About from "./pages/About";
 import Masters from "./pages/Masters";
 import Bachelors from "./pages/Bachelors";
 import MBBS from "./pages/MBBS";
+import Services from "./pages/Services";
 import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
 
@@ -27,6 +28,7 @@ const AnimatedRoutes = () => {
         <Route path="/masters" element={<PageTransition><Masters /></PageTransition>} />
         <Route path="/bachelors" element={<PageTransition><Bachelors /></PageTransition>} />
         <Route path="/mbbs" element={<PageTransition><MBBS /></PageTransition>} />
+        <Route path="/services" element={<PageTransition><Services /></PageTransition>} />
         <Route path="/contact" element={<PageTransition><Contact /></PageTransition>} />
         <Route path="*" element={<PageTransition><NotFound /></PageTransition>} />
       </Routes>
