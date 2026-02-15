@@ -1,9 +1,10 @@
-import { CheckCircle2, Target, Eye, Award, Users } from "lucide-react";
+import { CheckCircle2, Target, Eye, Award, Users, Quote } from "lucide-react";
 import Layout from "@/components/Layout";
 import AnimatedSection from "@/components/AnimatedSection";
 import { StaggeredList, StaggeredItem } from "@/components/StaggeredList";
 import { Link } from "react-router-dom";
 import aboutHero from "@/assets/about-hero.jpg";
+import founderPortrait from "@/assets/founder-portrait.jpg";
 
 const values = [
   { icon: <Award className="w-6 h-6" />, title: "Expert Counsellors", desc: "Experienced education experts with deep knowledge of global universities" },
@@ -70,6 +71,61 @@ const About = () => {
               </div>
             </StaggeredItem>
           </StaggeredList>
+        </div>
+      </section>
+
+      {/* Founder's Message */}
+      <section className="py-20 bg-warm-gradient overflow-hidden">
+        <div className="container mx-auto px-4">
+          <AnimatedSection>
+            <div className="max-w-5xl mx-auto">
+              <div className="relative grid md:grid-cols-5 gap-0 items-stretch">
+                {/* Image Column */}
+                <div className="md:col-span-2 relative">
+                  <div className="relative h-full min-h-[360px] md:min-h-[480px] rounded-t-2xl md:rounded-l-2xl md:rounded-tr-none overflow-hidden">
+                    <img
+                      src={founderPortrait}
+                      alt="Founder of Pravaas International"
+                      className="w-full h-full object-cover"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-foreground/60 via-transparent to-transparent md:bg-gradient-to-r md:from-transparent md:via-transparent md:to-foreground/10" />
+                    {/* Name overlay on image */}
+                    <div className="absolute bottom-0 left-0 right-0 p-6 md:hidden">
+                      <h3 className="font-heading text-xl font-bold text-primary-foreground">Founder Name</h3>
+                      <p className="text-sm text-primary-foreground/80">Founder & Managing Director</p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Content Column */}
+                <div className="md:col-span-3 bg-card border border-border rounded-b-2xl md:rounded-r-2xl md:rounded-bl-none p-8 md:p-10 flex flex-col justify-center relative">
+                  <Quote className="w-10 h-10 text-primary/20 absolute top-6 right-6 rotate-180" />
+                  
+                  <span className="text-xs font-bold tracking-[0.2em] uppercase text-primary mb-3">Founder's Message</span>
+                  
+                  <div className="hidden md:block mb-4">
+                    <h3 className="font-heading text-2xl font-bold">Founder Name</h3>
+                    <p className="text-sm text-muted-foreground">Founder & Managing Director</p>
+                  </div>
+
+                  <blockquote className="text-muted-foreground leading-relaxed space-y-4">
+                    <p>
+                      "Every student deserves the right guidance to turn their international education dream into reality. At Pravaas International, we don't just process applications — we build futures."
+                    </p>
+                    <p>
+                      "Having guided hundreds of students to top universities worldwide, I understand the hopes and concerns families have. Our promise is simple: honest advice, transparent processes, and unwavering support at every step of your journey."
+                    </p>
+                  </blockquote>
+
+                  <div className="mt-6 flex items-center gap-3">
+                    <div className="h-px flex-1 bg-border" />
+                    <span className="text-xs text-muted-foreground tracking-wide">PRAVAAS INTERNATIONAL</span>
+                    <div className="h-px flex-1 bg-border" />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </AnimatedSection>
         </div>
       </section>
 
