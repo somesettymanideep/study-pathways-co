@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
-import { Facebook, Youtube, Twitter, Linkedin } from "lucide-react";
+import { Facebook, Youtube, Twitter, Linkedin, Instagram } from "lucide-react";
 
 const socials = [
-  { icon: Facebook, href: "https://facebook.com", bg: "bg-[#1877F2]", isYoutube: false },
+  { icon: Facebook, href: "https://www.facebook.com/share/1AT1j1Ljys/", bg: "bg-[#1877F2]", isYoutube: false },
+  { icon: Instagram, href: "https://www.instagram.com/pravaasinternational?igsh=Z2lzMTNuaGt2NXVi", bg: "bg-[#E4405F]", isYoutube: false },
   { icon: Youtube, href: "https://youtube.com", bg: "bg-[#FF0000]", isYoutube: true },
   { icon: Twitter, href: "https://twitter.com", bg: "bg-[#1DA1F2]", isYoutube: false },
   { icon: Linkedin, href: "https://linkedin.com", bg: "bg-[#0A66C2]", isYoutube: false },

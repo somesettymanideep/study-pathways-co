@@ -56,7 +56,7 @@ const Contact = () => {
                       </div>
                       <div>
                         <p className="text-sm text-muted-foreground">Address</p>
-                        <p className="font-medium">SS Complex, Above Hyundai Showroom, Vidya Nagar, Kothagudem</p>
+                        <p className="font-medium">SS Complex, Above Hyundai Car Showroom, Vidyanagar, Bhadradri Kotthagudem, Telangana, 507101</p>
                       </div>
                     </div>
                     <div className="flex items-start gap-4">
