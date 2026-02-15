@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { CheckCircle2, Target, Eye, Award, Users, Quote, UserCheck, BookOpen, FileText, Stamp, Plane, Star } from "lucide-react";
+import { useState, useEffect, useCallback } from "react";
+import { CheckCircle2, Target, Eye, Award, Users, Quote, UserCheck, BookOpen, FileText, Stamp, Plane, Star, ChevronLeft, ChevronRight } from "lucide-react";
 import Layout from "@/components/Layout";
 import AnimatedSection from "@/components/AnimatedSection";
 import { StaggeredList, StaggeredItem } from "@/components/StaggeredList";
@@ -27,6 +27,14 @@ const testimonials = [
 
 const About = () => {
   const [testimonialIndex, setTestimonialIndex] = useState(0);
+
+  // Auto-slide testimonials
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setTestimonialIndex((prev) => (prev + 1) % testimonials.length);
+    }, 5000);
+    return () => clearInterval(timer);
+  }, []);
 
   return (
     <Layout>
@@ -177,7 +185,7 @@ const About = () => {
         </div>
       </section>
 
-      {/* Student Testimonials */}
+      {/* Student Testimonials - Full-width Slider */}
       <section className="py-20 bg-warm-gradient">
         <div className="container mx-auto px-4">
           <AnimatedSection>
@@ -186,42 +194,61 @@ const About = () => {
               <p className="text-muted-foreground max-w-xl mx-auto">Hear from students who achieved their dreams with Pravaas</p>
             </div>
           </AnimatedSection>
-          <div className="max-w-5xl mx-auto relative">
+          <div className="max-w-3xl mx-auto relative">
             <div className="overflow-hidden">
               <div
                 className="flex transition-transform duration-500 ease-out"
-                style={{ transform: `translateX(-${testimonialIndex * (100 / 3)}%)` }}
+                style={{ transform: `translateX(-${testimonialIndex * 100}%)` }}
               >
                 {testimonials.map((t, i) => (
-                  <div key={i} className="w-full md:w-1/3 flex-shrink-0 px-3">
-                    <div className="bg-card rounded-2xl p-8 border border-border shadow-card h-full">
-                      <div className="flex items-center gap-3 mb-5">
+                  <div key={i} className="w-full flex-shrink-0 px-4">
+                    <div className="bg-card rounded-2xl p-10 md:p-14 border border-border shadow-card text-center relative">
+                      <Quote className="w-10 h-10 text-primary/15 mx-auto mb-6 rotate-180" />
+                      <p className="text-foreground text-lg md:text-xl leading-relaxed mb-8 italic">"{t.text}"</p>
+                      <div className="flex gap-1 justify-center mb-5">
+                        {Array.from({ length: t.rating }).map((_, j) => (
+                          <Star key={j} className="w-5 h-5 fill-accent text-accent" />
+                        ))}
+                      </div>
+                      <div className="flex items-center justify-center gap-3">
                         <div className="w-12 h-12 rounded-full bg-primary text-primary-foreground flex items-center justify-center font-bold text-sm">
                           {t.initials}
                         </div>
-                        <div>
-                          <p className="font-semibold text-sm">{t.name}</p>
-                          <p className="text-xs text-muted-foreground">Studying in {t.country}</p>
+                        <div className="text-left">
+                          <p className="font-heading font-bold">{t.name}</p>
+                          <p className="text-sm text-muted-foreground">Studying in {t.country}</p>
                         </div>
                       </div>
-                      <div className="flex gap-1 mb-3">
-                        {Array.from({ length: t.rating }).map((_, j) => (
-                          <Star key={j} className="w-4 h-4 fill-accent text-accent" />
-                        ))}
-                      </div>
-                      <p className="text-foreground text-sm leading-relaxed">"{t.text}"</p>
                     </div>
                   </div>
                 ))}
               </div>
             </div>
+
+            {/* Arrow Controls */}
+            <button
+              onClick={() => setTestimonialIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length)}
+              className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 md:-translate-x-14 w-10 h-10 rounded-full bg-card border border-border shadow-card flex items-center justify-center hover:bg-secondary transition-colors"
+              aria-label="Previous testimonial"
+            >
+              <ChevronLeft className="w-5 h-5" />
+            </button>
+            <button
+              onClick={() => setTestimonialIndex((prev) => (prev + 1) % testimonials.length)}
+              className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 md:translate-x-14 w-10 h-10 rounded-full bg-card border border-border shadow-card flex items-center justify-center hover:bg-secondary transition-colors"
+              aria-label="Next testimonial"
+            >
+              <ChevronRight className="w-5 h-5" />
+            </button>
+
+            {/* Dots */}
             <div className="flex justify-center gap-3 mt-8">
-              {Array.from({ length: testimonials.length - 2 }).map((_, i) => (
+              {testimonials.map((_, i) => (
                 <button
                   key={i}
                   onClick={() => setTestimonialIndex(i)}
                   className={`w-3 h-3 rounded-full transition-all ${i === testimonialIndex ? "bg-primary w-8" : "bg-primary/30 hover:bg-primary/50"}`}
-                  aria-label={`Testimonial page ${i + 1}`}
+                  aria-label={`Testimonial ${i + 1}`}
                 />
               ))}
             </div>
