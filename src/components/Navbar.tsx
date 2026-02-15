@@ -57,12 +57,13 @@ const Navbar = () => {
 
           <NavItem to="/services" active={isActive("/services")}>Services</NavItem>
           <NavItem to="/contact" active={isActive("/contact")}>Contact</NavItem>
-          <Link
-            to="/contact"
+          <a
+            href="/brochure.pdf"
+            download
             className="ml-3 px-5 py-2.5 bg-hero-gradient text-primary-foreground text-sm font-semibold rounded-lg hover:opacity-90 transition-opacity"
           >
-            Free Consultation
-          </Link>
+            Download Brochure
+          </a>
         </div>
 
         {/* Mobile toggle */}
@@ -92,13 +93,14 @@ const Navbar = () => {
 
             <MobileNavItem to="/services" active={isActive("/services")} onClick={() => setIsOpen(false)}>Services</MobileNavItem>
             <MobileNavItem to="/contact" active={isActive("/contact")} onClick={() => setIsOpen(false)}>Contact</MobileNavItem>
-            <Link
-              to="/contact"
+            <a
+              href="/brochure.pdf"
+              download
               onClick={() => setIsOpen(false)}
               className="mt-2 px-5 py-3 bg-hero-gradient text-primary-foreground text-sm font-semibold rounded-lg text-center"
             >
-              Free Consultation
-            </Link>
+              Download Brochure
+            </a>
           </div>
         </div>
       )}
