@@ -1,5 +1,4 @@
-import { useState, useEffect, useCallback } from "react";
-import { CheckCircle2, Target, Eye, Award, Users, Quote, UserCheck, BookOpen, FileText, Stamp, Plane, Star, ChevronLeft, ChevronRight } from "lucide-react";
+import { CheckCircle2, Target, Eye, Award, Users, Quote, UserCheck, BookOpen, FileText, Stamp, Plane } from "lucide-react";
 import Layout from "@/components/Layout";
 import AnimatedSection from "@/components/AnimatedSection";
 import { StaggeredList, StaggeredItem } from "@/components/StaggeredList";
@@ -15,30 +14,16 @@ const journeySteps = [
   { icon: <Plane className="w-6 h-6" />, step: "05", title: "Pre-Departure Support", desc: "From travel arrangements to accommodation guidance, we ensure you're fully prepared for your journey abroad." },
 ];
 
-const testimonials = [
-  { name: "Ananya Sharma", country: "UK", text: "Pravaas made my dream of studying in London a reality. Their guidance was invaluable!", rating: 5, initials: "AS" },
-  { name: "Rahul Patel", country: "Canada", text: "From course selection to visa approval, they handled everything professionally.", rating: 5, initials: "RP" },
-  { name: "Priya Nair", country: "Australia", text: "The team was so supportive throughout the entire process. Highly recommend!", rating: 5, initials: "PN" },
-  { name: "Vikram Singh", country: "Germany", text: "Thanks to Pravaas, I got admission in one of the top engineering universities in Germany!", rating: 5, initials: "VS" },
-  { name: "Sneha Reddy", country: "UK", text: "The visa process was so smooth. I couldn't have done it without their expert guidance.", rating: 5, initials: "SR" },
-  { name: "Arjun Mehta", country: "Australia", text: "Excellent support from start to finish. They truly care about each student's success.", rating: 5, initials: "AM" },
+const team = [
+  { name: "Counsellor 1", role: "Senior Education Consultant", speciality: "UK & Australia" },
+  { name: "Counsellor 2", role: "Visa & Immigration Expert", speciality: "Canada & Germany" },
+  { name: "Counsellor 3", role: "Career Guidance Specialist", speciality: "Course Selection" },
 ];
 
 
 const About = () => {
-  const [testimonialIndex, setTestimonialIndex] = useState(0);
-
-  // Auto-slide testimonials
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setTestimonialIndex((prev) => (prev + 1) % testimonials.length);
-    }, 5000);
-    return () => clearInterval(timer);
-  }, []);
-
   return (
     <Layout>
-      <div className="overflow-x-hidden">
       {/* Hero */}
       <section className="relative h-[400px] overflow-hidden flex items-center">
         <div className="absolute inset-0">
@@ -186,74 +171,26 @@ const About = () => {
         </div>
       </section>
 
-      {/* Student Testimonials - Full-width Slider */}
+      {/* Team */}
       <section className="py-20 bg-warm-gradient">
         <div className="container mx-auto px-4">
           <AnimatedSection>
-            <div className="text-center mb-12">
-              <h2 className="font-heading text-3xl md:text-4xl font-bold mb-4">Student Testimonials</h2>
-              <p className="text-muted-foreground max-w-xl mx-auto">Hear from students who achieved their dreams with Pravaas</p>
-            </div>
+            <h2 className="font-heading text-3xl md:text-4xl font-bold text-center mb-12">Our Counsellors</h2>
           </AnimatedSection>
-          <div className="max-w-3xl mx-auto relative">
-            <div className="overflow-hidden">
-              <div
-                className="flex transition-transform duration-500 ease-out"
-                style={{ transform: `translateX(-${testimonialIndex * 100}%)` }}
-              >
-                {testimonials.map((t, i) => (
-                  <div key={i} className="w-full flex-shrink-0 px-4">
-                    <div className="bg-card rounded-2xl p-10 md:p-14 border border-border shadow-card text-center relative">
-                      <Quote className="w-10 h-10 text-primary/15 mx-auto mb-6 rotate-180" />
-                      <p className="text-foreground text-lg md:text-xl leading-relaxed mb-8 italic">"{t.text}"</p>
-                      <div className="flex gap-1 justify-center mb-5">
-                        {Array.from({ length: t.rating }).map((_, j) => (
-                          <Star key={j} className="w-5 h-5 fill-accent text-accent" />
-                        ))}
-                      </div>
-                      <div className="flex items-center justify-center gap-3">
-                        <div className="w-12 h-12 rounded-full bg-primary text-primary-foreground flex items-center justify-center font-bold text-sm">
-                          {t.initials}
-                        </div>
-                        <div className="text-left">
-                          <p className="font-heading font-bold">{t.name}</p>
-                          <p className="text-sm text-muted-foreground">Studying in {t.country}</p>
-                        </div>
-                      </div>
-                    </div>
+          <StaggeredList className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto" staggerDelay={0.15}>
+            {team.map((member, i) => (
+              <StaggeredItem key={i}>
+                <div className="bg-card rounded-2xl p-8 border border-border shadow-card text-center">
+                  <div className="w-20 h-20 bg-secondary rounded-full flex items-center justify-center mx-auto mb-5">
+                    <Users className="w-8 h-8 text-primary" />
                   </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Arrow Controls */}
-            <button
-              onClick={() => setTestimonialIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length)}
-              className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 md:-translate-x-14 w-10 h-10 rounded-full bg-card border border-border shadow-card flex items-center justify-center hover:bg-secondary transition-colors"
-              aria-label="Previous testimonial"
-            >
-              <ChevronLeft className="w-5 h-5" />
-            </button>
-            <button
-              onClick={() => setTestimonialIndex((prev) => (prev + 1) % testimonials.length)}
-              className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 md:translate-x-14 w-10 h-10 rounded-full bg-card border border-border shadow-card flex items-center justify-center hover:bg-secondary transition-colors"
-              aria-label="Next testimonial"
-            >
-              <ChevronRight className="w-5 h-5" />
-            </button>
-
-            {/* Dots */}
-            <div className="flex justify-center gap-3 mt-8">
-              {testimonials.map((_, i) => (
-                <button
-                  key={i}
-                  onClick={() => setTestimonialIndex(i)}
-                  className={`w-3 h-3 rounded-full transition-all ${i === testimonialIndex ? "bg-primary w-8" : "bg-primary/30 hover:bg-primary/50"}`}
-                  aria-label={`Testimonial ${i + 1}`}
-                />
-              ))}
-            </div>
-          </div>
+                  <h3 className="font-heading text-lg font-bold mb-1">{member.name}</h3>
+                  <p className="text-sm text-primary font-medium mb-1">{member.role}</p>
+                  <p className="text-xs text-muted-foreground">{member.speciality}</p>
+                </div>
+              </StaggeredItem>
+            ))}
+          </StaggeredList>
         </div>
       </section>
 
@@ -269,7 +206,6 @@ const About = () => {
           </div>
         </section>
       </AnimatedSection>
-      </div>
     </Layout>
   );
 };
