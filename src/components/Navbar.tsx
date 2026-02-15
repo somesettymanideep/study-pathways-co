@@ -55,6 +55,7 @@ const Navbar = () => {
             </div>
           </div>
 
+          <NavItem to="/services" active={isActive("/services")}>Services</NavItem>
           <NavItem to="/contact" active={isActive("/contact")}>Contact</NavItem>
           <Link
             to="/contact"
@@ -89,6 +90,7 @@ const Navbar = () => {
               </MobileNavItem>
             ))}
 
+            <MobileNavItem to="/services" active={isActive("/services")} onClick={() => setIsOpen(false)}>Services</MobileNavItem>
             <MobileNavItem to="/contact" active={isActive("/contact")} onClick={() => setIsOpen(false)}>Contact</MobileNavItem>
             <Link
               to="/contact"
