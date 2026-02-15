@@ -4,7 +4,6 @@ import { GraduationCap, Globe, BookOpen, Users, Star, ArrowRight, CheckCircle2, 
 import Layout from "@/components/Layout";
 import EnquiryPopup from "@/components/EnquiryPopup";
 import AnimatedSection from "@/components/AnimatedSection";
-import Marquee from "@/components/Marquee";
 import { StaggeredList, StaggeredItem } from "@/components/StaggeredList";
 import ukHero from "@/assets/uk-hero.jpg";
 import australiaHero from "@/assets/australia-hero.jpg";
@@ -103,9 +102,6 @@ const Index = () => {
   return (
     <Layout>
       <EnquiryPopup />
-
-      {/* Marquee Ticker */}
-      <Marquee />
 
       {/* Hero Slider */}
       <section className="relative min-h-[85vh] flex items-center overflow-hidden">
