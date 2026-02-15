@@ -299,26 +299,19 @@ const Index = () => {
               </div>
             </div>
           </AnimatedSection>
-          <StaggeredList className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6" staggerDelay={0.12}>
+          <StaggeredList className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8" staggerDelay={0.12}>
             {destinations.map((dest) => (
               <StaggeredItem key={dest.name}>
-                <Link to={programPath} className="group bg-card rounded-2xl overflow-hidden border border-border shadow-card hover:shadow-elevated transition-all hover:-translate-y-1 block">
-                  <div className="h-48 overflow-hidden relative">
-                    <img src={dest.image} alt={dest.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
-                    <div className="absolute top-3 right-3 w-10 h-7 rounded-md overflow-hidden shadow-md border border-white/30">
-                      <img src={dest.flag} alt={`${dest.name} flag`} className="w-full h-full object-cover" />
+                <Link to={programPath} className="group block">
+                  <div className="bg-card rounded-xl overflow-hidden border border-border shadow-card hover:shadow-elevated transition-all">
+                    <div className="relative">
+                      <img src={dest.image} alt={dest.name} className="w-full h-52 object-cover group-hover:scale-105 transition-transform duration-500" />
+                      <div className="absolute -bottom-5 right-4 w-12 h-12 rounded-full overflow-hidden border-4 border-card shadow-lg bg-card">
+                        <img src={dest.flag} alt={`${dest.name} flag`} className="w-full h-full object-cover" />
+                      </div>
                     </div>
                   </div>
-                  <div className="p-5">
-                    <div className="flex items-center gap-2 mb-2">
-                      <MapPin className="w-4 h-4 text-primary" />
-                      <h3 className="font-heading text-lg font-bold">{dest.name}</h3>
-                    </div>
-                    <p className="text-sm text-muted-foreground mb-3">{dest.desc}</p>
-                    <span className="text-primary text-sm font-semibold flex items-center gap-1 group-hover:gap-2 transition-all">
-                      Explore {activeTab === "bachelors" ? "Bachelors" : "Masters"} <ArrowRight className="w-4 h-4" />
-                    </span>
-                  </div>
+                  <h3 className="font-heading text-lg font-bold mt-3 ml-1">{dest.name}</h3>
                 </Link>
               </StaggeredItem>
             ))}
