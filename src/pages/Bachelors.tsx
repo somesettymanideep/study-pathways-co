@@ -74,12 +74,6 @@ const intakeMonths = [
   { country: "USA", primary: "August/September", secondary: "January" },
 ];
 
-const costOfLiving = [
-  { country: "UK", tuition: "£10,000 – £25,000/yr", living: "£9,000 – £12,000/yr" },
-  { country: "Australia", tuition: "AUD 20,000 – 45,000/yr", living: "AUD 21,000 – 27,000/yr" },
-  { country: "Germany", tuition: "€0 – €1,500/yr (public)", living: "€10,000 – €12,000/yr" },
-  { country: "USA", tuition: "$20,000 – $55,000/yr", living: "$10,000 – $18,000/yr" },
-];
 
 const Bachelors = () => {
   return (
@@ -190,39 +184,6 @@ const Bachelors = () => {
           </AnimatedSection>
         </div>
       </section>
-
-      {/* Cost of Living */}
-      <section className="py-20 bg-warm-gradient">
-        <div className="container mx-auto px-4">
-          <AnimatedSection>
-            <div className="text-center mb-12">
-              <h2 className="font-heading text-3xl md:text-4xl font-bold mb-4">Cost of Living & Tuition</h2>
-              <p className="text-muted-foreground max-w-xl mx-auto">Estimated annual costs for international students</p>
-            </div>
-            <div className="max-w-4xl mx-auto overflow-x-auto">
-              <table className="w-full bg-card rounded-2xl border border-border shadow-card overflow-hidden">
-                <thead>
-                  <tr className="bg-primary text-primary-foreground">
-                    <th className="px-6 py-4 text-left font-heading text-sm">Country</th>
-                    <th className="px-6 py-4 text-left font-heading text-sm">Tuition Fees</th>
-                    <th className="px-6 py-4 text-left font-heading text-sm">Living Costs</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {costOfLiving.map((row, i) => (
-                    <tr key={row.country} className={`border-t border-border ${i % 2 === 1 ? "bg-secondary/30" : ""}`}>
-                      <td className="px-6 py-4 font-semibold text-sm">{row.country}</td>
-                      <td className="px-6 py-4 text-sm text-muted-foreground">{row.tuition}</td>
-                      <td className="px-6 py-4 text-sm text-muted-foreground">{row.living}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          </AnimatedSection>
-        </div>
-      </section>
-
       {/* CTA */}
       <AnimatedSection>
         <section className="py-20">
