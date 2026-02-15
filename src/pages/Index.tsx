@@ -303,11 +303,8 @@ const Index = () => {
             {destinations.map((dest) => (
               <StaggeredItem key={dest.name}>
                 <Link to={programPath} className="group bg-card rounded-2xl overflow-hidden border border-border shadow-card hover:shadow-elevated transition-all hover:-translate-y-1 block">
-                  <div className="h-48 overflow-hidden relative">
-                    <img src={dest.image} alt={dest.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
-                    <div className="absolute top-3 right-3 w-10 h-7 rounded-md overflow-hidden shadow-md border border-white/30">
-                      <img src={dest.flag} alt={`${dest.name} flag`} className="w-full h-full object-cover" />
-                    </div>
+                  <div className="h-48 overflow-hidden relative bg-muted flex items-center justify-center">
+                    <img src={dest.flag} alt={`${dest.name} flag`} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
                   </div>
                   <div className="p-5">
                     <div className="flex items-center gap-2 mb-2">
