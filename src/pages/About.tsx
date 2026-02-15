@@ -26,15 +26,16 @@ const testimonials = [
 
 
 const About = () => {
-  const [testimonialIndex, setTestimonialIndex] = useState(0);
+  const [testimonialPage, setTestimonialPage] = useState(0);
+  const totalPages = Math.ceil(testimonials.length / 3);
 
   // Auto-slide testimonials
   useEffect(() => {
     const timer = setInterval(() => {
-      setTestimonialIndex((prev) => (prev + 1) % testimonials.length);
+      setTestimonialPage((prev) => (prev + 1) % totalPages);
     }, 5000);
     return () => clearInterval(timer);
-  }, []);
+  }, [totalPages]);
 
   return (
     <Layout>
@@ -185,7 +186,7 @@ const About = () => {
         </div>
       </section>
 
-      {/* Student Testimonials - Full-width Slider */}
+      {/* Student Testimonials - 3-card Fade */}
       <section className="py-20 bg-warm-gradient">
         <div className="container mx-auto px-4">
           <AnimatedSection>
@@ -194,61 +195,68 @@ const About = () => {
               <p className="text-muted-foreground max-w-xl mx-auto">Hear from students who achieved their dreams with Pravaas</p>
             </div>
           </AnimatedSection>
-          <div className="max-w-3xl mx-auto relative">
-            <div className="overflow-hidden">
-              <div
-                className="flex transition-transform duration-500 ease-out"
-                style={{ transform: `translateX(-${testimonialIndex * 100}%)` }}
-              >
-                {testimonials.map((t, i) => (
-                  <div key={i} className="w-full flex-shrink-0 px-4">
-                    <div className="bg-card rounded-2xl p-10 md:p-14 border border-border shadow-card text-center relative">
-                      <Quote className="w-10 h-10 text-primary/15 mx-auto mb-6 rotate-180" />
-                      <p className="text-foreground text-lg md:text-xl leading-relaxed mb-8 italic">"{t.text}"</p>
-                      <div className="flex gap-1 justify-center mb-5">
-                        {Array.from({ length: t.rating }).map((_, j) => (
-                          <Star key={j} className="w-5 h-5 fill-accent text-accent" />
-                        ))}
-                      </div>
-                      <div className="flex items-center justify-center gap-3">
-                        <div className="w-12 h-12 rounded-full bg-primary text-primary-foreground flex items-center justify-center font-bold text-sm">
-                          {t.initials}
+          <div className="max-w-5xl mx-auto relative">
+            {/* Cards grid with fade */}
+            <div className="relative min-h-[280px]">
+              {Array.from({ length: totalPages }).map((_, pageIdx) => {
+                const pageCards = testimonials.slice(pageIdx * 3, pageIdx * 3 + 3);
+                return (
+                  <div
+                    key={pageIdx}
+                    className={`grid grid-cols-1 md:grid-cols-3 gap-6 transition-all duration-500 ease-out ${
+                      pageIdx === testimonialPage
+                        ? "opacity-100 relative"
+                        : "opacity-0 absolute inset-0 pointer-events-none"
+                    }`}
+                  >
+                    {pageCards.map((t, i) => (
+                      <div key={i} className="bg-card rounded-2xl p-8 border border-border shadow-card h-full flex flex-col">
+                        <div className="flex items-center gap-3 mb-5">
+                          <div className="w-12 h-12 rounded-full bg-primary text-primary-foreground flex items-center justify-center font-bold text-sm shrink-0">
+                            {t.initials}
+                          </div>
+                          <div>
+                            <p className="font-heading font-bold text-sm">{t.name}</p>
+                            <p className="text-xs text-muted-foreground">Studying in {t.country}</p>
+                          </div>
                         </div>
-                        <div className="text-left">
-                          <p className="font-heading font-bold">{t.name}</p>
-                          <p className="text-sm text-muted-foreground">Studying in {t.country}</p>
+                        <div className="flex gap-1 mb-3">
+                          {Array.from({ length: t.rating }).map((_, j) => (
+                            <Star key={j} className="w-4 h-4 fill-accent text-accent" />
+                          ))}
                         </div>
+                        <p className="text-foreground text-sm leading-relaxed flex-1">"{t.text}"</p>
                       </div>
-                    </div>
+                    ))}
                   </div>
-                ))}
-              </div>
+                );
+              })}
             </div>
 
             {/* Arrow Controls */}
             <button
-              onClick={() => setTestimonialIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length)}
+              onClick={() => setTestimonialPage((prev) => (prev - 1 + totalPages) % totalPages)}
               className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 md:-translate-x-14 w-10 h-10 rounded-full bg-card border border-border shadow-card flex items-center justify-center hover:bg-secondary transition-colors"
-              aria-label="Previous testimonial"
+              aria-label="Previous testimonials"
             >
               <ChevronLeft className="w-5 h-5" />
             </button>
             <button
-              onClick={() => setTestimonialIndex((prev) => (prev + 1) % testimonials.length)}
+              onClick={() => setTestimonialPage((prev) => (prev + 1) % totalPages)}
               className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 md:translate-x-14 w-10 h-10 rounded-full bg-card border border-border shadow-card flex items-center justify-center hover:bg-secondary transition-colors"
-              aria-label="Next testimonial"
+              aria-label="Next testimonials"
             >
               <ChevronRight className="w-5 h-5" />
             </button>
 
             {/* Dots */}
             <div className="flex justify-center gap-3 mt-8">
-              {testimonials.map((_, i) => (
+              {Array.from({ length: totalPages }).map((_, i) => (
                 <button
                   key={i}
-                  onClick={() => setTestimonialIndex(i)}
-                  className={`w-3 h-3 rounded-full transition-all ${i === testimonialIndex ? "bg-primary w-8" : "bg-primary/30 hover:bg-primary/50"}`}
-                  aria-label={`Testimonial ${i + 1}`}
+                  onClick={() => setTestimonialPage(i)}
+                  className={`w-3 h-3 rounded-full transition-all ${i === testimonialPage ? "bg-primary w-8" : "bg-primary/30 hover:bg-primary/50"}`}
+                  aria-label={`Testimonial page ${i + 1}`}
                 />
               ))}
             </div>
