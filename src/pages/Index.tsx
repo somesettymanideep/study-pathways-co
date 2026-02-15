@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback, useRef } from "react";
 import { Link } from "react-router-dom";
-import { GraduationCap, Globe, BookOpen, Users, Star, ArrowRight, CheckCircle2, MapPin, ChevronLeft, ChevronRight, Shield, CircleCheck, Handshake, HeartHandshake, HelpCircle } from "lucide-react";
+import { GraduationCap, Globe, BookOpen, Users, Star, ArrowRight, CheckCircle2, MapPin, ChevronLeft, ChevronRight, Shield, CircleCheck, Handshake, HeartHandshake, HelpCircle, FileText, Target, Plane, Home, Award, Briefcase } from "lucide-react";
 import Layout from "@/components/Layout";
 import EnquiryPopup from "@/components/EnquiryPopup";
 import AnimatedSection from "@/components/AnimatedSection";
@@ -13,6 +13,7 @@ import canadaHero from "@/assets/canada-hero.jpg";
 import germanyHero from "@/assets/germany-hero.jpg";
 import usaHero from "@/assets/usa-hero.jpg";
 import faqStudents from "@/assets/faq-students.jpg";
+import servicesHero from "@/assets/services-hero.jpg";
 import flagUk from "@/assets/flag-uk.webp";
 import flagAustralia from "@/assets/flag-australia.webp";
 import flagCanada from "@/assets/flag-canada.svg";
@@ -59,10 +60,14 @@ const destinations = [
 ];
 
 const services = [
-  { icon: <BookOpen className="w-6 h-6" />, title: "Course Selection", desc: "Expert guidance on choosing the right course and university" },
-  { icon: <GraduationCap className="w-6 h-6" />, title: "Application Support", desc: "End-to-end application and documentation assistance" },
-  { icon: <Globe className="w-6 h-6" />, title: "Visa Guidance", desc: "Complete visa application support and interview prep" },
-  { icon: <Users className="w-6 h-6" />, title: "Pre-Departure Help", desc: "Accommodation, travel, and settlement guidance" },
+  { icon: <BookOpen className="w-7 h-7" />, title: "Course Selection Guidance", desc: "Personalized recommendations based on your academic background, interests, and career goals." },
+  { icon: <Target className="w-7 h-7" />, title: "Career Counselling", desc: "One-on-one sessions to align your study abroad plans with long-term career aspirations." },
+  { icon: <FileText className="w-7 h-7" />, title: "Application & Document Assistance", desc: "End-to-end help with SOPs, LORs, essays, and university application submissions." },
+  { icon: <Shield className="w-7 h-7" />, title: "Visa Processing & Interview Prep", desc: "Complete visa application support with mock interview sessions for confident preparation." },
+  { icon: <Award className="w-7 h-7" />, title: "Scholarship & Financial Guidance", desc: "Identify and apply for scholarships, education loans, and financial aid opportunities." },
+  { icon: <Plane className="w-7 h-7" />, title: "Pre-Departure & Post-Arrival Support", desc: "Travel briefing, airport pickup coordination, and settling-in assistance abroad." },
+  { icon: <Home className="w-7 h-7" />, title: "Accommodation Assistance", desc: "Help finding safe, affordable student housing near your university campus." },
+  { icon: <Briefcase className="w-7 h-7" />, title: "Internship & Job Placement", desc: "Guidance on part-time work opportunities and post-study career placement support." },
 ];
 
 const testimonials = [
@@ -328,19 +333,23 @@ const Index = () => {
         <div className="container mx-auto px-4">
           <AnimatedSection>
             <div className="text-center mb-12">
+              <span className="text-accent font-bold text-sm tracking-widest uppercase mb-3 block">What We Offer</span>
               <h2 className="font-heading text-3xl md:text-4xl font-bold mb-4">Our Services</h2>
-              <p className="text-muted-foreground max-w-xl mx-auto">Comprehensive support at every step of your study abroad journey</p>
+              <p className="text-muted-foreground max-w-xl mx-auto">Comprehensive support at every stage of your study abroad journey</p>
             </div>
           </AnimatedSection>
-          <StaggeredList className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6" staggerDelay={0.12}>
+          <StaggeredList className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto" staggerDelay={0.08}>
             {services.map((service, i) => (
               <StaggeredItem key={i}>
-                <div className="bg-card rounded-2xl p-8 border border-border shadow-card hover:shadow-soft transition-shadow text-center">
-                  <div className="w-14 h-14 bg-hero-gradient rounded-xl flex items-center justify-center mx-auto mb-5 text-primary-foreground">
+                <div className="bg-card rounded-2xl border border-border shadow-card p-6 hover:shadow-elevated hover:-translate-y-1 transition-all group h-full flex flex-col">
+                  <div className="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center text-accent mb-4 group-hover:bg-accent group-hover:text-primary-foreground transition-colors">
                     {service.icon}
                   </div>
-                  <h3 className="font-heading text-lg font-bold mb-2">{service.title}</h3>
-                  <p className="text-sm text-muted-foreground">{service.desc}</p>
+                  <h3 className="font-heading text-base font-bold mb-2">{service.title}</h3>
+                  <p className="text-muted-foreground text-sm leading-relaxed flex-1">{service.desc}</p>
+                  <Link to="/services" className="text-primary text-sm font-semibold flex items-center gap-1 mt-4 group-hover:gap-2 transition-all">
+                    Learn More <ArrowRight className="w-4 h-4" />
+                  </Link>
                 </div>
               </StaggeredItem>
             ))}
@@ -448,29 +457,33 @@ const Index = () => {
       </section>
 
       {/* CTA */}
-      <AnimatedSection>
-        <section className="py-20">
-          <div className="container mx-auto px-4">
-            <div className="bg-hero-gradient rounded-3xl p-12 md:p-16 text-center text-primary-foreground">
-              <h2 className="font-heading text-3xl md:text-4xl font-bold mb-4">Start Your Study Abroad Journey Today</h2>
-              <p className="text-primary-foreground/80 max-w-xl mx-auto mb-8 text-lg">
-                Book a free consultation with our expert counsellors today
-              </p>
-              <div className="flex flex-wrap justify-center gap-4">
-                <Link to="/contact" className="px-10 py-4 bg-card text-primary font-bold rounded-xl hover:bg-background transition-colors text-lg shadow-elevated">
-                  Free Counseling
-                </Link>
-                <Link to="/contact" className="px-10 py-4 border-2 border-primary-foreground/30 text-primary-foreground font-bold rounded-xl hover:bg-primary-foreground/10 transition-colors text-lg">
-                  Contact Us
-                </Link>
-                <Link to="/contact" className="px-10 py-4 bg-card text-primary font-bold rounded-xl hover:bg-background transition-colors text-lg shadow-elevated">
-                  Apply Now
-                </Link>
-              </div>
+      <section className="relative py-20 overflow-hidden">
+        <img src={servicesHero} alt="" className="absolute inset-0 w-full h-full object-cover" />
+        <div className="absolute inset-0 bg-overlay-dark" />
+        <div className="relative container mx-auto px-4 text-center">
+          <AnimatedSection>
+            <h2 className="font-heading text-3xl md:text-4xl lg:text-5xl font-bold text-background mb-6">
+              Start Your Study Abroad Journey Today
+            </h2>
+            <p className="text-background/80 text-lg mb-8 max-w-xl mx-auto">
+              Take the first step towards your dream education. Our expert counselors are ready to guide you.
+            </p>
+            <div className="flex flex-wrap gap-4 justify-center">
+              <Link to="/contact" className="px-8 py-4 bg-hero-gradient text-primary-foreground font-semibold rounded-xl hover:opacity-90 transition-opacity text-lg">
+                Book Free Counselling
+              </Link>
+              <a
+                href="https://wa.me/919999999999"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-8 py-4 bg-card text-primary font-semibold rounded-xl hover:bg-background transition-colors text-lg shadow-elevated"
+              >
+                WhatsApp Now
+              </a>
             </div>
-          </div>
-        </section>
-      </AnimatedSection>
+          </AnimatedSection>
+        </div>
+      </section>
     </Layout>
   );
 };
