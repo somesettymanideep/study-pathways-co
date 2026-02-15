@@ -1,15 +1,17 @@
 import { useState, useEffect, useCallback, useRef } from "react";
 import { Link } from "react-router-dom";
-import { GraduationCap, Globe, BookOpen, Users, Star, ArrowRight, CheckCircle2, MapPin, ChevronLeft, ChevronRight, Shield, CircleCheck, Handshake, HeartHandshake } from "lucide-react";
+import { GraduationCap, Globe, BookOpen, Users, Star, ArrowRight, CheckCircle2, MapPin, ChevronLeft, ChevronRight, Shield, CircleCheck, Handshake, HeartHandshake, HelpCircle } from "lucide-react";
 import Layout from "@/components/Layout";
 import EnquiryPopup from "@/components/EnquiryPopup";
 import AnimatedSection from "@/components/AnimatedSection";
 import { StaggeredList, StaggeredItem } from "@/components/StaggeredList";
 import { useCountUp } from "@/hooks/useCountUp";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import ukHero from "@/assets/uk-hero.jpg";
 import australiaHero from "@/assets/australia-hero.jpg";
 import canadaHero from "@/assets/canada-hero.jpg";
 import germanyHero from "@/assets/germany-hero.jpg";
+import faqStudents from "@/assets/faq-students.jpg";
 
 const heroSlides = [
   {
@@ -77,6 +79,15 @@ const stats = [
   { value: 10, suffix: "+", label: "Years Experience", variant: "accent" as const },
   { value: 50, suffix: "+", label: "Partner Universities", variant: "accent" as const },
   { value: 98, suffix: "%", label: "Visa Success", variant: "primary" as const },
+];
+
+const faqs = [
+  { q: "What are the basic requirements to study abroad?", a: "Requirements vary by country and university, but generally include academic transcripts, English proficiency tests (IELTS/TOEFL), a valid passport, statement of purpose, and letters of recommendation. Our counselors will guide you through the specific requirements for your chosen destination." },
+  { q: "How long does the application process take?", a: "The entire process from initial consultation to receiving an offer letter typically takes 4-8 weeks. Visa processing adds another 2-6 weeks depending on the country. We recommend starting at least 6-8 months before your intended intake." },
+  { q: "Can I work while studying abroad?", a: "Yes! Most popular study destinations allow international students to work part-time (typically 20 hours/week) during term and full-time during breaks. Countries like Australia, Canada, and the UK have generous post-study work visa options too." },
+  { q: "What is the cost of studying abroad?", a: "Costs vary significantly by country and university. Germany offers near-zero tuition at public universities, while the UK and Australia range from £10,000–£30,000/year. We help you find scholarships and affordable options that fit your budget." },
+  { q: "Do you help with scholarship applications?", a: "Absolutely! We assist students in identifying and applying for merit-based, need-based, and university-specific scholarships. Many of our students have received partial to full scholarships at top universities worldwide." },
+  { q: "What support do you provide after I arrive?", a: "Our support doesn't end at the airport. We help with accommodation arrangements, airport pickup coordination, bank account setup, local SIM cards, and initial settlement guidance to ensure a smooth transition." },
 ];
 
 type ProgramTab = "bachelors" | "masters";
@@ -379,6 +390,52 @@ const Index = () => {
                 />
               ))}
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ Section */}
+      <section className="py-20">
+        <div className="container mx-auto px-4">
+          <div className="grid lg:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
+            {/* Left Image */}
+            <AnimatedSection>
+              <div className="relative rounded-3xl overflow-hidden shadow-elevated">
+                <img src={faqStudents} alt="Students studying abroad" className="w-full h-full object-cover" />
+                <div className="absolute inset-0 bg-gradient-to-t from-primary/40 to-transparent" />
+                <div className="absolute bottom-6 left-6 right-6">
+                  <div className="bg-card/90 backdrop-blur-sm rounded-2xl p-5 border border-border">
+                    <div className="flex items-center gap-3">
+                      <div className="w-10 h-10 rounded-full bg-accent flex items-center justify-center text-primary-foreground">
+                        <HelpCircle className="w-5 h-5" />
+                      </div>
+                      <div>
+                        <p className="font-heading font-bold text-sm">Have more questions?</p>
+                        <p className="text-xs text-muted-foreground">Contact us for a free consultation</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </AnimatedSection>
+
+            {/* Right FAQs */}
+            <AnimatedSection delay={0.2}>
+              <div>
+                <span className="text-accent font-bold text-sm tracking-widest uppercase mb-3 block">FAQ</span>
+                <h2 className="font-heading text-3xl md:text-4xl font-bold mb-8 leading-tight">
+                  Frequently Asked <span className="text-accent">Questions</span>
+                </h2>
+                <Accordion type="single" collapsible className="space-y-3">
+                  {faqs.map((faq, i) => (
+                    <AccordionItem key={i} value={`faq-${i}`} className="border border-border rounded-xl px-5 bg-card shadow-card data-[state=open]:shadow-soft transition-shadow">
+                      <AccordionTrigger className="text-sm font-semibold hover:no-underline py-4 text-left">{faq.q}</AccordionTrigger>
+                      <AccordionContent className="text-sm text-muted-foreground leading-relaxed">{faq.a}</AccordionContent>
+                    </AccordionItem>
+                  ))}
+                </Accordion>
+              </div>
+            </AnimatedSection>
           </div>
         </div>
       </section>
