@@ -3,6 +3,7 @@ import { CheckCircle2, GraduationCap, Globe, HeartPulse, Users, Phone, ArrowRigh
 import Layout from "@/components/Layout";
 import AnimatedSection from "@/components/AnimatedSection";
 import { StaggeredList, StaggeredItem } from "@/components/StaggeredList";
+import mbbsHero from "@/assets/mbbs-hero.jpg";
 
 const mbbsCountries = [
   { name: "Kyrgyzstan", flag: "🇰🇬", highlight: "Affordable fees, NMC recognized" },
@@ -33,8 +34,12 @@ const MBBS = () => {
   return (
     <Layout>
       {/* Hero */}
-      <section className="relative py-24 bg-hero-gradient">
-        <div className="container mx-auto px-4 text-center text-primary-foreground">
+      <section className="relative py-28 md:py-36 overflow-hidden">
+        <div className="absolute inset-0">
+          <img src={mbbsHero} alt="Study MBBS Abroad" className="w-full h-full object-cover" />
+          <div className="absolute inset-0 bg-overlay-dark" />
+        </div>
+        <div className="container mx-auto px-4 text-center text-primary-foreground relative z-10">
           <AnimatedSection>
             <span className="inline-block px-4 py-1.5 bg-card/20 text-sm font-medium rounded-full mb-4 backdrop-blur-sm">🩺 Medical Education Abroad</span>
             <h1 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold mb-4">Study MBBS Abroad</h1>

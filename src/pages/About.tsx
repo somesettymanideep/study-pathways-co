@@ -3,6 +3,7 @@ import Layout from "@/components/Layout";
 import AnimatedSection from "@/components/AnimatedSection";
 import { StaggeredList, StaggeredItem } from "@/components/StaggeredList";
 import { Link } from "react-router-dom";
+import aboutHero from "@/assets/about-hero.jpg";
 
 const values = [
   { icon: <Award className="w-6 h-6" />, title: "Expert Counsellors", desc: "Experienced education experts with deep knowledge of global universities" },
@@ -29,10 +30,14 @@ const About = () => {
   return (
     <Layout>
       {/* Hero */}
-      <section className="py-20 bg-warm-gradient">
-        <div className="container mx-auto px-4 text-center">
-          <h1 className="font-heading text-4xl md:text-5xl font-bold mb-6 animate-fade-in-up">About Pravaas International</h1>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto animate-fade-in-up" style={{ animationDelay: "0.1s" }}>
+      <section className="relative py-28 md:py-36 overflow-hidden">
+        <div className="absolute inset-0">
+          <img src={aboutHero} alt="About Pravaas International" className="w-full h-full object-cover" />
+          <div className="absolute inset-0 bg-overlay-dark" />
+        </div>
+        <div className="container mx-auto px-4 text-center relative z-10">
+          <h1 className="font-heading text-4xl md:text-5xl font-bold mb-6 text-primary-foreground animate-fade-in-up">About Pravaas International</h1>
+          <p className="text-lg text-primary-foreground/80 max-w-2xl mx-auto animate-fade-in-up" style={{ animationDelay: "0.1s" }}>
             We are a trusted education consultancy dedicated to helping students achieve their dream of studying abroad with transparency and integrity.
           </p>
         </div>
