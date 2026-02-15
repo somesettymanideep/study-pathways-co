@@ -6,6 +6,7 @@ import { StaggeredList, StaggeredItem } from "@/components/StaggeredList";
 import ukHero from "@/assets/uk-hero.jpg";
 import australiaHero from "@/assets/australia-hero.jpg";
 import germanyHero from "@/assets/germany-hero.jpg";
+import usaHero from "@/assets/usa-hero.jpg";
 
 const countries = [
   {
@@ -44,7 +45,7 @@ const countries = [
   {
     name: "USA",
     flag: "🇺🇸",
-    image: null,
+    image: usaHero,
     points: [
       "World's top-ranked universities",
       "Flexible liberal arts curriculum",
