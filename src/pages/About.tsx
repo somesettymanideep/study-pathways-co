@@ -44,8 +44,8 @@ const About = () => {
           <StaggeredList className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto" staggerDelay={0.15}>
             <StaggeredItem>
               <div className="bg-card rounded-2xl p-10 border border-border shadow-card h-full">
-                <div className="w-12 h-12 bg-hero-gradient rounded-xl flex items-center justify-center mb-5 text-primary-foreground">
-                  <Target className="w-6 h-6" />
+                <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-5" style={{ backgroundColor: 'hsl(43, 80%, 92%)' }}>
+                  <Target className="w-6 h-6" style={{ color: 'hsl(43, 80%, 52%)' }} />
                 </div>
                 <h2 className="font-heading text-2xl font-bold mb-4">Our Mission</h2>
                 <p className="text-muted-foreground leading-relaxed">
@@ -55,8 +55,8 @@ const About = () => {
             </StaggeredItem>
             <StaggeredItem>
               <div className="bg-card rounded-2xl p-10 border border-border shadow-card h-full">
-                <div className="w-12 h-12 bg-hero-gradient rounded-xl flex items-center justify-center mb-5 text-primary-foreground">
-                  <Eye className="w-6 h-6" />
+                <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-5" style={{ backgroundColor: 'hsl(225, 55%, 92%)' }}>
+                  <Eye className="w-6 h-6" style={{ color: 'hsl(225, 55%, 28%)' }} />
                 </div>
                 <h2 className="font-heading text-2xl font-bold mb-4">Our Vision</h2>
                 <p className="text-muted-foreground leading-relaxed">
