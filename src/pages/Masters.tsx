@@ -7,6 +7,7 @@ import ukHero from "@/assets/uk-hero.jpg";
 import australiaHero from "@/assets/australia-hero.jpg";
 import germanyHero from "@/assets/germany-hero.jpg";
 import usaHero from "@/assets/usa-hero.jpg";
+import mastersHero from "@/assets/masters-hero.jpg";
 
 const countries = [
   {
@@ -59,8 +60,12 @@ const Masters = () => {
   return (
     <Layout>
       {/* Hero */}
-      <section className="relative py-24 bg-hero-gradient">
-        <div className="container mx-auto px-4 text-center text-primary-foreground">
+      <section className="relative py-28 md:py-36 overflow-hidden">
+        <div className="absolute inset-0">
+          <img src={mastersHero} alt="Masters Programs" className="w-full h-full object-cover" />
+          <div className="absolute inset-0 bg-overlay-dark" />
+        </div>
+        <div className="container mx-auto px-4 text-center text-primary-foreground relative z-10">
           <AnimatedSection>
             <span className="inline-block px-4 py-1.5 bg-card/20 text-sm font-medium rounded-full mb-4 backdrop-blur-sm">🎓 Postgraduate Programs</span>
             <h1 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold mb-4">Masters Programs Abroad</h1>
