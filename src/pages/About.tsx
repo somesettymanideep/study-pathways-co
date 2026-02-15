@@ -38,6 +38,7 @@ const About = () => {
 
   return (
     <Layout>
+      <div className="overflow-x-hidden">
       {/* Hero */}
       <section className="relative h-[400px] overflow-hidden flex items-center">
         <div className="absolute inset-0">
@@ -268,6 +269,7 @@ const About = () => {
           </div>
         </section>
       </AnimatedSection>
+      </div>
     </Layout>
   );
 };
