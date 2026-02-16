@@ -491,9 +491,11 @@ const Index = () => {
                 </h2>
                 <Accordion type="single" collapsible className="space-y-4">
                   {faqs.map((faq, i) => (
-                    <AccordionItem key={i} value={`faq-${i}`} className="border-none rounded-xl px-5 bg-primary text-primary-foreground data-[state=open]:bg-accent data-[state=open]:text-primary transition-all duration-300 shadow-card">
-                      <AccordionTrigger className="text-sm font-bold hover:no-underline py-5 text-left [&>svg]:text-primary-foreground data-[state=open]:[&>svg]:text-primary">{faq.q}</AccordionTrigger>
-                      <AccordionContent className="text-sm leading-relaxed text-primary/80">{faq.a}</AccordionContent>
+                    <AccordionItem key={i} value={`faq-${i}`} className="border-none rounded-xl overflow-hidden bg-primary shadow-card transition-all duration-300 data-[state=open]:bg-card data-[state=open]:shadow-soft [&[data-state=open]_.faq-trigger-wrap]:bg-accent">
+                      <div className="faq-trigger-wrap px-5 bg-primary rounded-t-xl transition-colors duration-300">
+                        <AccordionTrigger className="text-sm font-bold hover:no-underline py-5 text-left text-primary-foreground [&>svg]:text-primary-foreground [&[data-state=open]]:text-primary [&[data-state=open]>svg]:text-primary">{faq.q}</AccordionTrigger>
+                      </div>
+                      <AccordionContent className="text-sm leading-relaxed px-5 text-foreground">{faq.a}</AccordionContent>
                     </AccordionItem>
                   ))}
                 </Accordion>
