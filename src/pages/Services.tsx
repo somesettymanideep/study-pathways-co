@@ -19,12 +19,12 @@ import flagAustralia from "@/assets/flag-australia.webp";
 import flagCanada from "@/assets/flag-canada.svg";
 import flagGermany from "@/assets/flag-germany.png";
 import flagUsa from "@/assets/flag-usa.svg";
-import logoImg from "@/assets/logo.jpg";
+
 
 const expertiseCards = [
-  { title: "UK Education Specialist", desc: "Deep expertise in UK university admissions, visa procedures, and student life guidance.", colorScheme: "yellow" as const },
-  { title: "Master's Programs Guidance", desc: "Comprehensive support for postgraduate applications across top global universities.", colorScheme: "blue" as const },
-  { title: "Bachelor's Programs Guidance", desc: "Expert counselling for undergraduate course selection and university placements.", colorScheme: "yellow" as const },
+  { title: "UK Education Specialist", desc: "Deep expertise in UK university admissions, visa procedures, and student life guidance.", icon: <Globe className="w-8 h-8" />, colorScheme: "yellow" as const },
+  { title: "Master's Programs Guidance", desc: "Comprehensive support for postgraduate applications across top global universities.", icon: <GraduationCap className="w-8 h-8" />, colorScheme: "blue" as const },
+  { title: "Bachelor's Programs Guidance", desc: "Expert counselling for undergraduate course selection and university placements.", icon: <BookOpen className="w-8 h-8" />, colorScheme: "yellow" as const },
 ];
 
 const studyDestinations = [
@@ -139,23 +139,13 @@ const Services = () => {
                 <StaggeredItem key={i}>
                   <div className="bg-card rounded-2xl border border-border shadow-card p-8 text-center hover:shadow-elevated hover:-translate-y-1 transition-all">
                     <div
-                      className={`w-20 h-20 rounded-2xl mx-auto mb-5 flex items-center justify-center overflow-hidden border-2 ${
+                      className={`w-16 h-16 rounded-2xl mx-auto mb-5 flex items-center justify-center ${
                         card.colorScheme === "yellow"
-                          ? "bg-accent/15 border-accent/30"
-                          : "bg-primary/10 border-primary/25"
+                          ? "bg-accent/15 text-accent"
+                          : "bg-primary/10 text-primary"
                       }`}
                     >
-                      <img
-                        src={logoImg}
-                        alt="Pravaas Logo"
-                        className="w-14 h-14 object-contain"
-                        style={{
-                          filter:
-                            card.colorScheme === "yellow"
-                              ? "sepia(1) saturate(3) hue-rotate(-10deg) brightness(1.1)"
-                              : "sepia(1) saturate(2) hue-rotate(180deg) brightness(0.8)",
-                        }}
-                      />
+                      {card.icon}
                     </div>
                     <h3 className="font-heading text-xl font-bold mb-3">{card.title}</h3>
                     <p className="text-muted-foreground text-sm leading-relaxed">{card.desc}</p>
