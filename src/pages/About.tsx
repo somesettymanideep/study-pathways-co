@@ -1,12 +1,21 @@
-import { CheckCircle2, Target, Eye, Award, Quote, UserCheck, BookOpen, FileText, Stamp, Plane, GraduationCap } from "lucide-react";
+import { useState, useEffect, useCallback } from "react";
+import { CheckCircle2, Target, Eye, Award, Quote, UserCheck, BookOpen, FileText, Stamp, Plane, GraduationCap, Star, ChevronLeft, ChevronRight } from "lucide-react";
 import Layout from "@/components/Layout";
 import AnimatedSection from "@/components/AnimatedSection";
 import { StaggeredList, StaggeredItem } from "@/components/StaggeredList";
 import { Link } from "react-router-dom";
 import aboutHero from "@/assets/about-hero.jpg";
 import founderPortrait from "@/assets/founder-portrait.jpg";
-import logoImg from "@/assets/logo.jpg";
 import { useCountUp } from "@/hooks/useCountUp";
+
+const testimonials = [
+  { name: "Ananya Sharma", country: "UK", text: "Pravaas made my dream of studying in London a reality. Their guidance was invaluable!", rating: 5, initials: "AS" },
+  { name: "Rahul Patel", country: "Canada", text: "From course selection to visa approval, they handled everything professionally.", rating: 5, initials: "RP" },
+  { name: "Priya Nair", country: "Australia", text: "The team was so supportive throughout the entire process. Highly recommend!", rating: 5, initials: "PN" },
+  { name: "Vikram Singh", country: "Germany", text: "Thanks to Pravaas, I got admission in one of the top engineering universities in Germany!", rating: 5, initials: "VS" },
+  { name: "Sneha Reddy", country: "UK", text: "The visa process was so smooth. I couldn't have done it without their expert guidance.", rating: 5, initials: "SR" },
+  { name: "Arjun Mehta", country: "Australia", text: "Excellent support from start to finish. They truly care about each student's success.", rating: 5, initials: "AM" },
+];
 
 const journeySteps = [
   { icon: <UserCheck className="w-6 h-6" />, step: "01", title: "Free Profile Evaluation", desc: "We assess your academic background, career goals, and preferences to create a personalized study abroad roadmap." },
@@ -41,6 +50,16 @@ const StatCircle = ({ end, suffix, label, icon }: { end: number; suffix: string;
 };
 
 const About = () => {
+const [testimonialIndex, setTestimonialIndex] = useState(0);
+
+  // Autoplay testimonials
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setTestimonialIndex((prev) => (prev + 1) % testimonials.length);
+    }, 4000);
+    return () => clearInterval(timer);
+  }, []);
+
   return (
     <Layout>
       {/* Hero */}
@@ -147,11 +166,8 @@ const About = () => {
         <div className="container mx-auto px-4">
           <AnimatedSection>
             <div className="flex flex-col items-center mb-16">
-              <div className="w-20 h-20 rounded-2xl bg-accent/15 border-2 border-accent/30 flex items-center justify-center mb-5 shadow-lg">
-                <img src={logoImg} alt="Pravaas Logo" className="w-14 h-14 object-contain rounded-lg" style={{ filter: 'sepia(1) saturate(3) hue-rotate(-10deg) brightness(1.1)' }} />
-              </div>
               <span className="block text-xs font-bold tracking-[0.2em] uppercase text-accent mb-3">Your Journey With Us</span>
-              <h2 className="font-heading text-3xl md:text-4xl font-bold text-center mb-4">Why Choose <span className="text-gradient">Pravaas?</span></h2>
+              <h2 className="font-heading text-3xl md:text-4xl font-bold text-center mb-4">Why Choose <span className="text-accent">Pravaas?</span></h2>
               <p className="text-center text-muted-foreground max-w-xl mx-auto">
                 A seamless five-step process designed to turn your study abroad dream into reality
               </p>
@@ -215,6 +231,71 @@ const About = () => {
               </StaggeredItem>
             ))}
           </StaggeredList>
+        </div>
+      </section>
+
+      {/* Student Testimonials */}
+      <section className="py-20 bg-warm-gradient">
+        <div className="container mx-auto px-4">
+          <AnimatedSection>
+            <div className="text-center mb-12">
+              <h2 className="font-heading text-3xl md:text-4xl font-bold mb-4">Student <span className="text-accent">Testimonials</span></h2>
+              <p className="text-muted-foreground max-w-xl mx-auto">Hear from students who achieved their dreams with Pravaas</p>
+            </div>
+          </AnimatedSection>
+
+          <div className="max-w-2xl mx-auto relative">
+            <div className="overflow-hidden rounded-2xl">
+              <div
+                className="flex transition-transform duration-500 ease-out"
+                style={{ transform: `translateX(-${testimonialIndex * 100}%)` }}
+              >
+                {testimonials.map((t, i) => (
+                  <div key={i} className="w-full flex-shrink-0 px-3">
+                    <div className="bg-card rounded-2xl p-8 md:p-10 border border-border shadow-card text-center">
+                      <div className="w-16 h-16 rounded-full bg-primary text-primary-foreground flex items-center justify-center text-xl font-bold mx-auto mb-4">
+                        {t.initials}
+                      </div>
+                      <div className="flex justify-center gap-1 mb-4">
+                        {Array.from({ length: t.rating }).map((_, j) => (
+                          <Star key={j} className="w-5 h-5 fill-accent text-accent" />
+                        ))}
+                      </div>
+                      <p className="text-muted-foreground leading-relaxed mb-6 italic">"{t.text}"</p>
+                      <h4 className="font-heading font-bold text-lg">{t.name}</h4>
+                      <span className="text-sm text-muted-foreground">Studied in {t.country}</span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Navigation */}
+            <button
+              onClick={() => setTestimonialIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length)}
+              className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 md:-translate-x-12 w-10 h-10 rounded-full bg-card border border-border shadow-card flex items-center justify-center hover:bg-secondary transition-colors"
+            >
+              <ChevronLeft className="w-5 h-5" />
+            </button>
+            <button
+              onClick={() => setTestimonialIndex((prev) => (prev + 1) % testimonials.length)}
+              className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 md:translate-x-12 w-10 h-10 rounded-full bg-card border border-border shadow-card flex items-center justify-center hover:bg-secondary transition-colors"
+            >
+              <ChevronRight className="w-5 h-5" />
+            </button>
+
+            {/* Dots */}
+            <div className="flex justify-center gap-2 mt-6">
+              {testimonials.map((_, i) => (
+                <button
+                  key={i}
+                  onClick={() => setTestimonialIndex(i)}
+                  className={`w-3 h-3 rounded-full transition-all ${i === testimonialIndex ? "bg-primary w-8" : "bg-primary/30 hover:bg-primary/50"}`}
+                  aria-label={`Testimonial ${i + 1}`}
+                />
+              ))}
+            </div>
+          </div>
         </div>
       </section>
 
