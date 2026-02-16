@@ -1,4 +1,5 @@
-import { CheckCircle2, Target, Eye, Award, Quote, UserCheck, BookOpen, FileText, Stamp, Plane, GraduationCap } from "lucide-react";
+import { useState } from "react";
+import { CheckCircle2, Target, Eye, Award, Quote, UserCheck, BookOpen, FileText, Stamp, Plane, GraduationCap, Star } from "lucide-react";
 import Layout from "@/components/Layout";
 import AnimatedSection from "@/components/AnimatedSection";
 import { StaggeredList, StaggeredItem } from "@/components/StaggeredList";
@@ -7,6 +8,15 @@ import aboutHero from "@/assets/about-hero.jpg";
 import founderPortrait from "@/assets/founder-portrait.jpg";
 import logoImg from "@/assets/logo.jpg";
 import { useCountUp } from "@/hooks/useCountUp";
+
+const testimonials = [
+  { name: "Ananya Sharma", country: "UK", text: "Pravaas made my dream of studying in London a reality. Their guidance was invaluable!", rating: 5, initials: "AS" },
+  { name: "Rahul Patel", country: "Canada", text: "From course selection to visa approval, they handled everything professionally.", rating: 5, initials: "RP" },
+  { name: "Priya Nair", country: "Australia", text: "The team was so supportive throughout the entire process. Highly recommend!", rating: 5, initials: "PN" },
+  { name: "Vikram Singh", country: "Germany", text: "Thanks to Pravaas, I got admission in one of the top engineering universities in Germany!", rating: 5, initials: "VS" },
+  { name: "Sneha Reddy", country: "UK", text: "The visa process was so smooth. I couldn't have done it without their expert guidance.", rating: 5, initials: "SR" },
+  { name: "Arjun Mehta", country: "Australia", text: "Excellent support from start to finish. They truly care about each student's success.", rating: 5, initials: "AM" },
+];
 
 const journeySteps = [
   { icon: <UserCheck className="w-6 h-6" />, step: "01", title: "Free Profile Evaluation", desc: "We assess your academic background, career goals, and preferences to create a personalized study abroad roadmap." },
@@ -63,8 +73,8 @@ const About = () => {
           <StaggeredList className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto" staggerDelay={0.15}>
             <StaggeredItem>
               <div className="bg-card rounded-2xl p-10 border border-border shadow-card h-full">
-                <div className="w-14 h-14 rounded-xl flex items-center justify-center mb-5" style={{ backgroundColor: 'hsl(43, 80%, 92%)' }}>
-                  <Target className="w-7 h-7" style={{ color: 'hsl(43, 80%, 52%)' }} />
+                <div className="w-14 h-14 rounded-xl overflow-hidden flex items-center justify-center mb-5" style={{ backgroundColor: 'hsl(43, 80%, 92%)' }}>
+                  <img src={logoImg} alt="Pravaas" className="w-10 h-10 object-contain" style={{ filter: 'sepia(1) saturate(5) hue-rotate(-10deg) brightness(1.1)' }} />
                 </div>
                 <h2 className="font-heading text-2xl font-bold mb-4">Our Mission</h2>
                 <p className="text-muted-foreground leading-relaxed">
@@ -74,8 +84,8 @@ const About = () => {
             </StaggeredItem>
             <StaggeredItem>
               <div className="bg-card rounded-2xl p-10 border border-border shadow-card h-full">
-                <div className="w-14 h-14 rounded-xl flex items-center justify-center mb-5" style={{ backgroundColor: 'hsl(225, 55%, 92%)' }}>
-                  <Eye className="w-7 h-7" style={{ color: 'hsl(225, 55%, 28%)' }} />
+                <div className="w-14 h-14 rounded-xl overflow-hidden flex items-center justify-center mb-5" style={{ backgroundColor: 'hsl(225, 55%, 92%)' }}>
+                  <img src={logoImg} alt="Pravaas" className="w-10 h-10 object-contain" style={{ filter: 'brightness(0.3) sepia(1) saturate(5) hue-rotate(180deg) brightness(0.7)' }} />
                 </div>
                 <h2 className="font-heading text-2xl font-bold mb-4">Our Vision</h2>
                 <p className="text-muted-foreground leading-relaxed">
@@ -147,9 +157,6 @@ const About = () => {
         <div className="container mx-auto px-4">
           <AnimatedSection>
             <div className="flex flex-col items-center mb-16">
-              <div className="w-20 h-20 rounded-2xl bg-accent/15 border-2 border-accent/30 flex items-center justify-center mb-5 shadow-lg">
-                <img src={logoImg} alt="Pravaas Logo" className="w-14 h-14 object-contain rounded-lg" style={{ filter: 'sepia(1) saturate(3) hue-rotate(-10deg) brightness(1.1)' }} />
-              </div>
               <span className="block text-xs font-bold tracking-[0.2em] uppercase text-accent mb-3">Your Journey With Us</span>
               <h2 className="font-heading text-3xl md:text-4xl font-bold text-center mb-4">Why Choose <span className="text-gradient">Pravaas?</span></h2>
               <p className="text-center text-muted-foreground max-w-xl mx-auto">
@@ -212,6 +219,41 @@ const About = () => {
             ].map((stat, i) => (
               <StaggeredItem key={i}>
                 <StatCircle end={stat.end} suffix={stat.suffix} label={stat.label} icon={stat.icon} />
+              </StaggeredItem>
+            ))}
+          </StaggeredList>
+        </div>
+      </section>
+
+      {/* Student Testimonials */}
+      <section className="py-20 bg-warm-gradient">
+        <div className="container mx-auto px-4">
+          <AnimatedSection>
+            <div className="text-center mb-12">
+              <h2 className="font-heading text-3xl md:text-4xl font-bold mb-4">Student Testimonials</h2>
+              <p className="text-muted-foreground max-w-xl mx-auto">Hear from students who achieved their dreams with Pravaas</p>
+            </div>
+          </AnimatedSection>
+          <StaggeredList className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto" staggerDelay={0.1}>
+            {testimonials.map((t, i) => (
+              <StaggeredItem key={i}>
+                <div className="bg-card rounded-2xl p-8 border border-border shadow-card h-full">
+                  <div className="flex items-center gap-3 mb-5">
+                    <div className="w-12 h-12 rounded-full bg-primary text-primary-foreground flex items-center justify-center font-bold text-sm">
+                      {t.initials}
+                    </div>
+                    <div>
+                      <p className="font-semibold text-sm">{t.name}</p>
+                      <p className="text-xs text-muted-foreground">Studying in {t.country}</p>
+                    </div>
+                  </div>
+                  <div className="flex gap-1 mb-3">
+                    {Array.from({ length: t.rating }).map((_, j) => (
+                      <Star key={j} className="w-4 h-4 fill-accent text-accent" />
+                    ))}
+                  </div>
+                  <p className="text-foreground text-sm leading-relaxed">"{t.text}"</p>
+                </div>
               </StaggeredItem>
             ))}
           </StaggeredList>
