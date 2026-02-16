@@ -1,12 +1,11 @@
-import { CheckCircle2, Target, Eye, Award, Users, Quote, UserCheck, BookOpen, FileText, Stamp, Plane, GraduationCap, Globe, MapPin } from "lucide-react";
+import { CheckCircle2, Target, Eye, Award, Quote, UserCheck, BookOpen, FileText, Stamp, Plane, GraduationCap } from "lucide-react";
 import Layout from "@/components/Layout";
 import AnimatedSection from "@/components/AnimatedSection";
 import { StaggeredList, StaggeredItem } from "@/components/StaggeredList";
 import { Link } from "react-router-dom";
-import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
 import aboutHero from "@/assets/about-hero.jpg";
 import founderPortrait from "@/assets/founder-portrait.jpg";
+import logoImg from "@/assets/logo.jpg";
 import { useCountUp } from "@/hooks/useCountUp";
 
 const journeySteps = [
@@ -17,11 +16,6 @@ const journeySteps = [
   { icon: <Plane className="w-6 h-6" />, step: "05", title: "Pre-Departure Support", desc: "From travel arrangements to accommodation guidance, we ensure you're fully prepared for your journey abroad." },
 ];
 
-const team = [
-  { name: "Counsellor 1", role: "Senior Education Consultant", speciality: "UK & Australia" },
-  { name: "Counsellor 2", role: "Visa & Immigration Expert", speciality: "Canada & Germany" },
-  { name: "Counsellor 3", role: "Career Guidance Specialist", speciality: "Course Selection" },
-];
 
 const StatCircle = ({ end, suffix, label, icon }: { end: number; suffix: string; label: string; icon: React.ReactNode }) => {
   const { count, ref } = useCountUp(end, 2000);
@@ -43,43 +37,6 @@ const StatCircle = ({ end, suffix, label, icon }: { end: number; suffix: string;
       </div>
       <span className="font-heading font-bold text-primary-foreground text-center">{label}</span>
     </div>
-  );
-};
-
-const PlaneTrail = () => {
-  const trailRef = useRef(null);
-  const isInView = useInView(trailRef, { once: true, margin: "-100px" });
-  return (
-    <svg
-      ref={trailRef}
-      className="absolute inset-0 w-full h-full pointer-events-none hidden md:block"
-      viewBox="0 0 1200 400"
-      preserveAspectRatio="xMidYMid meet"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <motion.path
-        d="M -20 350 Q 80 200 180 200 Q 280 200 320 200 Q 400 200 480 200 Q 560 200 640 200 Q 720 200 800 200 Q 880 200 960 200 Q 1040 200 1100 200 Q 1200 200 1250 100"
-        stroke="hsl(var(--accent))"
-        strokeWidth="2"
-        strokeDasharray="8 6"
-        opacity="0.4"
-        initial={{ pathLength: 0 }}
-        animate={isInView ? { pathLength: 1 } : { pathLength: 0 }}
-        transition={{ duration: 2, ease: "easeInOut" }}
-      />
-      <motion.g
-        initial={{ opacity: 0 }}
-        animate={isInView ? { opacity: 1 } : { opacity: 0 }}
-        transition={{ duration: 0.3 }}
-      >
-        <g transform="translate(0, 340) rotate(-45)">
-          <path d="M0 0 L12 -4 L10 0 L12 4 Z" fill="hsl(var(--accent))" />
-          <path d="M6 -2 L6 -8 L8 -2" fill="hsl(var(--accent))" />
-          <path d="M6 2 L6 8 L8 2" fill="hsl(var(--accent))" />
-        </g>
-      </motion.g>
-    </svg>
   );
 };
 
@@ -189,11 +146,16 @@ const About = () => {
       <section className="py-20">
         <div className="container mx-auto px-4">
           <AnimatedSection>
-            <span className="block text-center text-xs font-bold tracking-[0.2em] uppercase text-primary mb-3">Your Journey With Us</span>
-            <h2 className="font-heading text-3xl md:text-4xl font-bold text-center mb-4">Why Choose Pravaas?</h2>
-            <p className="text-center text-muted-foreground mb-16 max-w-xl mx-auto">
-              A seamless five-step process designed to turn your study abroad dream into reality
-            </p>
+            <div className="flex flex-col items-center mb-16">
+              <div className="w-20 h-20 rounded-2xl bg-accent/15 border-2 border-accent/30 flex items-center justify-center mb-5 shadow-lg">
+                <img src={logoImg} alt="Pravaas Logo" className="w-14 h-14 object-contain rounded-lg" style={{ filter: 'sepia(1) saturate(3) hue-rotate(-10deg) brightness(1.1)' }} />
+              </div>
+              <span className="block text-xs font-bold tracking-[0.2em] uppercase text-accent mb-3">Your Journey With Us</span>
+              <h2 className="font-heading text-3xl md:text-4xl font-bold text-center mb-4">Why Choose <span className="text-gradient">Pravaas?</span></h2>
+              <p className="text-center text-muted-foreground max-w-xl mx-auto">
+                A seamless five-step process designed to turn your study abroad dream into reality
+              </p>
+            </div>
           </AnimatedSection>
 
           <div className="max-w-4xl mx-auto relative">
@@ -235,7 +197,6 @@ const About = () => {
 
       {/* Statistics Section */}
       <section className="py-20 bg-primary overflow-hidden relative">
-        <PlaneTrail />
 
         <div className="container mx-auto px-4 relative z-10">
           <AnimatedSection>
@@ -251,29 +212,6 @@ const About = () => {
             ].map((stat, i) => (
               <StaggeredItem key={i}>
                 <StatCircle end={stat.end} suffix={stat.suffix} label={stat.label} icon={stat.icon} />
-              </StaggeredItem>
-            ))}
-          </StaggeredList>
-        </div>
-      </section>
-
-      {/* Team */}
-      <section className="py-20 bg-warm-gradient">
-        <div className="container mx-auto px-4">
-          <AnimatedSection>
-            <h2 className="font-heading text-3xl md:text-4xl font-bold text-center mb-12">Our Counsellors</h2>
-          </AnimatedSection>
-          <StaggeredList className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto" staggerDelay={0.15}>
-            {team.map((member, i) => (
-              <StaggeredItem key={i}>
-                <div className="bg-card rounded-2xl p-8 border border-border shadow-card text-center">
-                  <div className="w-20 h-20 bg-secondary rounded-full flex items-center justify-center mx-auto mb-5">
-                    <Users className="w-8 h-8 text-primary" />
-                  </div>
-                  <h3 className="font-heading text-lg font-bold mb-1">{member.name}</h3>
-                  <p className="text-sm text-primary font-medium mb-1">{member.role}</p>
-                  <p className="text-xs text-muted-foreground">{member.speciality}</p>
-                </div>
               </StaggeredItem>
             ))}
           </StaggeredList>
