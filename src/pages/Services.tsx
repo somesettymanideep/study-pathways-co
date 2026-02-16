@@ -19,11 +19,12 @@ import flagAustralia from "@/assets/flag-australia.webp";
 import flagCanada from "@/assets/flag-canada.svg";
 import flagGermany from "@/assets/flag-germany.png";
 import flagUsa from "@/assets/flag-usa.svg";
+import logoImg from "@/assets/logo.jpg";
 
 const expertiseCards = [
-  { icon: <Globe className="w-8 h-8" />, emoji: "🇬🇧", title: "UK Education Specialist", desc: "Deep expertise in UK university admissions, visa procedures, and student life guidance." },
-  { icon: <GraduationCap className="w-8 h-8" />, emoji: "🎓", title: "Master's Programs Guidance", desc: "Comprehensive support for postgraduate applications across top global universities." },
-  { icon: <BookOpen className="w-8 h-8" />, emoji: "📘", title: "Bachelor's Programs Guidance", desc: "Expert counselling for undergraduate course selection and university placements." },
+  { title: "UK Education Specialist", desc: "Deep expertise in UK university admissions, visa procedures, and student life guidance.", colorScheme: "yellow" as const },
+  { title: "Master's Programs Guidance", desc: "Comprehensive support for postgraduate applications across top global universities.", colorScheme: "blue" as const },
+  { title: "Bachelor's Programs Guidance", desc: "Expert counselling for undergraduate course selection and university placements.", colorScheme: "yellow" as const },
 ];
 
 const studyDestinations = [
@@ -137,9 +138,24 @@ const Services = () => {
               {expertiseCards.map((card, i) => (
                 <StaggeredItem key={i}>
                   <div className="bg-card rounded-2xl border border-border shadow-card p-8 text-center hover:shadow-elevated hover:-translate-y-1 transition-all">
-                    <span className="text-4xl mb-4 block">{card.emoji}</span>
-                    <div className="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center text-primary mx-auto mb-4">
-                      {card.icon}
+                    <div
+                      className={`w-20 h-20 rounded-2xl mx-auto mb-5 flex items-center justify-center overflow-hidden border-2 ${
+                        card.colorScheme === "yellow"
+                          ? "bg-accent/15 border-accent/30"
+                          : "bg-primary/10 border-primary/25"
+                      }`}
+                    >
+                      <img
+                        src={logoImg}
+                        alt="Pravaas Logo"
+                        className="w-14 h-14 object-contain"
+                        style={{
+                          filter:
+                            card.colorScheme === "yellow"
+                              ? "sepia(1) saturate(3) hue-rotate(-10deg) brightness(1.1)"
+                              : "sepia(1) saturate(2) hue-rotate(180deg) brightness(0.8)",
+                        }}
+                      />
                     </div>
                     <h3 className="font-heading text-xl font-bold mb-3">{card.title}</h3>
                     <p className="text-muted-foreground text-sm leading-relaxed">{card.desc}</p>
@@ -151,8 +167,23 @@ const Services = () => {
         </section>
       </AnimatedSection>
 
-      {/* 3. Study Destinations */}
-      <AnimatedSection>
+      {/* 4. Achievements (moved above Study Destinations) */}
+      <AnimatedSection delay={0.1}>
+        <section className="relative py-16 md:py-20 overflow-hidden">
+          <img src={servicesHero} alt="" className="absolute inset-0 w-full h-full object-cover" />
+          <div className="absolute inset-0 bg-primary/85" />
+          <div className="relative container mx-auto px-4">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-10 md:gap-16 max-w-5xl mx-auto">
+              {achievements.map((a, i) => (
+                <AchievementCounter key={i} value={a.value} suffix={a.suffix} label={a.label} icon={a.icon} />
+              ))}
+            </div>
+          </div>
+        </section>
+      </AnimatedSection>
+
+      {/* 5. Study Destinations */}
+      <AnimatedSection delay={0.1}>
         <section className="py-20 bg-warm-gradient">
           <div className="container mx-auto px-4">
             <div className="text-center mb-12">
@@ -190,22 +221,6 @@ const Services = () => {
                 </StaggeredItem>
               ))}
             </StaggeredList>
-          </div>
-        </section>
-      </AnimatedSection>
-
-
-      {/* 5. Achievements */}
-      <AnimatedSection>
-        <section className="relative py-16 md:py-20 overflow-hidden">
-          <img src={servicesHero} alt="" className="absolute inset-0 w-full h-full object-cover" />
-          <div className="absolute inset-0 bg-primary/85" />
-          <div className="relative container mx-auto px-4">
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-10 md:gap-16 max-w-5xl mx-auto">
-              {achievements.map((a, i) => (
-                <AchievementCounter key={i} value={a.value} suffix={a.suffix} label={a.label} icon={a.icon} />
-              ))}
-            </div>
           </div>
         </section>
       </AnimatedSection>
