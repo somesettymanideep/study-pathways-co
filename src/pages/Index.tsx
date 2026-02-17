@@ -100,10 +100,10 @@ const whyChooseUs = [
 ];
 
 const stats = [
-  { value: 5000, suffix: "+", label: "Students Placed", variant: "primary" as const },
+  { value: 5000, suffix: "+", label: "Students Visa Approved", variant: "primary" as const },
   { value: 10, suffix: "+", label: "Years Experience", variant: "accent" as const },
   { value: 50, suffix: "+", label: "Partner Universities", variant: "accent" as const },
-  { value: 98, suffix: "%", label: "Visa Success", variant: "primary" as const },
+  { value: 99, suffix: "%", label: "Visa Success", variant: "primary" as const },
 ];
 
 const faqs = [
