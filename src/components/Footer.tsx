@@ -105,9 +105,9 @@ const Footer = () => {
           </motion.div>
         </div>
 
-        <div className="mt-12 text-center text-sm text-primary-foreground bg-accent py-4 px-6 font-medium -mx-4 -mb-16">
-          © {new Date().getFullYear()} Pravaas International Education Consultancy. All rights reserved.
-        </div>
+      </div>
+      <div className="relative w-full text-center text-sm text-primary-foreground bg-accent py-4 px-6 font-medium">
+        © {new Date().getFullYear()} Pravaas International Education Consultancy. All rights reserved.
       </div>
     </footer>
   );
