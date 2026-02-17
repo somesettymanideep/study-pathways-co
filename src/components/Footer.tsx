@@ -9,7 +9,7 @@ const Footer = () => {
     <footer className="relative text-background">
       <img src={footerBg} alt="" className="absolute inset-0 w-full h-full object-cover" aria-hidden="true" />
       <div className="absolute inset-0 bg-foreground/90" />
-      <div className="relative container mx-auto px-4 py-16">
+      <div className="relative container mx-auto px-6 md:px-10 lg:px-16 py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
           {/* Brand */}
           <motion.div
