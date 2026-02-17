@@ -377,7 +377,7 @@ const Index = () => {
 
       {/* Testimonials Carousel */}
       <section className="py-20 bg-warm-gradient">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-6 md:px-10 lg:px-16">
           <AnimatedSection>
             <div className="text-center mb-12">
               <h2 className="font-heading text-3xl md:text-4xl font-bold mb-4">Student Testimonials</h2>
