@@ -252,18 +252,24 @@ const Index = () => {
         <div className="container mx-auto px-4">
           <div className="grid lg:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
             {/* Left Content */}
-            <AnimatedSection>
-              <div>
+            <div>
+              <AnimatedSection delay={0}>
                 <span className="text-accent font-bold text-sm tracking-widest uppercase mb-3 block">Why Choose Us</span>
+              </AnimatedSection>
+              <AnimatedSection delay={0.15}>
                 <h2 className="font-heading text-3xl md:text-4xl lg:text-5xl font-bold mb-6 leading-tight">
                   Your Success is Our <span className="text-accent">Priority</span>
                 </h2>
+              </AnimatedSection>
+              <AnimatedSection delay={0.3}>
                 <p className="text-muted-foreground leading-relaxed mb-10">
                   At Pravaas International, we don't just process applications – we build futures. Our dedicated team of counselors brings together expertise, empathy, and a genuine commitment to seeing every student succeed.
                 </p>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                  {whyChooseUs.map((item, i) => (
-                    <div key={i} className="flex items-start gap-3">
+              </AnimatedSection>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                {whyChooseUs.map((item, i) => (
+                  <AnimatedSection key={i} delay={0.4 + i * 0.12} direction="up" distance={40}>
+                    <div className="flex items-start gap-3">
                       <div className="w-10 h-10 rounded-lg bg-accent/10 flex items-center justify-center text-accent shrink-0">
                         {item.icon}
                       </div>
@@ -272,19 +278,19 @@ const Index = () => {
                         <p className="text-xs text-muted-foreground leading-relaxed">{item.desc}</p>
                       </div>
                     </div>
-                  ))}
-                </div>
-              </div>
-            </AnimatedSection>
-
-            {/* Right Stats Grid */}
-            <AnimatedSection>
-              <div className="grid grid-cols-2 gap-4">
-                {stats.map((stat, i) => (
-                  <CountUpStat key={i} value={stat.value} suffix={stat.suffix} label={stat.label} variant={stat.variant} />
+                  </AnimatedSection>
                 ))}
               </div>
-            </AnimatedSection>
+            </div>
+
+            {/* Right Stats Grid */}
+            <div className="grid grid-cols-2 gap-4">
+              {stats.map((stat, i) => (
+                <AnimatedSection key={i} delay={0.2 + i * 0.15} direction={i % 2 === 0 ? "left" : "right"} distance={50} scale>
+                  <CountUpStat value={stat.value} suffix={stat.suffix} label={stat.label} variant={stat.variant} />
+                </AnimatedSection>
+              ))}
+            </div>
           </div>
         </div>
       </section>
@@ -292,11 +298,14 @@ const Index = () => {
       {/* Popular Destinations with Tabs */}
       <section className="py-20 bg-warm-gradient">
         <div className="container mx-auto px-6 md:px-10 lg:px-16">
-          <AnimatedSection>
-            <div className="text-center mb-8">
+          <div className="text-center mb-8">
+            <AnimatedSection delay={0}>
               <h2 className="font-heading text-3xl md:text-4xl font-bold mb-4">Popular Destinations</h2>
+            </AnimatedSection>
+            <AnimatedSection delay={0.15}>
               <p className="text-muted-foreground max-w-xl mx-auto mb-8">Choose from top study destinations around the world</p>
-              
+            </AnimatedSection>
+            <AnimatedSection delay={0.25}>
               {/* Tabs */}
               <div className="inline-flex bg-card rounded-xl border border-border shadow-card p-1.5 gap-1">
                 <button
@@ -320,8 +329,8 @@ const Index = () => {
                   Masters
                 </button>
               </div>
-            </div>
-          </AnimatedSection>
+            </AnimatedSection>
+          </div>
           <StaggeredList className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8" staggerDelay={0.12}>
             {destinations.map((dest) => (
               <StaggeredItem key={dest.name}>
@@ -349,13 +358,17 @@ const Index = () => {
       {/* Services */}
       <section className="py-20">
         <div className="container mx-auto px-4">
-          <AnimatedSection>
-            <div className="text-center mb-12">
+          <div className="text-center mb-12">
+            <AnimatedSection delay={0}>
               <span className="text-accent font-bold text-sm tracking-widest uppercase mb-3 block">What We Offer</span>
+            </AnimatedSection>
+            <AnimatedSection delay={0.12}>
               <h2 className="font-heading text-3xl md:text-4xl font-bold mb-4">Our Services</h2>
+            </AnimatedSection>
+            <AnimatedSection delay={0.24}>
               <p className="text-muted-foreground max-w-xl mx-auto">Comprehensive support at every stage of your study abroad journey</p>
-            </div>
-          </AnimatedSection>
+            </AnimatedSection>
+          </div>
           <StaggeredList className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto" staggerDelay={0.08}>
             {services.map((service, i) => (
               <StaggeredItem key={i}>
@@ -378,12 +391,14 @@ const Index = () => {
       {/* Testimonials Carousel */}
       <section className="py-20 bg-warm-gradient">
         <div className="container mx-auto px-4 md:px-6 lg:px-8">
-          <AnimatedSection>
-            <div className="text-center mb-12">
+          <div className="text-center mb-12">
+            <AnimatedSection delay={0}>
               <h2 className="font-heading text-3xl md:text-4xl font-bold mb-4">Student Testimonials</h2>
+            </AnimatedSection>
+            <AnimatedSection delay={0.15}>
               <p className="text-muted-foreground max-w-xl mx-auto">Hear from students who achieved their dreams with Pravaas</p>
-            </div>
-          </AnimatedSection>
+            </AnimatedSection>
+          </div>
           <div className="max-w-5xl mx-auto relative">
             <div className="overflow-hidden">
               <div
@@ -433,13 +448,17 @@ const Index = () => {
         <img src={servicesHero} alt="" className="absolute inset-0 w-full h-full object-cover" />
         <div className="absolute inset-0 bg-overlay-dark" />
         <div className="relative container mx-auto px-4 text-center">
-          <AnimatedSection>
+          <AnimatedSection delay={0} distance={50}>
             <h2 className="font-heading text-3xl md:text-4xl lg:text-5xl font-bold text-background mb-6">
               Start Your Study Abroad Journey Today
             </h2>
+          </AnimatedSection>
+          <AnimatedSection delay={0.2} distance={40}>
             <p className="text-background/80 text-lg mb-8 max-w-xl mx-auto">
               Take the first step towards your dream education. Our expert counselors are ready to guide you.
             </p>
+          </AnimatedSection>
+          <AnimatedSection delay={0.4} direction="up" distance={30} scale>
             <div className="flex flex-wrap gap-4 justify-center">
               <Link to="/contact" className="px-8 py-4 bg-hero-gradient text-primary-foreground font-semibold rounded-xl hover:opacity-90 transition-opacity text-lg">
                 Book Free Counselling
@@ -462,7 +481,7 @@ const Index = () => {
         <div className="container mx-auto px-4">
           <div className="grid lg:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
             {/* Left Image */}
-            <AnimatedSection>
+            <AnimatedSection delay={0} direction="left" distance={60}>
               <div className="relative rounded-3xl overflow-hidden shadow-elevated">
                 <img src={faqStudents} alt="Students studying abroad" className="w-full h-full object-cover" />
                 <div className="absolute inset-0 bg-gradient-to-t from-primary/40 to-transparent" />
@@ -483,7 +502,7 @@ const Index = () => {
             </AnimatedSection>
 
             {/* Right FAQs */}
-            <AnimatedSection delay={0.2}>
+            <AnimatedSection delay={0.3} direction="right" distance={60}>
               <div>
                 <span className="text-accent font-bold text-sm tracking-widest uppercase mb-3 block">FAQ</span>
                 <h2 className="font-heading text-3xl md:text-4xl font-bold mb-8 leading-tight">
