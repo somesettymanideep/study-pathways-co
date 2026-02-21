@@ -11,6 +11,7 @@ import {
 } from "@/components/ui/accordion";
 import serviceDetails from "@/data/serviceDetails";
 import servicesHero from "@/assets/services-hero.jpg";
+import ctaBg from "@/assets/cta-bg.jpg";
 
 const ServiceDetail = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -108,7 +109,7 @@ const ServiceDetail = () => {
 
       {/* CTA */}
       <section className="relative py-16 md:py-20 overflow-hidden">
-        <img src={servicesHero} alt="" className="absolute inset-0 w-full h-full object-cover" />
+        <img src={ctaBg} alt="" className="absolute inset-0 w-full h-full object-cover" />
         <div className="absolute inset-0 bg-primary/85" />
         <div className="relative container mx-auto px-4 text-center">
           <h2 className="font-heading text-2xl md:text-3xl font-bold text-primary-foreground mb-4">
