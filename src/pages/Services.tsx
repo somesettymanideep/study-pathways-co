@@ -37,14 +37,14 @@ const studyDestinations = [
 ];
 
 const servicesList = [
-  { icon: <BookOpen className="w-7 h-7" />, title: "Course Selection Guidance", desc: "Personalized recommendations based on your academic background, interests, and career goals." },
-  { icon: <Target className="w-7 h-7" />, title: "Career Counselling", desc: "One-on-one sessions to align your study abroad plans with long-term career aspirations." },
-  { icon: <FileText className="w-7 h-7" />, title: "Application & Document Assistance", desc: "End-to-end help with SOPs, LORs, essays, and university application submissions." },
-  { icon: <Shield className="w-7 h-7" />, title: "Visa Processing & Interview Prep", desc: "Complete visa application support with mock interview sessions for confident preparation." },
-  { icon: <Award className="w-7 h-7" />, title: "Scholarship & Financial Guidance", desc: "Identify and apply for scholarships, education loans, and financial aid opportunities." },
-  { icon: <Plane className="w-7 h-7" />, title: "Pre-Departure & Post-Arrival Support", desc: "Travel briefing, airport pickup coordination, and settling-in assistance abroad." },
-  { icon: <Home className="w-7 h-7" />, title: "Accommodation Assistance", desc: "Help finding safe, affordable student housing near your university campus." },
-  { icon: <Briefcase className="w-7 h-7" />, title: "Internship & Job Placement", desc: "Guidance on part-time work opportunities and post-study career placement support." },
+  { icon: <BookOpen className="w-7 h-7" />, title: "Course Selection Guidance", desc: "Personalized recommendations based on your academic background, interests, and career goals.", slug: "course-selection-guidance" },
+  { icon: <Target className="w-7 h-7" />, title: "Career Counselling", desc: "One-on-one sessions to align your study abroad plans with long-term career aspirations.", slug: "career-counselling" },
+  { icon: <FileText className="w-7 h-7" />, title: "Application & Document Assistance", desc: "End-to-end help with SOPs, LORs, essays, and university application submissions.", slug: "application-document-assistance" },
+  { icon: <Shield className="w-7 h-7" />, title: "Visa Processing & Interview Prep", desc: "Complete visa application support with mock interview sessions for confident preparation.", slug: "visa-processing-interview-prep" },
+  { icon: <Award className="w-7 h-7" />, title: "Scholarship & Financial Guidance", desc: "Identify and apply for scholarships, education loans, and financial aid opportunities.", slug: "scholarship-financial-guidance" },
+  { icon: <Plane className="w-7 h-7" />, title: "Pre-Departure & Post-Arrival Support", desc: "Travel briefing, airport pickup coordination, and settling-in assistance abroad.", slug: "pre-departure-post-arrival-support" },
+  { icon: <Home className="w-7 h-7" />, title: "Accommodation Assistance", desc: "Help finding safe, affordable student housing near your university campus.", slug: "accommodation-assistance" },
+  { icon: <Briefcase className="w-7 h-7" />, title: "Internship & Job Placement", desc: "Guidance on part-time work opportunities and post-study career placement support.", slug: "internship-job-placement" },
 ];
 
 const achievements = [
@@ -112,7 +112,7 @@ const Services = () => {
                     </div>
                     <h3 className="font-heading text-base font-bold mb-2">{service.title}</h3>
                     <p className="text-muted-foreground text-sm leading-relaxed flex-1">{service.desc}</p>
-                    <Link to="/contact" className="text-primary text-sm font-semibold flex items-center gap-1 mt-4 group-hover:gap-2 transition-all">
+                    <Link to={`/services/${service.slug}`} className="text-primary text-sm font-semibold flex items-center gap-1 mt-4 group-hover:gap-2 transition-all">
                       Learn More <ArrowRight className="w-4 h-4" />
                     </Link>
                   </div>

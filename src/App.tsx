@@ -12,6 +12,7 @@ import Masters from "./pages/Masters";
 import Bachelors from "./pages/Bachelors";
 import MBBS from "./pages/MBBS";
 import Services from "./pages/Services";
+import ServiceDetail from "./pages/ServiceDetail";
 import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
 
@@ -29,6 +30,7 @@ const AnimatedRoutes = () => {
         <Route path="/bachelors" element={<PageTransition><Bachelors /></PageTransition>} />
         <Route path="/mbbs" element={<PageTransition><MBBS /></PageTransition>} />
         <Route path="/services" element={<PageTransition><Services /></PageTransition>} />
+        <Route path="/services/:slug" element={<PageTransition><ServiceDetail /></PageTransition>} />
         <Route path="/contact" element={<PageTransition><Contact /></PageTransition>} />
         <Route path="*" element={<PageTransition><NotFound /></PageTransition>} />
       </Routes>
