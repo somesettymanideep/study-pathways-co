@@ -72,7 +72,7 @@ const ServiceDetail = () => {
                     <div className="w-10 h-10 rounded-xl bg-accent/10 flex items-center justify-center text-accent mb-4 font-heading font-bold text-lg">
                       {i + 1}
                     </div>
-                    <h3 className="font-heading text-base font-bold mb-2">{h.title}</h3>
+                    <h3 className="font-body text-base font-bold mb-2">{h.title}</h3>
                     <p className="text-muted-foreground text-sm leading-relaxed">{h.desc}</p>
                   </div>
                 </StaggeredItem>
@@ -93,7 +93,7 @@ const ServiceDetail = () => {
             <Accordion type="single" collapsible className="space-y-3">
               {service.faqs.map((faq, i) => (
                 <AccordionItem key={i} value={`faq-${i}`} className="bg-card border border-border rounded-xl px-6 shadow-card">
-                  <AccordionTrigger className="text-left font-heading font-semibold text-sm md:text-base py-5 hover:no-underline">
+                  <AccordionTrigger className="text-left font-body font-semibold text-sm md:text-base py-5 hover:no-underline">
                     {faq.question}
                   </AccordionTrigger>
                   <AccordionContent className="text-muted-foreground text-sm leading-relaxed pb-5">

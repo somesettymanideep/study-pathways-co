@@ -110,7 +110,7 @@ const Services = () => {
                     <div className="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center text-accent mb-4 group-hover:bg-accent group-hover:text-primary-foreground transition-colors">
                       {service.icon}
                     </div>
-                    <h3 className="font-heading text-base font-bold mb-2">{service.title}</h3>
+                    <h3 className="font-body text-base font-bold mb-2">{service.title}</h3>
                     <p className="text-muted-foreground text-sm leading-relaxed flex-1">{service.desc}</p>
                     <Link to={`/services/${service.slug}`} className="text-primary text-sm font-semibold flex items-center gap-1 mt-4 group-hover:gap-2 transition-all">
                       Learn More <ArrowRight className="w-4 h-4" />
