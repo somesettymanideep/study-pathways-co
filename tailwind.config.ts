@@ -14,8 +14,18 @@ export default {
     },
     extend: {
       fontFamily: {
-        heading: ['DM Sans', 'sans-serif'],
-        body: ['DM Sans', 'sans-serif'],
+        heading: ['Plus Jakarta Sans', 'sans-serif'],
+        body: ['Plus Jakarta Sans', 'sans-serif'],
+      },
+      fontSize: {
+        'display': ['4rem', { lineHeight: '1.1', fontWeight: '800' }],
+        'h1': ['3.5rem', { lineHeight: '1.15', fontWeight: '800' }],
+        'h2': ['2.75rem', { lineHeight: '1.2', fontWeight: '700' }],
+        'h3': ['1.75rem', { lineHeight: '1.3', fontWeight: '700' }],
+        'h4': ['1.25rem', { lineHeight: '1.4', fontWeight: '600' }],
+        'body-lg': ['1.125rem', { lineHeight: '1.7' }],
+        'body': ['1rem', { lineHeight: '1.7' }],
+        'body-sm': ['0.875rem', { lineHeight: '1.6' }],
       },
       colors: {
         border: "hsl(var(--border))",
