@@ -13,10 +13,10 @@ export default {
       },
     },
     extend: {
-      fontFamily: {
-        heading: ['Plus Jakarta Sans', 'sans-serif'],
-        body: ['Plus Jakarta Sans', 'sans-serif'],
-      },
+     fontFamily: {
+  heading: ['Outfit', 'sans-serif'],
+  body: ['Outfit', 'sans-serif'],
+},
       fontSize: {
         'display': ['4rem', { lineHeight: '1.1', fontWeight: '800' }],
         'h1': ['3.5rem', { lineHeight: '1.15', fontWeight: '800' }],
