@@ -1,9 +1,9 @@
 import { Phone, GraduationCap, Globe, Star, Plane } from "lucide-react";
 
 const items = [
-  { icon: Phone, text: "For Assistance Call Us: +91 00000 00000" },
+  { icon: Phone, text: "For Assistance Call Us: +91 80082 49666" },
   { icon: GraduationCap, text: "Study Abroad with Pravaas International" },
-  { icon: Globe, text: "Admissions Open for 2025 Intake" },
+  { icon: Globe, text: "Admissions Open for 2026 Intake" },
   { icon: Star, text: "Expert Guidance for Masters, Bachelors & MBBS" },
   { icon: Plane, text: "UK • Australia • Canada • Germany • USA" },
 ];
