@@ -166,7 +166,7 @@ const About = () => {
 
       {/* Why Choose Pravaas - Journey Steps */}
       <section className="py-24 bg-warm-gradient">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-4 md:px-6 lg:px-8">
           <AnimatedSection>
             <div className="flex flex-col items-center mb-16">
               <span className="block text-xs font-bold tracking-[0.2em] uppercase text-accent mb-3" data-animate="fadeInDown">Your Journey With Us</span>
