@@ -184,25 +184,22 @@ const Index = () => {
 
         <div className="relative container mx-auto px-4 py-20">
           <div className="max-w-2xl">
-            <span
-              key={`tag-${currentSlide}`}
-              className="inline-block px-4 py-1.5 bg-primary/20 text-primary-foreground text-sm font-medium rounded-full mb-6 backdrop-blur-sm border border-primary-foreground/20 animate-fade-in"
-            >
-              {slide.tagline}
-            </span>
-            <h1
-              key={`h-${currentSlide}`}
-              className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold text-background leading-tight mb-6 animate-fade-in"
-            >
-              {slide.heading}
-            </h1>
-            <p
-              key={`p-${currentSlide}`}
-              className="text-lg md:text-xl text-background/80 mb-8 leading-relaxed animate-fade-in"
-            >
-              {slide.description}
-            </p>
-            <div key={`cta-${currentSlide}`} className="flex flex-wrap gap-4 animate-fade-in">
+            <AnimatedSection key={`tag-${currentSlide}`} direction="up" delay={0} className="inline-block">
+              <span className="inline-block px-4 py-1.5 bg-primary/20 text-primary-foreground text-sm font-medium rounded-full mb-6 backdrop-blur-sm border border-primary-foreground/20">
+                {slide.tagline}
+              </span>
+            </AnimatedSection>
+            <AnimatedSection key={`h-${currentSlide}`} direction="up" delay={0.1} className="">
+              <h1 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold text-background leading-tight mb-6">
+                {slide.heading}
+              </h1>
+            </AnimatedSection>
+            <AnimatedSection key={`p-${currentSlide}`} direction="up" delay={0.2} className="">
+              <p className="text-lg md:text-xl text-background/80 mb-8 leading-relaxed">
+                {slide.description}
+              </p>
+            </AnimatedSection>
+            <AnimatedSection key={`cta-${currentSlide}`} direction="up" delay={0.3} className="flex flex-wrap gap-4">
               {slide.type === "mbbs" ? (
                 <Link to="/mbbs" className="px-8 py-4 bg-hero-gradient text-primary-foreground font-semibold rounded-xl hover:opacity-90 transition-opacity text-lg">
                   MBBS
@@ -217,7 +214,7 @@ const Index = () => {
                   </Link>
                 </>
               )}
-            </div>
+            </AnimatedSection>
           </div>
         </div>
 
@@ -328,9 +325,9 @@ const Index = () => {
               </div>
             </AnimatedSection>
           </div>
-          <StaggeredList className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8" staggerDelay={0.12}>
-            {destinations.map((dest) => (
-              <StaggeredItem key={dest.name}>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            {destinations.map((dest, i) => (
+              <AnimatedSection key={dest.name} direction="left" delay={0.2 + i * 0.1} className="">
                 <Link to={programPath} className="group block bg-card rounded-xl border border-border shadow-card hover:shadow-elevated transition-all hover:-translate-y-1">
                   <div className="relative overflow-hidden rounded-t-xl">
                     <img src={dest.image} alt={dest.name} className="w-full h-52 object-cover group-hover:scale-105 transition-transform duration-500" />
@@ -346,9 +343,9 @@ const Index = () => {
                     </span>
                   </div>
                 </Link>
-              </StaggeredItem>
+              </AnimatedSection>
             ))}
-          </StaggeredList>
+          </div>
         </div>
       </section>
 
@@ -369,16 +366,18 @@ const Index = () => {
           <StaggeredList className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto" staggerDelay={0.08}>
             {services.map((service, i) => (
               <StaggeredItem key={i}>
-                <div className="bg-card rounded-2xl border border-border shadow-card p-6 hover:shadow-elevated hover:-translate-y-1 transition-all group h-full flex flex-col">
-                  <div className="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center text-accent mb-4 group-hover:bg-accent group-hover:text-primary-foreground transition-colors">
-                    {service.icon}
+                <AnimatedSection direction="left" delay={0.2 + i * 0.08} className="">
+                  <div className="bg-card rounded-2xl border border-border shadow-card p-6 hover:shadow-elevated hover:-translate-y-1 transition-all group h-full flex flex-col">
+                    <div className="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center text-accent mb-4 group-hover:bg-accent group-hover:text-primary-foreground transition-colors">
+                      {service.icon}
+                    </div>
+                    <h3 className="font-heading text-base font-bold mb-2">{service.title}</h3>
+                    <p className="text-muted-foreground text-sm leading-relaxed flex-1">{service.desc}</p>
+                    <Link to="/services" className="text-primary text-sm font-semibold flex items-center gap-1 mt-4 group-hover:gap-2 transition-all">
+                      Learn More <ArrowRight className="w-4 h-4" />
+                    </Link>
                   </div>
-                  <h3 className="font-heading text-base font-bold mb-2">{service.title}</h3>
-                  <p className="text-muted-foreground text-sm leading-relaxed flex-1">{service.desc}</p>
-                  <Link to="/services" className="text-primary text-sm font-semibold flex items-center gap-1 mt-4 group-hover:gap-2 transition-all">
-                    Learn More <ArrowRight className="w-4 h-4" />
-                  </Link>
-                </div>
+                </AnimatedSection>
               </StaggeredItem>
             ))}
           </StaggeredList>
@@ -403,7 +402,7 @@ const Index = () => {
                 style={{ transform: `translateX(-${testimonialIndex * (100 / 3)}%)` }}
               >
                 {testimonials.map((t, i) => (
-                  <div key={i} className="w-full md:w-1/3 flex-shrink-0 px-3">
+                  <AnimatedSection key={i} direction="up" delay={0.2 + i * 0.1} className="w-full md:w-1/3 flex-shrink-0 px-3">
                     <div className="bg-card rounded-2xl p-8 border border-border shadow-card h-full">
                       <div className="flex items-center gap-3 mb-5">
                         <div className="w-12 h-12 rounded-full bg-primary text-primary-foreground flex items-center justify-center font-bold text-sm">
@@ -421,7 +420,7 @@ const Index = () => {
                       </div>
                       <p className="text-foreground text-sm leading-relaxed">"{t.text}"</p>
                     </div>
-                  </div>
+                  </AnimatedSection>
                 ))}
               </div>
             </div>
