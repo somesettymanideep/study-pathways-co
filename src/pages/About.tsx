@@ -164,8 +164,8 @@ const About = () => {
         </div>
       </section>
 
-      {/* Why Choose Pravaas - Journey Timeline */}
-      <section className="py-20">
+      {/* Why Choose Pravaas - Journey Steps */}
+      <section className="py-24 bg-warm-gradient">
         <div className="container mx-auto px-4">
           <AnimatedSection>
             <div className="flex flex-col items-center mb-16">
@@ -177,40 +177,43 @@ const About = () => {
             </div>
           </AnimatedSection>
 
-          <div className="max-w-4xl mx-auto relative">
-            {/* Vertical timeline line */}
-            <div className="absolute left-6 md:left-1/2 top-0 bottom-0 w-px bg-border md:-translate-x-px hidden sm:block" />
-
-            <StaggeredList className="space-y-8 md:space-y-12" staggerDelay={0.12}>
-              {journeySteps.map((item, i) => (
-                <StaggeredItem key={i}>
-                  <div className={`relative flex flex-col sm:flex-row items-start gap-4 md:gap-8 ${i % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"}`}>
-                    {/* Step number circle on timeline */}
-                    <div className="hidden sm:flex absolute left-6 md:left-1/2 -translate-x-1/2 w-12 h-12 rounded-full bg-primary text-primary-foreground items-center justify-center font-heading font-bold text-sm z-10 shadow-lg">
-                      {item.step}
-                    </div>
-
-                    {/* Content card */}
-                    <div className={`sm:pl-20 md:pl-0 md:w-[calc(50%-2.5rem)] ${i % 2 === 0 ? "md:pr-0 md:text-right" : "md:pl-0 md:text-left"}`}>
-                      <div className="bg-card rounded-2xl p-6 md:p-8 border border-border shadow-card hover:shadow-lg transition-shadow group" data-animate={i % 2 === 0 ? "fadeInLeft" : "fadeInRight"} data-delay={`${i * 0.1}s`}>
-                        <div className={`flex items-center gap-3 mb-3 ${i % 2 === 0 ? "md:flex-row-reverse" : ""}`}>
-                          <div className="w-10 h-10 rounded-xl bg-secondary flex items-center justify-center text-primary shrink-0 group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
-                            {item.icon}
-                          </div>
-                          <span className="sm:hidden text-xs font-bold text-primary">STEP {item.step}</span>
-                          <h3 className="font-heading text-lg font-bold">{item.title}</h3>
-                        </div>
-                        <p className="text-sm text-muted-foreground leading-relaxed">{item.desc}</p>
+          {/* Steps grid */}
+          <StaggeredList className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8 lg:gap-5 max-w-6xl mx-auto" staggerDelay={0.1}>
+            {journeySteps.map((item, i) => (
+              <StaggeredItem key={i}>
+                <div
+                  className="relative flex flex-col items-center text-center group"
+                  data-animate={i % 2 === 0 ? "fadeInUp" : "fadeInDown"}
+                  data-delay={`${i * 0.15}s`}
+                >
+                  {/* Circle with icon */}
+                  <div className="relative z-10 mb-6">
+                    <div className="w-28 h-28 rounded-full bg-card border-[3px] border-border shadow-elevated flex items-center justify-center relative group-hover:border-accent transition-colors duration-500">
+                      <div className="absolute inset-[-6px] rounded-full border-2 border-dashed border-accent/0 group-hover:border-accent/40 transition-all duration-500 group-hover:rotate-[30deg]" />
+                      <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-primary-foreground transition-all duration-300 group-hover:scale-110">
+                        {item.icon}
                       </div>
                     </div>
-
-                    {/* Spacer for opposite side */}
-                    <div className="hidden md:block md:w-[calc(50%-2.5rem)]" />
+                    {/* Step number pill */}
+                    <div className="absolute -top-1 -right-1 w-9 h-9 rounded-full bg-hero-gradient text-primary-foreground flex items-center justify-center font-heading font-bold text-xs shadow-lg">
+                      {item.step}
+                    </div>
                   </div>
-                </StaggeredItem>
-              ))}
-            </StaggeredList>
-          </div>
+
+                  {/* Content */}
+                  <h3 className="font-heading text-base font-bold mb-2 leading-tight">{item.title}</h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed max-w-[220px] mx-auto">{item.desc}</p>
+
+                  {/* Connector arrow - desktop */}
+                  {i < journeySteps.length - 1 && (
+                    <div className="hidden lg:block absolute top-14 -right-3 w-4 h-4">
+                      <div className="w-3 h-3 border-t-2 border-r-2 border-accent/60 rotate-45" />
+                    </div>
+                  )}
+                </div>
+              </StaggeredItem>
+            ))}
+          </StaggeredList>
         </div>
       </section>
 
