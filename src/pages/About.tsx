@@ -6,7 +6,9 @@ import { StaggeredList, StaggeredItem } from "@/components/StaggeredList";
 import { Link } from "react-router-dom";
 import aboutHero from "@/assets/about-hero.jpg";
 import founderPortrait from "@/assets/founder-portrait.jpg";
+import ctaBg from "@/assets/cta-bg.jpg";
 import { useCountUp } from "@/hooks/useCountUp";
+import useScrollReveal from "@/hooks/useScrollReveal";
 
 const testimonials = [
   { name: "Ananya Sharma", country: "UK", text: "Pravaas made my dream of studying in London a reality. Their guidance was invaluable!", rating: 5, initials: "AS" },
@@ -50,7 +52,8 @@ const StatCircle = ({ end, suffix, label, icon }: { end: number; suffix: string;
 };
 
 const About = () => {
-const [testimonialIndex, setTestimonialIndex] = useState(0);
+  useScrollReveal();
+  const [testimonialIndex, setTestimonialIndex] = useState(0);
 
   // Autoplay testimonials
   useEffect(() => {
@@ -69,8 +72,8 @@ const [testimonialIndex, setTestimonialIndex] = useState(0);
           <div className="absolute inset-0 bg-overlay-dark" />
         </div>
         <div className="container mx-auto px-4 text-center relative z-10">
-          <h1 className="font-heading text-4xl md:text-5xl font-bold mb-6 text-primary-foreground animate-fade-in-up">About Pravaas International</h1>
-          <p className="text-lg text-primary-foreground/80 max-w-2xl mx-auto animate-fade-in-up" style={{ animationDelay: "0.1s" }}>
+          <h1 className="font-heading text-4xl md:text-5xl font-bold mb-6 text-primary-foreground" data-animate="fadeInDown">About Pravaas International</h1>
+          <p className="text-lg text-primary-foreground/80 max-w-2xl mx-auto" data-animate="fadeInUp" data-delay="0.2s">
             We are a trusted education consultancy dedicated to helping students achieve their dream of studying abroad with transparency and integrity.
           </p>
         </div>
@@ -109,7 +112,7 @@ const [testimonialIndex, setTestimonialIndex] = useState(0);
       {/* Founder's Message */}
       <section className="py-20 bg-warm-gradient overflow-hidden">
         <div className="container mx-auto px-4">
-          <AnimatedSection>
+          <AnimatedSection direction="left">
             <div className="max-w-5xl mx-auto">
               <div className="relative grid md:grid-cols-5 gap-0 items-stretch">
                 {/* Image Column */}
@@ -166,9 +169,9 @@ const [testimonialIndex, setTestimonialIndex] = useState(0);
         <div className="container mx-auto px-4">
           <AnimatedSection>
             <div className="flex flex-col items-center mb-16">
-              <span className="block text-xs font-bold tracking-[0.2em] uppercase text-accent mb-3">Your Journey With Us</span>
-              <h2 className="font-heading text-3xl md:text-4xl font-bold text-center mb-4">Why Choose <span className="text-accent">Pravaas?</span></h2>
-              <p className="text-center text-muted-foreground max-w-xl mx-auto">
+              <span className="block text-xs font-bold tracking-[0.2em] uppercase text-accent mb-3" data-animate="fadeInDown">Your Journey With Us</span>
+              <h2 className="font-heading text-3xl md:text-4xl font-bold text-center mb-4" data-animate="fadeInUp">Why Choose <span className="text-accent">Pravaas?</span></h2>
+              <p className="text-center text-muted-foreground max-w-xl mx-auto" data-animate="fadeInUp" data-delay="0.2s">
                 A seamless five-step process designed to turn your study abroad dream into reality
               </p>
             </div>
@@ -189,7 +192,7 @@ const [testimonialIndex, setTestimonialIndex] = useState(0);
 
                     {/* Content card */}
                     <div className={`sm:pl-20 md:pl-0 md:w-[calc(50%-2.5rem)] ${i % 2 === 0 ? "md:pr-0 md:text-right" : "md:pl-0 md:text-left"}`}>
-                      <div className="bg-card rounded-2xl p-6 md:p-8 border border-border shadow-card hover:shadow-lg transition-shadow group">
+                      <div className="bg-card rounded-2xl p-6 md:p-8 border border-border shadow-card hover:shadow-lg transition-shadow group" data-animate={i % 2 === 0 ? "fadeInLeft" : "fadeInRight"} data-delay={`${i * 0.1}s`}>
                         <div className={`flex items-center gap-3 mb-3 ${i % 2 === 0 ? "md:flex-row-reverse" : ""}`}>
                           <div className="w-10 h-10 rounded-xl bg-secondary flex items-center justify-center text-primary shrink-0 group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
                             {item.icon}
@@ -212,12 +215,17 @@ const [testimonialIndex, setTestimonialIndex] = useState(0);
       </section>
 
       {/* Statistics Section */}
-      <section className="py-20 bg-primary overflow-hidden relative">
+      <section className="py-20 overflow-hidden relative">
+        {/* Background image */}
+        <div className="absolute inset-0">
+          <img src={ctaBg} alt="" className="w-full h-full object-cover" />
+          <div className="absolute inset-0 bg-primary/90" />
+        </div>
 
         <div className="container mx-auto px-4 relative z-10">
           <AnimatedSection>
-            <h2 className="font-heading text-3xl md:text-4xl font-bold text-center mb-4 text-primary-foreground">Our Achievements</h2>
-            <p className="text-center text-primary-foreground/70 mb-16 max-w-xl mx-auto">Numbers that reflect our commitment to student success</p>
+            <h2 className="font-heading text-3xl md:text-4xl font-bold text-center mb-4 text-primary-foreground" data-animate="fadeInDown">Our Achievements</h2>
+            <p className="text-center text-primary-foreground/70 mb-16 max-w-xl mx-auto" data-animate="fadeInUp">Numbers that reflect our commitment to student success</p>
           </AnimatedSection>
           <StaggeredList className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-5xl mx-auto" staggerDelay={0.12}>
             {[
@@ -239,8 +247,8 @@ const [testimonialIndex, setTestimonialIndex] = useState(0);
         <div className="container mx-auto px-4">
           <AnimatedSection>
             <div className="text-center mb-12">
-              <h2 className="font-heading text-3xl md:text-4xl font-bold mb-4">Student <span className="text-accent">Testimonials</span></h2>
-              <p className="text-muted-foreground max-w-xl mx-auto">Hear from students who achieved their dreams with Pravaas</p>
+              <h2 className="font-heading text-3xl md:text-4xl font-bold mb-4" data-animate="fadeInLeft">Student <span className="text-accent">Testimonials</span></h2>
+              <p className="text-muted-foreground max-w-xl mx-auto" data-animate="fadeInRight">Hear from students who achieved their dreams with Pravaas</p>
             </div>
           </AnimatedSection>
 
@@ -303,8 +311,8 @@ const [testimonialIndex, setTestimonialIndex] = useState(0);
       <AnimatedSection>
         <section className="py-20">
           <div className="container mx-auto px-4 text-center">
-            <h2 className="font-heading text-3xl font-bold mb-4">Ready to Get Started?</h2>
-            <p className="text-muted-foreground mb-8 max-w-md mx-auto">Book your free consultation and take the first step towards your global education.</p>
+            <h2 className="font-heading text-3xl font-bold mb-4" data-animate="fadeInDown">Ready to Get Started?</h2>
+            <p className="text-muted-foreground mb-8 max-w-md mx-auto" data-animate="fadeInUp">Book your free consultation and take the first step towards your global education.</p>
             <Link to="/contact" className="inline-block px-10 py-4 bg-hero-gradient text-primary-foreground font-bold rounded-xl hover:opacity-90 transition-opacity text-lg">
               Contact Us Today
             </Link>
