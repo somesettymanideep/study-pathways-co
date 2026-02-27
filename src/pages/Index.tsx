@@ -7,6 +7,7 @@ import AnimatedSection from "@/components/AnimatedSection";
 import { StaggeredList, StaggeredItem } from "@/components/StaggeredList";
 import { useCountUp } from "@/hooks/useCountUp";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import useScrollReveal from "@/hooks/useScrollReveal";
 import ukHero from "@/assets/uk-hero.jpg";
 import australiaHero from "@/assets/australia-hero.jpg";
 import canadaHero from "@/assets/canada-hero.jpg";
@@ -94,13 +95,13 @@ const testimonials = [
 
 const whyChooseUs = [
   { icon: <Shield className="w-6 h-6" />, title: "10+ Years Experience", desc: "Over a decade of expertise in international education consulting with proven track record." },
-  { icon: <CircleCheck className="w-6 h-6" />, title: "98% Visa Success Rate", desc: "Industry-leading visa approval rates backed by meticulous documentation and preparation." },
+  { icon: <CircleCheck className="w-6 h-6" />, title: "99% Visa Success Rate", desc: "Industry-leading visa approval rates backed by meticulous documentation and preparation." },
   { icon: <Handshake className="w-6 h-6" />, title: "50+ University Partners", desc: "Exclusive partnerships with top-ranked universities in UK, Australia, and other destinations." },
   { icon: <HeartHandshake className="w-6 h-6" />, title: "End-to-End Support", desc: "From university selection to post-arrival assistance, we're with you every step of the way." },
 ];
 
 const stats = [
-  { value: 5000, suffix: "+", label: "Students Visa Approved", variant: "primary" as const },
+  { value: 500, suffix: "+", label: "Students Visa Approved", variant: "primary" as const },
   { value: 10, suffix: "+", label: "Years Experience", variant: "accent" as const },
   { value: 50, suffix: "+", label: "Partner Universities", variant: "accent" as const },
   { value: 99, suffix: "%", label: "Visa Success", variant: "primary" as const },
@@ -159,6 +160,8 @@ const Index = () => {
     const timer = setInterval(nextSlide, 5000);
     return () => clearInterval(timer);
   }, [nextSlide]);
+
+  useScrollReveal();
 
   const slide = heroSlides[currentSlide];
   const programPath = activeTab === "bachelors" ? "/bachelors" : "/masters";
@@ -252,23 +255,17 @@ const Index = () => {
         <div className="container mx-auto px-4">
           <div className="grid lg:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
             {/* Left Content */}
-            <div>
-              <AnimatedSection delay={0}>
-                <span className="text-accent font-bold text-sm tracking-widest uppercase mb-3 block">Why Choose Us</span>
-              </AnimatedSection>
-              <AnimatedSection delay={0.15}>
-                <h2 className="font-heading text-3xl md:text-4xl lg:text-5xl font-bold mb-6 leading-tight">
-                  Your Success is Our <span className="text-accent">Priority</span>
-                </h2>
-              </AnimatedSection>
-              <AnimatedSection delay={0.3}>
-                <p className="text-muted-foreground leading-relaxed mb-10">
-                  At Pravaas International, we don't just process applications – we build futures. Our dedicated team of counselors brings together expertise, empathy, and a genuine commitment to seeing every student succeed.
-                </p>
-              </AnimatedSection>
+            <div data-animate="slideInLeft" data-delay="0s">
+              <span className="text-accent font-bold text-sm tracking-widest uppercase mb-3 block">Why Choose Us</span>
+              <h2 className="font-heading text-3xl md:text-4xl lg:text-5xl font-bold mb-6 leading-tight">
+                Your Success is Our <span className="text-accent">Priority</span>
+              </h2>
+              <p className="text-muted-foreground leading-relaxed mb-10">
+                At Pravaas International, we don't just process applications – we build futures. Our dedicated team of counselors brings together expertise, empathy, and a genuine commitment to seeing every student succeed.
+              </p>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 {whyChooseUs.map((item, i) => (
-                  <AnimatedSection key={i} delay={0.4 + i * 0.12} direction="up" distance={40}>
+                  <div key={i} data-animate="fadeInUp" data-delay={`${0.2 + i * 0.1}s`}>
                     <div className="flex items-start gap-3">
                       <div className="w-10 h-10 rounded-lg bg-accent/10 flex items-center justify-center text-accent shrink-0">
                         {item.icon}
@@ -278,17 +275,17 @@ const Index = () => {
                         <p className="text-xs text-muted-foreground leading-relaxed">{item.desc}</p>
                       </div>
                     </div>
-                  </AnimatedSection>
+                  </div>
                 ))}
               </div>
             </div>
 
             {/* Right Stats Grid */}
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-2 gap-4" data-animate="slideInRight" data-delay="0.3s">
               {stats.map((stat, i) => (
-                <AnimatedSection key={i} delay={0.2 + i * 0.15} direction={i % 2 === 0 ? "left" : "right"} distance={50} scale>
+                <div key={i} data-animate="fadeInUp" data-delay={`${0.4 + i * 0.1}s`}>
                   <CountUpStat value={stat.value} suffix={stat.suffix} label={stat.label} variant={stat.variant} />
-                </AnimatedSection>
+                </div>
               ))}
             </div>
           </div>

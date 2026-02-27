@@ -221,10 +221,10 @@ const [testimonialIndex, setTestimonialIndex] = useState(0);
           </AnimatedSection>
           <StaggeredList className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-5xl mx-auto" staggerDelay={0.12}>
             {[
-              { end: 5000, suffix: "+", label: "Student Visa", icon: <Stamp className="w-6 h-6" /> },
+              { end: 500, suffix: "+", label: "Student Visa", icon: <Stamp className="w-6 h-6" /> },
               { end: 50, suffix: "+", label: "Universities", icon: <GraduationCap className="w-6 h-6" /> },
               { end: 6, suffix: "+", label: "Years of Experience", icon: <Award className="w-6 h-6" /> },
-              { end: 95, suffix: "%", label: "Visa Success Rate", icon: <CheckCircle2 className="w-6 h-6" /> },
+              { end: 99, suffix: "%", label: "Visa Success Rate", icon: <CheckCircle2 className="w-6 h-6" /> },
             ].map((stat, i) => (
               <StaggeredItem key={i}>
                 <StatCircle end={stat.end} suffix={stat.suffix} label={stat.label} icon={stat.icon} />

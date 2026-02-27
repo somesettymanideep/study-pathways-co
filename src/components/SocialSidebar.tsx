@@ -19,7 +19,7 @@ const SocialSidebar = () => {
 
   return (
     <div
-      className={`fixed left-0 top-1/2 -translate-y-1/2 z-40 flex flex-col gap-2 transition-all duration-300 ${
+      className={`fixed left-0 sidebar-social  top-1/2 -translate-y-1/2 z-40 flex flex-col gap-2 transition-all duration-300 ${
         visible ? "translate-x-0 opacity-100" : "-translate-x-full opacity-0"
       }`}
     >
