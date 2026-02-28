@@ -4,6 +4,7 @@ import { GraduationCap, Globe, BookOpen, Users, Star, ArrowRight, CheckCircle2, 
 import Layout from "@/components/Layout";
 import EnquiryPopup from "@/components/EnquiryPopup";
 import AnimatedSection from "@/components/AnimatedSection";
+import { TypewriterText } from "@/components/TypewriterText";
 import { StaggeredList, StaggeredItem } from "@/components/StaggeredList";
 import { useCountUp } from "@/hooks/useCountUp";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
@@ -123,11 +124,10 @@ const CountUpStat = ({ value, suffix, label, variant }: { value: number; suffix:
   return (
     <div
       ref={ref}
-      className={`rounded-2xl p-8 text-center ${
-        variant === "primary"
-          ? "bg-primary text-primary-foreground"
-          : "bg-accent text-primary-foreground"
-      }`}
+      className={`rounded-2xl p-8 text-center ${variant === "primary"
+        ? "bg-primary text-primary-foreground"
+        : "bg-accent text-primary-foreground"
+        }`}
     >
       <p className="font-heading text-3xl md:text-4xl font-bold mb-1">{count}{suffix}</p>
       <p className="text-sm opacity-90">{label}</p>
@@ -190,8 +190,8 @@ const Index = () => {
               </span>
             </AnimatedSection>
             <AnimatedSection key={`h-${currentSlide}`} direction="up" delay={0.1} className="">
-              <h1 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold text-background leading-tight mb-6">
-                {slide.heading}
+              <h1 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold text-background leading-tight mb-6 min-h-[120px] md:min-h-[140px] flex items-end md:items-start md:block">
+                <TypewriterText key={currentSlide} text={slide.heading} speed={40} delay={0.2} highlightCount={2} highlightClassName="text-[#0a3250]" />
               </h1>
             </AnimatedSection>
             <AnimatedSection key={`p-${currentSlide}`} direction="up" delay={0.2} className="">
@@ -304,21 +304,19 @@ const Index = () => {
               <div className="inline-flex bg-card rounded-xl border border-border shadow-card p-1.5 gap-1">
                 <button
                   onClick={() => setActiveTab("bachelors")}
-                  className={`px-6 py-2.5 text-sm font-semibold rounded-lg transition-all ${
-                    activeTab === "bachelors"
-                      ? "bg-hero-gradient text-primary-foreground shadow-soft"
-                      : "text-muted-foreground hover:text-foreground hover:bg-secondary"
-                  }`}
+                  className={`px-6 py-2.5 text-sm font-semibold rounded-lg transition-all ${activeTab === "bachelors"
+                    ? "bg-hero-gradient text-primary-foreground shadow-soft"
+                    : "text-muted-foreground hover:text-foreground hover:bg-secondary"
+                    }`}
                 >
                   Bachelors
                 </button>
                 <button
                   onClick={() => setActiveTab("masters")}
-                  className={`px-6 py-2.5 text-sm font-semibold rounded-lg transition-all ${
-                    activeTab === "masters"
-                      ? "bg-hero-gradient text-primary-foreground shadow-soft"
-                      : "text-muted-foreground hover:text-foreground hover:bg-secondary"
-                  }`}
+                  className={`px-6 py-2.5 text-sm font-semibold rounded-lg transition-all ${activeTab === "masters"
+                    ? "bg-hero-gradient text-primary-foreground shadow-soft"
+                    : "text-muted-foreground hover:text-foreground hover:bg-secondary"
+                    }`}
                 >
                   Masters
                 </button>

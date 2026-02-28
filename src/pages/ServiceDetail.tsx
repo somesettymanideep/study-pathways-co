@@ -11,6 +11,7 @@ import {
 import serviceDetails from "@/data/serviceDetails";
 import servicesHero from "@/assets/services-hero.jpg";
 import ctaBg from "@/assets/cta-bg.jpg";
+import { TypewriterText } from "@/components/TypewriterText";
 
 const ServiceDetail = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -37,7 +38,7 @@ const ServiceDetail = () => {
             {service.icon}
           </div>
           <h1 className="font-heading text-3xl md:text-4xl lg:text-5xl font-bold text-background mb-4">
-            {service.title}
+            <TypewriterText text={service.title} speed={40} delay={0.2} highlightCount={2} highlightClassName="text-[#0a3250]" />
           </h1>
           <p className="text-lg text-background/80 max-w-2xl mx-auto">{service.tagline}</p>
         </div>

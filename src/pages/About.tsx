@@ -7,6 +7,7 @@ import founderPortrait from "@/assets/founder-portrait.jpg";
 import ctaBg from "@/assets/cta-bg.jpg";
 import { useCountUp } from "@/hooks/useCountUp";
 import useScrollReveal from "@/hooks/useScrollReveal";
+import { TypewriterText } from "@/components/TypewriterText";
 
 const testimonials = [
   { name: "Ananya Sharma", country: "UK", text: "Pravaas made my dream of studying in London a reality. Their guidance was invaluable!", rating: 5, initials: "AS" },
@@ -70,7 +71,9 @@ const About = () => {
           <div className="absolute inset-0 bg-overlay-dark" />
         </div>
         <div className="container mx-auto px-4 text-center relative z-10">
-          <h1 className="font-heading text-4xl md:text-5xl font-bold mb-6 text-primary-foreground" data-animate="fadeInDown">About Pravaas International</h1>
+          <h1 className="font-heading text-4xl md:text-5xl font-bold mb-6 text-primary-foreground">
+            <TypewriterText text="About Pravaas International" speed={40} delay={0.2} highlightCount={2} highlightClassName="text-[#0a3250]" />
+          </h1>
           <p className="text-lg text-primary-foreground/80 max-w-2xl mx-auto" data-animate="fadeInUp" data-delay="0.2s">
             We are a trusted education consultancy dedicated to helping students achieve their dream of studying abroad with transparency and integrity.
           </p>
@@ -105,100 +108,100 @@ const About = () => {
       <section className="py-20 bg-warm-gradient overflow-hidden">
         <div className="container mx-auto px-4" data-animate="slideInLeft">
           <div className="max-w-5xl mx-auto">
-              <div className="relative grid md:grid-cols-5 gap-0 items-stretch">
-                {/* Image Column */}
-                <div className="md:col-span-2 relative">
-                  <div className="relative h-full min-h-[360px] md:min-h-[480px] rounded-t-2xl md:rounded-l-2xl md:rounded-tr-none overflow-hidden">
-                    <img
-                      src={founderPortrait}
-                      alt="Founder of Pravaas International"
-                      className="w-full h-full object-cover"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-foreground/60 via-transparent to-transparent md:bg-gradient-to-r md:from-transparent md:via-transparent md:to-foreground/10" />
-                    {/* Name overlay on image */}
-                    <div className="absolute bottom-0 left-0 right-0 p-6 md:hidden">
-                      <h3 className="font-heading text-xl font-bold text-primary-foreground">Founder Name</h3>
-                      <p className="text-sm text-primary-foreground/80">Founder & Managing Director</p>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Content Column */}
-                <div className="md:col-span-3 bg-card border border-border rounded-b-2xl md:rounded-r-2xl md:rounded-bl-none p-8 md:p-10 flex flex-col justify-center relative">
-                  <Quote className="w-10 h-10 text-primary/20 absolute top-6 right-6 rotate-180" />
-                  
-                  <span className="text-xs font-bold tracking-[0.2em] uppercase text-primary mb-3">Founder's Message</span>
-                  
-                  <div className="hidden md:block mb-4">
-                    <h3 className="font-heading text-2xl font-bold">Founder Name</h3>
-                    <p className="text-sm text-muted-foreground">Founder & Managing Director</p>
-                  </div>
-
-                  <blockquote className="text-muted-foreground leading-relaxed space-y-4">
-                    <p>
-                      "Every student deserves the right guidance to turn their international education dream into reality. At Pravaas International, we don't just process applications — we build futures."
-                    </p>
-                    <p>
-                      "Having guided hundreds of students to top universities worldwide, I understand the hopes and concerns families have. Our promise is simple: honest advice, transparent processes, and unwavering support at every step of your journey."
-                    </p>
-                  </blockquote>
-
-                  <div className="mt-6 flex items-center gap-3">
-                    <div className="h-px flex-1 bg-border" />
-                    <span className="text-xs text-muted-foreground tracking-wide">PRAVAAS INTERNATIONAL</span>
-                    <div className="h-px flex-1 bg-border" />
+            <div className="relative grid md:grid-cols-5 gap-0 items-stretch">
+              {/* Image Column */}
+              <div className="md:col-span-2 relative">
+                <div className="relative h-full min-h-[360px] md:min-h-[480px] rounded-t-2xl md:rounded-l-2xl md:rounded-tr-none overflow-hidden">
+                  <img
+                    src={founderPortrait}
+                    alt="Founder of Pravaas International"
+                    className="w-full h-full object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-foreground/60 via-transparent to-transparent md:bg-gradient-to-r md:from-transparent md:via-transparent md:to-foreground/10" />
+                  {/* Name overlay on image */}
+                  <div className="absolute bottom-0 left-0 right-0 p-6 md:hidden">
+                    <h3 className="font-heading text-xl font-bold text-primary-foreground">Founder Name</h3>
+                    <p className="text-sm text-primary-foreground/80">Founder & Managing Director</p>
                   </div>
                 </div>
               </div>
+
+              {/* Content Column */}
+              <div className="md:col-span-3 bg-card border border-border rounded-b-2xl md:rounded-r-2xl md:rounded-bl-none p-8 md:p-10 flex flex-col justify-center relative">
+                <Quote className="w-10 h-10 text-primary/20 absolute top-6 right-6 rotate-180" />
+
+                <span className="text-xs font-bold tracking-[0.2em] uppercase text-primary mb-3">Founder's Message</span>
+
+                <div className="hidden md:block mb-4">
+                  <h3 className="font-heading text-2xl font-bold">Founder Name</h3>
+                  <p className="text-sm text-muted-foreground">Founder & Managing Director</p>
+                </div>
+
+                <blockquote className="text-muted-foreground leading-relaxed space-y-4">
+                  <p>
+                    "Every student deserves the right guidance to turn their international education dream into reality. At Pravaas International, we don't just process applications — we build futures."
+                  </p>
+                  <p>
+                    "Having guided hundreds of students to top universities worldwide, I understand the hopes and concerns families have. Our promise is simple: honest advice, transparent processes, and unwavering support at every step of your journey."
+                  </p>
+                </blockquote>
+
+                <div className="mt-6 flex items-center gap-3">
+                  <div className="h-px flex-1 bg-border" />
+                  <span className="text-xs text-muted-foreground tracking-wide">PRAVAAS INTERNATIONAL</span>
+                  <div className="h-px flex-1 bg-border" />
+                </div>
+              </div>
             </div>
+          </div>
         </div>
       </section>
 
       {/* Why Choose Pravaas - Journey Steps */}
       <section className="py-24 bg-warm-gradient">
         <div className="container mx-auto px-4 md:px-6 lg:px-8">
-            <div className="flex flex-col items-center mb-16">
-              <span className="block text-xs font-bold tracking-[0.2em] uppercase text-accent mb-3" data-animate="fadeInDown">Your Journey With Us</span>
-              <h2 className="font-heading text-3xl md:text-4xl font-bold text-center mb-4" data-animate="fadeInUp">Why Choose <span className="text-accent">Pravaas?</span></h2>
-              <p className="text-center text-muted-foreground max-w-xl mx-auto" data-animate="fadeInUp" data-delay="0.2s">
-                A seamless five-step process designed to turn your study abroad dream into reality
-              </p>
-            </div>
+          <div className="flex flex-col items-center mb-16">
+            <span className="block text-xs font-bold tracking-[0.2em] uppercase text-accent mb-3" data-animate="fadeInDown">Your Journey With Us</span>
+            <h2 className="font-heading text-3xl md:text-4xl font-bold text-center mb-4" data-animate="fadeInUp">Why Choose <span className="text-accent">Pravaas?</span></h2>
+            <p className="text-center text-muted-foreground max-w-xl mx-auto" data-animate="fadeInUp" data-delay="0.2s">
+              A seamless five-step process designed to turn your study abroad dream into reality
+            </p>
+          </div>
 
           {/* Steps grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8 lg:gap-5 max-w-6xl mx-auto">
             {journeySteps.map((item, i) => (
-                <div
-                  key={i}
-                  className="relative flex flex-col items-center text-center group"
-                  data-animate={i % 2 === 0 ? "fadeInUp" : "fadeInDown"}
-                  data-delay={`${i * 0.15}s`}
-                >
-                  {/* Circle with icon */}
-                  <div className="relative z-10 mb-6">
-                    <div className="w-28 h-28 rounded-full bg-card border-[3px] border-border shadow-elevated flex items-center justify-center relative group-hover:border-accent transition-colors duration-500">
-                      <div className="absolute inset-[-6px] rounded-full border-2 border-dashed border-accent/0 group-hover:border-accent/40 transition-all duration-500 group-hover:rotate-[30deg]" />
-                      <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-primary-foreground transition-all duration-300 group-hover:scale-110">
-                        {item.icon}
-                      </div>
-                    </div>
-                    {/* Step number pill */}
-                    <div className="absolute -top-1 -right-1 w-9 h-9 rounded-full bg-hero-gradient text-primary-foreground flex items-center justify-center font-heading font-bold text-xs shadow-lg">
-                      {item.step}
+              <div
+                key={i}
+                className="relative flex flex-col items-center text-center group"
+                data-animate={i % 2 === 0 ? "fadeInUp" : "fadeInDown"}
+                data-delay={`${i * 0.15}s`}
+              >
+                {/* Circle with icon */}
+                <div className="relative z-10 mb-6">
+                  <div className="w-28 h-28 rounded-full bg-card border-[3px] border-border shadow-elevated flex items-center justify-center relative group-hover:border-accent transition-colors duration-500">
+                    <div className="absolute inset-[-6px] rounded-full border-2 border-dashed border-accent/0 group-hover:border-accent/40 transition-all duration-500 group-hover:rotate-[30deg]" />
+                    <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-primary-foreground transition-all duration-300 group-hover:scale-110">
+                      {item.icon}
                     </div>
                   </div>
-
-                  {/* Content */}
-                  <h3 className="font-heading text-base font-bold mb-2 leading-tight">{item.title}</h3>
-                  <p className="text-sm text-muted-foreground leading-relaxed max-w-[220px] mx-auto">{item.desc}</p>
-
-                  {/* Connector arrow - desktop */}
-                  {i < journeySteps.length - 1 && (
-                    <div className="hidden lg:block absolute top-14 -right-3 w-4 h-4">
-                      <div className="w-3 h-3 border-t-2 border-r-2 border-accent/60 rotate-45" />
-                    </div>
-                  )}
+                  {/* Step number pill */}
+                  <div className="absolute -top-1 -right-1 w-9 h-9 rounded-full bg-hero-gradient text-primary-foreground flex items-center justify-center font-heading font-bold text-xs shadow-lg">
+                    {item.step}
+                  </div>
                 </div>
+
+                {/* Content */}
+                <h3 className="font-heading text-base font-bold mb-2 leading-tight">{item.title}</h3>
+                <p className="text-sm text-muted-foreground leading-relaxed max-w-[220px] mx-auto">{item.desc}</p>
+
+                {/* Connector arrow - desktop */}
+                {i < journeySteps.length - 1 && (
+                  <div className="hidden lg:block absolute top-14 -right-3 w-4 h-4">
+                    <div className="w-3 h-3 border-t-2 border-r-2 border-accent/60 rotate-45" />
+                  </div>
+                )}
+              </div>
             ))}
           </div>
         </div>
@@ -233,10 +236,10 @@ const About = () => {
       {/* Student Testimonials */}
       <section className="py-20 bg-warm-gradient">
         <div className="container mx-auto px-4">
-            <div className="text-center mb-12">
-              <h2 className="font-heading text-3xl md:text-4xl font-bold mb-4" data-animate="fadeInLeft">Student <span className="text-accent">Testimonials</span></h2>
-              <p className="text-muted-foreground max-w-xl mx-auto" data-animate="fadeInRight">Hear from students who achieved their dreams with Pravaas</p>
-            </div>
+          <div className="text-center mb-12">
+            <h2 className="font-heading text-3xl md:text-4xl font-bold mb-4" data-animate="fadeInLeft">Student <span className="text-accent">Testimonials</span></h2>
+            <p className="text-muted-foreground max-w-xl mx-auto" data-animate="fadeInRight">Hear from students who achieved their dreams with Pravaas</p>
+          </div>
 
           <div className="max-w-2xl mx-auto relative">
             <div className="overflow-hidden rounded-2xl">
@@ -294,15 +297,15 @@ const About = () => {
       </section>
 
       {/* CTA */}
-        <section className="py-20" data-animate="fadeInUp" data-delay="0.1s">
-          <div className="container mx-auto px-4 text-center">
-            <h2 className="font-heading text-3xl font-bold mb-4" data-animate="fadeInDown">Ready to Get Started?</h2>
-            <p className="text-muted-foreground mb-8 max-w-md mx-auto" data-animate="fadeInUp">Book your free consultation and take the first step towards your global education.</p>
-            <Link to="/contact" className="inline-block px-10 py-4 bg-hero-gradient text-primary-foreground font-bold rounded-xl hover:opacity-90 transition-opacity text-lg">
-              Contact Us Today
-            </Link>
-          </div>
-        </section>
+      <section className="py-20" data-animate="fadeInUp" data-delay="0.1s">
+        <div className="container mx-auto px-4 text-center">
+          <h2 className="font-heading text-3xl font-bold mb-4" data-animate="fadeInDown">Ready to Get Started?</h2>
+          <p className="text-muted-foreground mb-8 max-w-md mx-auto" data-animate="fadeInUp">Book your free consultation and take the first step towards your global education.</p>
+          <Link to="/contact" className="inline-block px-10 py-4 bg-hero-gradient text-primary-foreground font-bold rounded-xl hover:opacity-90 transition-opacity text-lg">
+            Contact Us Today
+          </Link>
+        </div>
+      </section>
     </Layout>
   );
 };

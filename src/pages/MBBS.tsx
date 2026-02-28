@@ -3,6 +3,7 @@ import { CheckCircle2, GraduationCap, Globe, HeartPulse, Users, Phone, ArrowRigh
 import Layout from "@/components/Layout";
 import useScrollReveal from "@/hooks/useScrollReveal";
 import mbbsHero from "@/assets/mbbs-hero.jpg";
+import { TypewriterText } from "@/components/TypewriterText";
 
 const mbbsCountries = [
   { name: "Kyrgyzstan", flag: "🇰🇬", highlight: "Affordable fees, NMC recognized" },
@@ -41,18 +42,20 @@ const MBBS = () => {
         </div>
         <div className="container mx-auto px-4 text-center text-primary-foreground relative z-10">
           <span className="inline-block px-4 py-1.5 bg-card/20 text-sm font-medium rounded-full mb-4 backdrop-blur-sm" data-animate="fadeInDown">🩺 Medical Education Abroad</span>
-          <h1 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold mb-4" data-animate="fadeInUp">Study MBBS Abroad</h1>
+          <h1 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold mb-4">
+            <TypewriterText text="Study MBBS Abroad" speed={40} delay={0.2} highlightCount={2} highlightClassName="text-[#0a3250]" />
+          </h1>
           <p className="text-lg md:text-xl text-primary-foreground/80 max-w-2xl mx-auto mb-8" data-animate="fadeInUp" data-delay="0.1s">
-              Affordable, globally recognized medical education with complete support from Pravaas International
-            </p>
-            <div className="flex flex-wrap justify-center gap-4">
-              <Link to="/contact" className="px-8 py-4 bg-card text-primary font-semibold rounded-xl hover:bg-background transition-colors text-lg shadow-elevated" data-animate="slideInLeft" data-delay="0.2s">
-                Free Counseling
-              </Link>
-              <Link to="/contact" className="px-8 py-4 border-2 border-primary-foreground/30 text-primary-foreground font-semibold rounded-xl hover:bg-primary-foreground/10 transition-colors text-lg" data-animate="slideInRight" data-delay="0.2s">
-                Apply Now
-              </Link>
-            </div>
+            Affordable, globally recognized medical education with complete support from Pravaas International
+          </p>
+          <div className="flex flex-wrap justify-center gap-4">
+            <Link to="/contact" className="px-8 py-4 bg-card text-primary font-semibold rounded-xl hover:bg-background transition-colors text-lg shadow-elevated" data-animate="slideInLeft" data-delay="0.2s">
+              Free Counseling
+            </Link>
+            <Link to="/contact" className="px-8 py-4 border-2 border-primary-foreground/30 text-primary-foreground font-semibold rounded-xl hover:bg-primary-foreground/10 transition-colors text-lg" data-animate="slideInRight" data-delay="0.2s">
+              Apply Now
+            </Link>
+          </div>
         </div>
       </section>
 
@@ -123,17 +126,17 @@ const MBBS = () => {
           <div className="bg-hero-gradient rounded-3xl p-12 md:p-16 text-center text-primary-foreground">
             <h2 className="font-heading text-3xl md:text-4xl font-bold mb-4" data-animate="fadeInDown">Start Your MBBS Journey Today</h2>
             <p className="text-primary-foreground/80 max-w-xl mx-auto mb-8 text-lg" data-animate="fadeInUp">Get expert guidance on the best MBBS programs abroad</p>
-              <div className="flex flex-wrap justify-center gap-4">
-                <Link to="/contact" className="px-10 py-4 bg-card text-primary font-bold rounded-xl hover:bg-background transition-colors text-lg shadow-elevated">
-                  Free Counseling
-                </Link>
-                <Link to="/contact" className="px-10 py-4 border-2 border-primary-foreground/30 text-primary-foreground font-bold rounded-xl hover:bg-primary-foreground/10 transition-colors text-lg">
-                  Contact Us
-                </Link>
-              </div>
+            <div className="flex flex-wrap justify-center gap-4">
+              <Link to="/contact" className="px-10 py-4 bg-card text-primary font-bold rounded-xl hover:bg-background transition-colors text-lg shadow-elevated">
+                Free Counseling
+              </Link>
+              <Link to="/contact" className="px-10 py-4 border-2 border-primary-foreground/30 text-primary-foreground font-bold rounded-xl hover:bg-primary-foreground/10 transition-colors text-lg">
+                Contact Us
+              </Link>
             </div>
           </div>
-        </section>
+        </div>
+      </section>
     </Layout>
   );
 };
