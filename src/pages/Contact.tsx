@@ -1,11 +1,12 @@
 import { useState } from "react";
 import { Phone, Mail, MapPin, MessageCircle, Building2, Star } from "lucide-react";
 import Layout from "@/components/Layout";
-import AnimatedSection from "@/components/AnimatedSection";
+import useScrollReveal from "@/hooks/useScrollReveal";
 import contactHero from "@/assets/contact-hero.jpg";
 
 const Contact = () => {
   const [submitted, setSubmitted] = useState(false);
+  useScrollReveal();
 
   return (
     <Layout>
@@ -23,16 +24,15 @@ const Contact = () => {
         </div>
       </section>
 
-      <AnimatedSection>
-        <section className="py-20">
-          <div className="container mx-auto px-4">
-            <div className="grid lg:grid-cols-5 gap-10 max-w-6xl mx-auto">
-              {/* Contact Info */}
-              <div className="lg:col-span-2 space-y-6">
-                <div className="bg-card rounded-2xl p-8 border border-border shadow-card">
-                  <h3 className="font-heading text-xl font-bold mb-6">Contact Information</h3>
-                  <div className="space-y-5">
-                    <div className="flex items-start gap-4">
+      <section className="py-20">
+        <div className="container mx-auto px-4">
+          <div className="grid lg:grid-cols-5 gap-10 max-w-6xl mx-auto">
+            {/* Contact Info */}
+            <div className="lg:col-span-2 space-y-6" data-animate="slideInLeft" data-delay="0s">
+              <div className="bg-card rounded-2xl p-8 border border-border shadow-card">
+                <h3 className="font-heading text-xl font-bold mb-6">Contact Information</h3>
+                <div className="space-y-5">
+                  <div className="flex items-start gap-4">
                       <div className="w-10 h-10 bg-secondary rounded-lg flex items-center justify-center text-primary shrink-0">
                         <Phone className="w-5 h-5" />
                       </div>
@@ -41,7 +41,7 @@ const Contact = () => {
                         <a href="tel:+918008249666" className="font-medium hover:text-primary transition-colors">+91 80082 49666</a>
                       </div>
                     </div>
-                    <div className="flex items-start gap-4">
+                    <div className="flex items-start gap-4" data-animate="fadeInUp" data-delay="0.1s">
                       <div className="w-10 h-10 bg-secondary rounded-lg flex items-center justify-center text-primary shrink-0">
                         <Mail className="w-5 h-5" />
                       </div>
@@ -50,7 +50,7 @@ const Contact = () => {
                         <a href="mailto:info@pravaasinternational.com" className="font-medium hover:text-primary transition-colors">info@pravaasinternational.com</a>
                       </div>
                     </div>
-                    <div className="flex items-start gap-4">
+                    <div className="flex items-start gap-4" data-animate="fadeInUp" data-delay="0.2s">
                       <div className="w-10 h-10 bg-secondary rounded-lg flex items-center justify-center text-primary shrink-0">
                         <MapPin className="w-5 h-5" />
                       </div>
@@ -59,7 +59,7 @@ const Contact = () => {
                         <p className="font-medium">SS Complex, Above Hyundai Car Showroom, Vidyanagar, Bhadradri Kotthagudem, Telangana, 507101</p>
                       </div>
                     </div>
-                    <div className="flex items-start gap-4">
+                    <div className="flex items-start gap-4" data-animate="fadeInUp" data-delay="0.3s">
                       <div className="w-10 h-10 bg-[hsl(142,70%,45%)] rounded-lg flex items-center justify-center text-primary-foreground shrink-0">
                         <MessageCircle className="w-5 h-5" />
                       </div>
@@ -74,7 +74,7 @@ const Contact = () => {
                 </div>
 
                 {/* Our Branches */}
-                <div className="bg-card rounded-2xl border border-border shadow-card overflow-hidden">
+                <div className="bg-card rounded-2xl border border-border shadow-card overflow-hidden" data-animate="slideInLeft" data-delay="0.2s">
                   <div className="bg-hero-gradient px-8 py-5">
                     <h3 className="font-heading text-xl font-bold text-primary-foreground flex items-center gap-2">
                       <Building2 className="w-5 h-5" />
@@ -100,8 +100,8 @@ const Contact = () => {
                     <div>
                       <p className="text-xs font-bold uppercase tracking-wider text-muted-foreground mb-3">We Are Also Available In</p>
                       <div className="grid grid-cols-2 gap-2">
-                        {["Hyderabad", "Karimnagar", "Warangal", "Nalgonda"].map((city) => (
-                          <div key={city} className="flex items-center gap-2 bg-secondary/60 rounded-lg px-3 py-2.5 border border-border hover:border-primary/30 hover:bg-secondary transition-colors">
+                        {["Hyderabad", "Karimnagar", "Warangal", "Nalgonda"].map((city, i) => (
+                          <div key={city} className="flex items-center gap-2 bg-secondary/60 rounded-lg px-3 py-2.5 border border-border hover:border-primary/30 hover:bg-secondary transition-colors" data-animate="fadeInUp" data-delay={`${0.3 + i * 0.1}s`}>
                             <MapPin className="w-3.5 h-3.5 text-accent shrink-0" />
                             <p className="text-sm font-medium text-foreground">{city}</p>
                           </div>
@@ -111,13 +111,13 @@ const Contact = () => {
                   </div>
                 </div>
 
-              </div>
+            </div>
 
-              {/* Contact Form */}
-              <div className="lg:col-span-3">
-                <div className="bg-card rounded-2xl p-8 md:p-10 border border-border shadow-elevated">
-                  <h3 className="font-heading text-2xl font-bold mb-2">Send Us a Message</h3>
-                  <p className="text-muted-foreground text-sm mb-8">Fill out the form and we'll get back to you within 24 hours</p>
+            {/* Contact Form */}
+            <div className="lg:col-span-3" data-animate="slideInRight" data-delay="0.2s">
+              <div className="bg-card rounded-2xl p-8 md:p-10 border border-border shadow-elevated">
+                <h3 className="font-heading text-2xl font-bold mb-2">Send Us a Message</h3>
+                <p className="text-muted-foreground text-sm mb-8">Fill out the form and we'll get back to you within 24 hours</p>
 
                   {submitted ? (
                     <div className="text-center py-16">
@@ -188,22 +188,20 @@ const Contact = () => {
                       </button>
                     </form>
                   )}
-                </div>
               </div>
             </div>
           </div>
-        </section>
-      </AnimatedSection>
+        </div>
+      </section>
 
       {/* Map Section */}
-      <AnimatedSection>
-        <section className="py-16 bg-secondary/30">
-          <div className="container mx-auto px-4 max-w-6xl">
-            <div className="text-center mb-8">
-              <h2 className="font-heading text-3xl md:text-4xl font-bold mb-3">Find Us on the Map</h2>
-              <p className="text-muted-foreground">Visit our head office in Kothagudem, Khammam</p>
-            </div>
-            <div className="bg-card rounded-2xl overflow-hidden border border-border shadow-elevated h-[400px]">
+      <section className="py-16 bg-secondary/30">
+        <div className="container mx-auto px-4 max-w-6xl">
+          <div className="text-center mb-8">
+            <h2 className="font-heading text-3xl md:text-4xl font-bold mb-3" data-animate="fadeInDown">Find Us on the Map</h2>
+            <p className="text-muted-foreground" data-animate="fadeInUp" data-delay="0.2s">Visit our head office in Kothagudem, Khammam</p>
+          </div>
+          <div className="bg-card rounded-2xl overflow-hidden border border-border shadow-elevated h-[400px]" data-animate="slideInUp" data-delay="0.3s">
               <iframe
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d951.1053845499807!2d80.61188776956023!3d17.535105898961096!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a34173cefbfabe9%3A0x4bee78705a2d401b!2sPravaas%20International%20Education%20Consultancy!5e0!3m2!1sen!2sin!4v1771159686285!5m2!1sen!2sin"
                 width="100%"
@@ -214,10 +212,9 @@ const Contact = () => {
                 referrerPolicy="no-referrer-when-downgrade"
                 title="Our Location"
               />
-            </div>
           </div>
-        </section>
-      </AnimatedSection>
+        </div>
+      </section>
     </Layout>
   );
 };
