@@ -1,8 +1,7 @@
 import { Link } from "react-router-dom";
 import { GraduationCap, Briefcase, Globe, BookOpen, ArrowRight } from "lucide-react";
 import Layout from "@/components/Layout";
-import AnimatedSection from "@/components/AnimatedSection";
-import { StaggeredList, StaggeredItem } from "@/components/StaggeredList";
+import useScrollReveal from "@/hooks/useScrollReveal";
 import ukHero from "@/assets/uk-hero.jpg";
 import australiaHero from "@/assets/australia-hero.jpg";
 import germanyHero from "@/assets/germany-hero.jpg";
@@ -57,6 +56,7 @@ const countries = [
 ];
 
 const Masters = () => {
+  useScrollReveal();
   return (
     <Layout>
       {/* Hero */}
@@ -66,30 +66,27 @@ const Masters = () => {
           <div className="absolute inset-0 bg-overlay-dark" />
         </div>
         <div className="container mx-auto px-4 text-center text-primary-foreground relative z-10">
-          <AnimatedSection>
-            <span className="inline-block px-4 py-1.5 bg-card/20 text-sm font-medium rounded-full mb-4 backdrop-blur-sm">🎓 Postgraduate Programs</span>
-            <h1 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold mb-4">Masters Programs Abroad</h1>
-            <p className="text-lg md:text-xl text-primary-foreground/80 max-w-2xl mx-auto mb-8">
+          <span className="inline-block px-4 py-1.5 bg-card/20 text-sm font-medium rounded-full mb-4 backdrop-blur-sm" data-animate="fadeInDown">🎓 Postgraduate Programs</span>
+          <h1 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold mb-4" data-animate="fadeInUp">Masters Programs Abroad</h1>
+          <p className="text-lg md:text-xl text-primary-foreground/80 max-w-2xl mx-auto mb-8" data-animate="fadeInUp" data-delay="0.1s">
               Advance your career with globally recognized postgraduate degrees from top universities
             </p>
             <div className="flex flex-wrap justify-center gap-4">
-              <Link to="/contact" className="px-8 py-4 bg-card text-primary font-semibold rounded-xl hover:bg-background transition-colors text-lg shadow-elevated">
+              <Link to="/contact" className="px-8 py-4 bg-card text-primary font-semibold rounded-xl hover:bg-background transition-colors text-lg shadow-elevated" data-animate="slideInLeft" data-delay="0.2s">
                 Free Counseling
               </Link>
-              <Link to="/contact" className="px-8 py-4 border-2 border-primary-foreground/30 text-primary-foreground font-semibold rounded-xl hover:bg-primary-foreground/10 transition-colors text-lg">
+              <Link to="/contact" className="px-8 py-4 border-2 border-primary-foreground/30 text-primary-foreground font-semibold rounded-xl hover:bg-primary-foreground/10 transition-colors text-lg" data-animate="slideInRight" data-delay="0.2s">
                 Apply Now
               </Link>
             </div>
-          </AnimatedSection>
         </div>
       </section>
 
       {/* Country Sections */}
       {countries.map((country, i) => (
-        <section key={country.name} className={`py-20 ${i % 2 === 1 ? "bg-warm-gradient" : ""}`}>
+        <section key={country.name} className={`py-20 ${i % 2 === 1 ? "bg-warm-gradient" : ""}`} data-animate={i % 2 === 0 ? "slideInLeft" : "slideInRight"} data-delay={`${0.1 + i * 0.2}s`}>
           <div className="container mx-auto px-4">
-            <AnimatedSection>
-              <div className={`flex flex-col ${i % 2 === 0 ? "lg:flex-row" : "lg:flex-row-reverse"} gap-10 items-center`}>
+            <div className={`flex flex-col ${i % 2 === 0 ? "lg:flex-row" : "lg:flex-row-reverse"} gap-10 items-center`}>
                 {/* Image */}
                 <div className="lg:w-1/2">
                   {country.image ? (
@@ -119,18 +116,16 @@ const Masters = () => {
                   </Link>
                 </div>
               </div>
-            </AnimatedSection>
           </div>
         </section>
       ))}
 
       {/* CTA */}
-      <AnimatedSection>
-        <section className="py-20">
-          <div className="container mx-auto px-4">
-            <div className="bg-hero-gradient rounded-3xl p-12 md:p-16 text-center text-primary-foreground">
-              <h2 className="font-heading text-3xl md:text-4xl font-bold mb-4">Start Your Masters Journey Today</h2>
-              <p className="text-primary-foreground/80 max-w-xl mx-auto mb-8 text-lg">Get expert guidance on the best postgraduate programs abroad</p>
+      <section className="py-20" data-animate="slideInUp" data-delay="0.1s">
+        <div className="container mx-auto px-4">
+          <div className="bg-hero-gradient rounded-3xl p-12 md:p-16 text-center text-primary-foreground">
+            <h2 className="font-heading text-3xl md:text-4xl font-bold mb-4" data-animate="fadeInDown">Start Your Masters Journey Today</h2>
+            <p className="text-primary-foreground/80 max-w-xl mx-auto mb-8 text-lg" data-animate="fadeInUp">Get expert guidance on the best postgraduate programs abroad</p>
               <div className="flex flex-wrap justify-center gap-4">
                 <Link to="/contact" className="px-10 py-4 bg-card text-primary font-bold rounded-xl hover:bg-background transition-colors text-lg shadow-elevated">
                   Free Counseling
@@ -142,7 +137,6 @@ const Masters = () => {
             </div>
           </div>
         </section>
-      </AnimatedSection>
     </Layout>
   );
 };

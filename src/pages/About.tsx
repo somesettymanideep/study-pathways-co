@@ -1,8 +1,6 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect } from "react";
 import { CheckCircle2, Target, Eye, Award, Quote, UserCheck, BookOpen, FileText, Stamp, Plane, GraduationCap, Star, ChevronLeft, ChevronRight } from "lucide-react";
 import Layout from "@/components/Layout";
-import AnimatedSection from "@/components/AnimatedSection";
-import { StaggeredList, StaggeredItem } from "@/components/StaggeredList";
 import { Link } from "react-router-dom";
 import aboutHero from "@/assets/about-hero.jpg";
 import founderPortrait from "@/assets/founder-portrait.jpg";
@@ -81,39 +79,32 @@ const About = () => {
 
       {/* Mission & Vision */}
       <section className="py-20">
-        <div className="container mx-auto px-4">
-          <StaggeredList className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto" staggerDelay={0.15}>
-            <StaggeredItem>
-              <div className="bg-card rounded-2xl p-10 border border-border shadow-card h-full">
-                <div className="w-14 h-14 rounded-xl flex items-center justify-center mb-5" style={{ backgroundColor: 'hsl(43, 80%, 92%)' }}>
-                  <Target className="w-7 h-7" style={{ color: 'hsl(43, 80%, 52%)' }} />
-                </div>
-                <h2 className="font-heading text-2xl font-bold mb-4">Our Mission</h2>
-                <p className="text-muted-foreground leading-relaxed">
-                  To provide honest, personalized, and end-to-end study abroad guidance, helping students make informed academic and career decisions.
-                </p>
-              </div>
-            </StaggeredItem>
-            <StaggeredItem>
-              <div className="bg-card rounded-2xl p-10 border border-border shadow-card h-full">
-                <div className="w-14 h-14 rounded-xl flex items-center justify-center mb-5" style={{ backgroundColor: 'hsl(225, 55%, 92%)' }}>
-                  <Eye className="w-7 h-7" style={{ color: 'hsl(225, 55%, 28%)' }} />
-                </div>
-                <h2 className="font-heading text-2xl font-bold mb-4">Our Vision</h2>
-                <p className="text-muted-foreground leading-relaxed">
-                  To guide students with transparency and integrity towards globally recognized education and successful international careers.
-                </p>
-              </div>
-            </StaggeredItem>
-          </StaggeredList>
+        <div className="container mx-auto px-4 grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+          <div data-animate="fadeInUp" data-delay="0s" className="bg-card rounded-2xl p-10 border border-border shadow-card h-full">
+            <div className="w-14 h-14 rounded-xl flex items-center justify-center mb-5" style={{ backgroundColor: 'hsl(43, 80%, 92%)' }}>
+              <Target className="w-7 h-7" style={{ color: 'hsl(43, 80%, 52%)' }} />
+            </div>
+            <h2 className="font-heading text-2xl font-bold mb-4">Our Mission</h2>
+            <p className="text-muted-foreground leading-relaxed">
+              To provide honest, personalized, and end-to-end study abroad guidance, helping students make informed academic and career decisions.
+            </p>
+          </div>
+          <div data-animate="fadeInUp" data-delay="0.15s" className="bg-card rounded-2xl p-10 border border-border shadow-card h-full">
+            <div className="w-14 h-14 rounded-xl flex items-center justify-center mb-5" style={{ backgroundColor: 'hsl(225, 55%, 92%)' }}>
+              <Eye className="w-7 h-7" style={{ color: 'hsl(225, 55%, 28%)' }} />
+            </div>
+            <h2 className="font-heading text-2xl font-bold mb-4">Our Vision</h2>
+            <p className="text-muted-foreground leading-relaxed">
+              To guide students with transparency and integrity towards globally recognized education and successful international careers.
+            </p>
+          </div>
         </div>
       </section>
 
       {/* Founder's Message */}
       <section className="py-20 bg-warm-gradient overflow-hidden">
-        <div className="container mx-auto px-4">
-          <AnimatedSection direction="left">
-            <div className="max-w-5xl mx-auto">
+        <div className="container mx-auto px-4" data-animate="slideInLeft">
+          <div className="max-w-5xl mx-auto">
               <div className="relative grid md:grid-cols-5 gap-0 items-stretch">
                 {/* Image Column */}
                 <div className="md:col-span-2 relative">
@@ -160,14 +151,12 @@ const About = () => {
                 </div>
               </div>
             </div>
-          </AnimatedSection>
         </div>
       </section>
 
       {/* Why Choose Pravaas - Journey Steps */}
       <section className="py-24 bg-warm-gradient">
         <div className="container mx-auto px-4 md:px-6 lg:px-8">
-          <AnimatedSection>
             <div className="flex flex-col items-center mb-16">
               <span className="block text-xs font-bold tracking-[0.2em] uppercase text-accent mb-3" data-animate="fadeInDown">Your Journey With Us</span>
               <h2 className="font-heading text-3xl md:text-4xl font-bold text-center mb-4" data-animate="fadeInUp">Why Choose <span className="text-accent">Pravaas?</span></h2>
@@ -175,13 +164,12 @@ const About = () => {
                 A seamless five-step process designed to turn your study abroad dream into reality
               </p>
             </div>
-          </AnimatedSection>
 
           {/* Steps grid */}
-          <StaggeredList className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8 lg:gap-5 max-w-6xl mx-auto" staggerDelay={0.1}>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8 lg:gap-5 max-w-6xl mx-auto">
             {journeySteps.map((item, i) => (
-              <StaggeredItem key={i}>
                 <div
+                  key={i}
                   className="relative flex flex-col items-center text-center group"
                   data-animate={i % 2 === 0 ? "fadeInUp" : "fadeInDown"}
                   data-delay={`${i * 0.15}s`}
@@ -211,9 +199,8 @@ const About = () => {
                     </div>
                   )}
                 </div>
-              </StaggeredItem>
             ))}
-          </StaggeredList>
+          </div>
         </div>
       </section>
 
@@ -226,34 +213,30 @@ const About = () => {
         </div>
 
         <div className="container mx-auto px-4 relative z-10">
-          <AnimatedSection>
-            <h2 className="font-heading text-3xl md:text-4xl font-bold text-center mb-4 text-primary-foreground" data-animate="fadeInDown">Our Achievements</h2>
-            <p className="text-center text-primary-foreground/70 mb-16 max-w-xl mx-auto" data-animate="fadeInUp">Numbers that reflect our commitment to student success</p>
-          </AnimatedSection>
-          <StaggeredList className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-5xl mx-auto" staggerDelay={0.12}>
+          <h2 className="font-heading text-3xl md:text-4xl font-bold text-center mb-4 text-primary-foreground" data-animate="fadeInDown">Our Achievements</h2>
+          <p className="text-center text-primary-foreground/70 mb-16 max-w-xl mx-auto" data-animate="fadeInUp">Numbers that reflect our commitment to student success</p>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-5xl mx-auto">
             {[
               { end: 500, suffix: "+", label: "Student Visa", icon: <Stamp className="w-6 h-6" /> },
               { end: 50, suffix: "+", label: "Universities", icon: <GraduationCap className="w-6 h-6" /> },
               { end: 6, suffix: "+", label: "Years of Experience", icon: <Award className="w-6 h-6" /> },
               { end: 99, suffix: "%", label: "Visa Success Rate", icon: <CheckCircle2 className="w-6 h-6" /> },
             ].map((stat, i) => (
-              <StaggeredItem key={i}>
+              <div key={i} data-animate="fadeInUp" data-delay={`${0.1 + i * 0.1}s`}>
                 <StatCircle end={stat.end} suffix={stat.suffix} label={stat.label} icon={stat.icon} />
-              </StaggeredItem>
+              </div>
             ))}
-          </StaggeredList>
+          </div>
         </div>
       </section>
 
       {/* Student Testimonials */}
       <section className="py-20 bg-warm-gradient">
         <div className="container mx-auto px-4">
-          <AnimatedSection>
             <div className="text-center mb-12">
               <h2 className="font-heading text-3xl md:text-4xl font-bold mb-4" data-animate="fadeInLeft">Student <span className="text-accent">Testimonials</span></h2>
               <p className="text-muted-foreground max-w-xl mx-auto" data-animate="fadeInRight">Hear from students who achieved their dreams with Pravaas</p>
             </div>
-          </AnimatedSection>
 
           <div className="max-w-2xl mx-auto relative">
             <div className="overflow-hidden rounded-2xl">
@@ -311,8 +294,7 @@ const About = () => {
       </section>
 
       {/* CTA */}
-      <AnimatedSection>
-        <section className="py-20">
+        <section className="py-20" data-animate="fadeInUp" data-delay="0.1s">
           <div className="container mx-auto px-4 text-center">
             <h2 className="font-heading text-3xl font-bold mb-4" data-animate="fadeInDown">Ready to Get Started?</h2>
             <p className="text-muted-foreground mb-8 max-w-md mx-auto" data-animate="fadeInUp">Book your free consultation and take the first step towards your global education.</p>
@@ -321,7 +303,6 @@ const About = () => {
             </Link>
           </div>
         </section>
-      </AnimatedSection>
     </Layout>
   );
 };

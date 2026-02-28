@@ -1,8 +1,7 @@
 import { Link } from "react-router-dom";
 import { GraduationCap, Calendar, Wallet, ArrowRight } from "lucide-react";
 import Layout from "@/components/Layout";
-import AnimatedSection from "@/components/AnimatedSection";
-import { StaggeredList, StaggeredItem } from "@/components/StaggeredList";
+import useScrollReveal from "@/hooks/useScrollReveal";
 import ukHero from "@/assets/uk-hero.jpg";
 import australiaHero from "@/assets/australia-hero.jpg";
 import germanyHero from "@/assets/germany-hero.jpg";
@@ -76,6 +75,7 @@ const intakeMonths = [
 
 
 const Bachelors = () => {
+  useScrollReveal();
   return (
     <Layout>
       {/* Hero */}
@@ -85,30 +85,27 @@ const Bachelors = () => {
           <div className="absolute inset-0 bg-overlay-dark" />
         </div>
         <div className="container mx-auto px-4 text-center text-primary-foreground relative z-10">
-          <AnimatedSection>
-            <span className="inline-block px-4 py-1.5 bg-card/20 text-sm font-medium rounded-full mb-4 backdrop-blur-sm">🎓 Undergraduate Programs</span>
-            <h1 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold mb-4">Bachelors Programs Abroad</h1>
-            <p className="text-lg md:text-xl text-primary-foreground/80 max-w-2xl mx-auto mb-8">
+          <span className="inline-block px-4 py-1.5 bg-card/20 text-sm font-medium rounded-full mb-4 backdrop-blur-sm" data-animate="fadeInDown">🎓 Undergraduate Programs</span>
+          <h1 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold mb-4" data-animate="fadeInUp">Bachelors Programs Abroad</h1>
+<p className="text-lg md:text-xl text-primary-foreground/80 max-w-2xl mx-auto mb-8" data-animate="fadeInUp" data-delay="0.1s">
               Launch your career with a world-class undergraduate degree from leading global universities
             </p>
             <div className="flex flex-wrap justify-center gap-4">
-              <Link to="/contact" className="px-8 py-4 bg-card text-primary font-semibold rounded-xl hover:bg-background transition-colors text-lg shadow-elevated">
+              <Link to="/contact" className="px-8 py-4 bg-card text-primary font-semibold rounded-xl hover:bg-background transition-colors text-lg shadow-elevated" data-animate="slideInLeft" data-delay="0.2s">
                 Free Counseling
               </Link>
-              <Link to="/contact" className="px-8 py-4 border-2 border-primary-foreground/30 text-primary-foreground font-semibold rounded-xl hover:bg-primary-foreground/10 transition-colors text-lg">
+              <Link to="/contact" className="px-8 py-4 border-2 border-primary-foreground/30 text-primary-foreground font-semibold rounded-xl hover:bg-primary-foreground/10 transition-colors text-lg" data-animate="slideInRight" data-delay="0.2s">
                 Apply Now
               </Link>
             </div>
-          </AnimatedSection>
         </div>
       </section>
 
       {/* Country Sections */}
       {countries.map((country, i) => (
-        <section key={country.name} className={`py-20 ${i % 2 === 1 ? "bg-warm-gradient" : ""}`}>
+        <section key={country.name} className={`py-20 ${i % 2 === 1 ? "bg-warm-gradient" : ""}`} data-animate={i % 2 === 0 ? "slideInLeft" : "slideInRight"} data-delay={`${0.1 + i * 0.2}s`}>
           <div className="container mx-auto px-4">
-            <AnimatedSection>
-              <div className={`flex flex-col ${i % 2 === 0 ? "lg:flex-row" : "lg:flex-row-reverse"} gap-10 items-center`}>
+            <div className={`flex flex-col ${i % 2 === 0 ? "lg:flex-row" : "lg:flex-row-reverse"} gap-10 items-center`}>
                 <div className="lg:w-1/2">
                   {country.image ? (
                     <img src={country.image} alt={`Study in ${country.name}`} className="rounded-2xl shadow-elevated w-full h-72 lg:h-96 object-cover" />
@@ -136,7 +133,6 @@ const Bachelors = () => {
                   </Link>
                 </div>
               </div>
-            </AnimatedSection>
           </div>
         </section>
       ))}
@@ -144,53 +140,46 @@ const Bachelors = () => {
       {/* Popular Courses */}
       <section className="py-20 bg-warm-gradient">
         <div className="container mx-auto px-4">
-          <AnimatedSection>
-            <div className="text-center mb-12">
-              <h2 className="font-heading text-3xl md:text-4xl font-bold mb-4">Popular Undergraduate Courses</h2>
-              <p className="text-muted-foreground max-w-xl mx-auto">Explore in-demand courses offered at top universities worldwide</p>
-            </div>
-          </AnimatedSection>
-          <StaggeredList className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 max-w-5xl mx-auto" staggerDelay={0.06}>
+          <div className="text-center mb-12">
+            <h2 className="font-heading text-3xl md:text-4xl font-bold mb-4" data-animate="fadeInDown">Popular Undergraduate Courses</h2>
+            <p className="text-muted-foreground max-w-xl mx-auto" data-animate="fadeInUp">Explore in-demand courses offered at top universities worldwide</p>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 max-w-5xl mx-auto">
             {popularCourses.map((course, i) => (
-              <StaggeredItem key={i}>
-                <div className="bg-card rounded-xl p-5 border border-border shadow-card text-center hover:shadow-soft transition-shadow">
-                  <GraduationCap className="w-6 h-6 text-primary mx-auto mb-2" />
-                  <p className="text-sm font-medium">{course}</p>
-                </div>
-              </StaggeredItem>
+              <div key={i} className="bg-card rounded-xl p-5 border border-border shadow-card text-center hover:shadow-soft transition-shadow" data-animate="fadeInUp" data-delay={`${0.1 + i * 0.08}s`}>
+                <GraduationCap className="w-6 h-6 text-primary mx-auto mb-2" />
+                <p className="text-sm font-medium">{course}</p>
+              </div>
             ))}
-          </StaggeredList>
+          </div>
         </div>
       </section>
 
       {/* Intake Months */}
       <section className="py-20">
         <div className="container mx-auto px-4">
-          <AnimatedSection>
-            <div className="text-center mb-12">
-              <h2 className="font-heading text-3xl md:text-4xl font-bold mb-4">Intake Months</h2>
-              <p className="text-muted-foreground max-w-xl mx-auto">Plan your application timeline</p>
-            </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto">
-              {intakeMonths.map((item) => (
-                <div key={item.country} className="bg-card rounded-2xl p-6 border border-border shadow-card text-center">
-                  <Calendar className="w-8 h-8 text-primary mx-auto mb-3" />
-                  <h3 className="font-heading text-lg font-bold mb-3">{item.country}</h3>
-                  <p className="text-sm"><span className="font-semibold text-primary">Primary:</span> {item.primary}</p>
-                  <p className="text-sm mt-1"><span className="font-semibold text-muted-foreground">Secondary:</span> {item.secondary}</p>
-                </div>
-              ))}
-            </div>
-          </AnimatedSection>
+          <div className="text-center mb-12">
+            <h2 className="font-heading text-3xl md:text-4xl font-bold mb-4" data-animate="fadeInDown">Intake Months</h2>
+            <p className="text-muted-foreground max-w-xl mx-auto" data-animate="fadeInUp">Plan your application timeline</p>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto">
+            {intakeMonths.map((item, i) => (
+              <div key={item.country} className="bg-card rounded-2xl p-6 border border-border shadow-card text-center" data-animate="slideInUp" data-delay={`${0.1 + i * 0.1}s`}>
+                <Calendar className="w-8 h-8 text-primary mx-auto mb-3" />
+                <h3 className="font-heading text-lg font-bold mb-3">{item.country}</h3>
+                <p className="text-sm"><span className="font-semibold text-primary">Primary:</span> {item.primary}</p>
+                <p className="text-sm mt-1"><span className="font-semibold text-muted-foreground">Secondary:</span> {item.secondary}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
       {/* CTA */}
-      <AnimatedSection>
-        <section className="py-20">
-          <div className="container mx-auto px-4">
-            <div className="bg-hero-gradient rounded-3xl p-12 md:p-16 text-center text-primary-foreground">
-              <h2 className="font-heading text-3xl md:text-4xl font-bold mb-4">Start Your Bachelors Journey Today</h2>
-              <p className="text-primary-foreground/80 max-w-xl mx-auto mb-8 text-lg">Get expert guidance on the best undergraduate programs abroad</p>
+      <section className="py-20" data-animate="slideInUp" data-delay="0.1s">
+        <div className="container mx-auto px-4">
+          <div className="bg-hero-gradient rounded-3xl p-12 md:p-16 text-center text-primary-foreground">
+            <h2 className="font-heading text-3xl md:text-4xl font-bold mb-4" data-animate="fadeInDown">Start Your Bachelors Journey Today</h2>
+            <p className="text-primary-foreground/80 max-w-xl mx-auto mb-8 text-lg" data-animate="fadeInUp">Get expert guidance on the best undergraduate programs abroad</p>
               <div className="flex flex-wrap justify-center gap-4">
                 <Link to="/contact" className="px-10 py-4 bg-card text-primary font-bold rounded-xl hover:bg-background transition-colors text-lg shadow-elevated">
                   Free Counseling
@@ -202,7 +191,6 @@ const Bachelors = () => {
             </div>
           </div>
         </section>
-      </AnimatedSection>
     </Layout>
   );
 };
