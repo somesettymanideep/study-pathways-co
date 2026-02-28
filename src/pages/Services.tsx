@@ -7,6 +7,7 @@ import {
 import Layout from "@/components/Layout";
 import useScrollReveal from "@/hooks/useScrollReveal";
 import { useCountUp } from "@/hooks/useCountUp";
+import { TypewriterText } from "@/components/TypewriterText";
 import servicesHero from "@/assets/services-hero.jpg";
 import ukHero from "@/assets/uk-hero.jpg";
 import australiaHero from "@/assets/australia-hero.jpg";
@@ -77,8 +78,8 @@ const Services = () => {
         <img src={servicesHero} alt="International students on campus" className="absolute inset-0 w-full h-full object-cover" />
         <div className="absolute inset-0 bg-overlay-dark" />
         <div className="relative container mx-auto px-4 py-20 text-center">
-          <h1 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold text-background mb-6 animate-fade-in">
-            Study Abroad Consultancy Services
+          <h1 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold text-background mb-6">
+            <TypewriterText text="Study Abroad Consultancy Services" speed={40} delay={0.2} highlightCount={2} highlightClassName="text-[#e8ad25]" />
           </h1>
           <p className="text-lg md:text-xl text-background/80 mb-8 max-w-2xl mx-auto animate-fade-in">
             Your trusted partner for global education success
@@ -133,11 +134,10 @@ const Services = () => {
             {expertiseCards.map((card, i) => (
               <div key={i} className="bg-card rounded-2xl border border-border shadow-card p-8 text-center hover:shadow-elevated hover:-translate-y-1 transition-all" data-animate="slideInUp" data-delay={`${0.1 + i * 0.15}s`}>
                 <div
-                  className={`w-16 h-16 rounded-2xl mx-auto mb-5 flex items-center justify-center ${
-                    card.colorScheme === "yellow"
-                      ? "bg-accent/15 text-accent"
-                      : "bg-primary/10 text-primary"
-                  }`}
+                  className={`w-16 h-16 rounded-2xl mx-auto mb-5 flex items-center justify-center ${card.colorScheme === "yellow"
+                    ? "bg-accent/15 text-accent"
+                    : "bg-primary/10 text-primary"
+                    }`}
                 >
                   {card.icon}
                 </div>
@@ -194,7 +194,7 @@ const Services = () => {
                     <img src={dest.flag} alt={`${dest.name} flag`} className="w-full h-full object-cover" />
                   </div>
                   <h3 className="font-heading text-lg font-bold">{dest.name}</h3>
-                 
+
                 </div>
               </div>
             ))}

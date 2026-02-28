@@ -191,7 +191,7 @@ const Index = () => {
             </AnimatedSection>
             <AnimatedSection key={`h-${currentSlide}`} direction="up" delay={0.1} className="">
               <h1 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold text-background leading-tight mb-6 min-h-[120px] md:min-h-[140px] flex items-end md:items-start md:block">
-                <TypewriterText key={currentSlide} text={slide.heading} speed={40} delay={0.2} highlightCount={2} highlightClassName="text-[#0a3250]" />
+                <TypewriterText key={currentSlide} text={slide.heading} speed={40} delay={0.2} highlightCount={2} highlightClassName="text-[#e8ad25]" />
               </h1>
             </AnimatedSection>
             <AnimatedSection key={`p-${currentSlide}`} direction="up" delay={0.2} className="">

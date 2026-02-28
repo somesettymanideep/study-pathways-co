@@ -43,7 +43,7 @@ const MBBS = () => {
         <div className="container mx-auto px-4 text-center text-primary-foreground relative z-10">
           <span className="inline-block px-4 py-1.5 bg-card/20 text-sm font-medium rounded-full mb-4 backdrop-blur-sm" data-animate="fadeInDown">🩺 Medical Education Abroad</span>
           <h1 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold mb-4">
-            <TypewriterText text="Study MBBS Abroad" speed={40} delay={0.2} highlightCount={2} highlightClassName="text-[#0a3250]" />
+            <TypewriterText text="Study MBBS Abroad" speed={40} delay={0.2} highlightCount={2} highlightClassName="text-[#e8ad25]" />
           </h1>
           <p className="text-lg md:text-xl text-primary-foreground/80 max-w-2xl mx-auto mb-8" data-animate="fadeInUp" data-delay="0.1s">
             Affordable, globally recognized medical education with complete support from Pravaas International

@@ -19,7 +19,7 @@ const Contact = () => {
         </div>
         <div className="container mx-auto px-4 text-center relative z-10">
           <h1 className="font-heading text-4xl md:text-5xl font-bold mb-6 text-primary-foreground">
-            <TypewriterText text="Get in Touch" speed={40} delay={0.2} highlightCount={2} highlightClassName="text-[#0a3250]" />
+            <TypewriterText text="Get in Touch" speed={40} delay={0.2} highlightCount={2} highlightClassName="text-[#e8ad25]" />
           </h1>
           <p className="text-lg text-primary-foreground/80 max-w-2xl mx-auto animate-fade-in-up" style={{ animationDelay: "0.1s" }}>
             Have questions about studying abroad? Reach out to us and our expert counsellors will guide you.

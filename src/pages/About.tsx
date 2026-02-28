@@ -72,7 +72,7 @@ const About = () => {
         </div>
         <div className="container mx-auto px-4 text-center relative z-10">
           <h1 className="font-heading text-4xl md:text-5xl font-bold mb-6 text-primary-foreground">
-            <TypewriterText text="About Pravaas International" speed={40} delay={0.2} highlightCount={2} highlightClassName="text-[#0a3250]" />
+            <TypewriterText text="About Pravaas International" speed={40} delay={0.2} highlightCount={2} highlightClassName="text-[#e8ad25]" />
           </h1>
           <p className="text-lg text-primary-foreground/80 max-w-2xl mx-auto" data-animate="fadeInUp" data-delay="0.2s">
             We are a trusted education consultancy dedicated to helping students achieve their dream of studying abroad with transparency and integrity.
