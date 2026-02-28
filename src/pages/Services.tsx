@@ -203,9 +203,7 @@ const Services = () => {
                         <img src={dest.flag} alt={`${dest.name} flag`} className="w-full h-full object-cover" />
                       </div>
                       <h3 className="font-heading text-lg font-bold">{dest.name}</h3>
-                      <span className="text-primary text-sm font-semibold flex items-center gap-1 mt-2 group-hover:gap-2 transition-all">
-                        Explore <ArrowRight className="w-4 h-4" />
-                      </span>
+                     
                     </div>
                   </div>
                 </StaggeredItem>
