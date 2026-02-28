@@ -1,8 +1,7 @@
 import { useParams, Link, Navigate } from "react-router-dom";
 import { ArrowRight, ChevronRight } from "lucide-react";
 import Layout from "@/components/Layout";
-import AnimatedSection from "@/components/AnimatedSection";
-import { StaggeredList, StaggeredItem } from "@/components/StaggeredList";
+import useScrollReveal from "@/hooks/useScrollReveal";
 import {
   Accordion,
   AccordionContent,
@@ -16,6 +15,7 @@ import ctaBg from "@/assets/cta-bg.jpg";
 const ServiceDetail = () => {
   const { slug } = useParams<{ slug: string }>();
   const service = serviceDetails.find((s) => s.slug === slug);
+  useScrollReveal();
 
   if (!service) return <Navigate to="/services" replace />;
 
@@ -44,83 +44,74 @@ const ServiceDetail = () => {
       </section>
 
       {/* Description */}
-      <AnimatedSection>
-        <section className="py-16 md:py-20">
-          <div className="container mx-auto px-4 max-w-4xl">
-            <span className="text-accent font-bold text-sm tracking-widest uppercase mb-3 block">Overview</span>
-            <h2 className="font-heading text-2xl md:text-3xl font-bold mb-8">What We Offer</h2>
-            <div className="space-y-5">
-              {service.description.map((para, i) => (
-                <p key={i} className="text-muted-foreground leading-relaxed text-base md:text-lg">{para}</p>
-              ))}
-            </div>
+      <section className="py-16 md:py-20">
+        <div className="container mx-auto px-4 max-w-4xl">
+          <span className="text-accent font-bold text-sm tracking-widest uppercase mb-3 block" data-animate="fadeInDown">Overview</span>
+          <h2 className="font-heading text-2xl md:text-3xl font-bold mb-8" data-animate="fadeInUp">What We Offer</h2>
+          <div className="space-y-5">
+            {service.description.map((para, i) => (
+              <p key={i} className="text-muted-foreground leading-relaxed text-base md:text-lg" data-animate="fadeInUp" data-delay={`${0.1 + i * 0.1}s`}>{para}</p>
+            ))}
           </div>
-        </section>
-      </AnimatedSection>
+        </div>
+      </section>
 
       {/* Highlights */}
-      <AnimatedSection>
-        <section className="py-16 md:py-20 bg-warm-gradient">
-          <div className="container mx-auto px-4">
-            <div className="text-center mb-12">
-              <span className="text-accent font-bold text-sm tracking-widest uppercase mb-3 block">Key Highlights</span>
-              <h2 className="font-heading text-2xl md:text-3xl font-bold">Why Choose This Service</h2>
-            </div>
-            <StaggeredList className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto" staggerDelay={0.1}>
-              {service.highlights.map((h, i) => (
-                <StaggeredItem key={i}>
-                  <div className="bg-card rounded-2xl border border-border shadow-card p-6 hover:shadow-elevated hover:-translate-y-1 transition-all h-full">
-                    <div className="w-10 h-10 rounded-xl bg-accent/10 flex items-center justify-center text-accent mb-4 font-heading font-bold text-lg">
-                      {i + 1}
-                    </div>
-                    <h3 className="font-body text-base font-bold mb-2">{h.title}</h3>
-                    <p className="text-muted-foreground text-sm leading-relaxed">{h.desc}</p>
-                  </div>
-                </StaggeredItem>
-              ))}
-            </StaggeredList>
+      <section className="py-16 md:py-20 bg-warm-gradient">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12">
+            <span className="text-accent font-bold text-sm tracking-widest uppercase mb-3 block" data-animate="fadeInDown">Key Highlights</span>
+            <h2 className="font-heading text-2xl md:text-3xl font-bold" data-animate="fadeInUp">Why Choose This Service</h2>
           </div>
-        </section>
-      </AnimatedSection>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
+            {service.highlights.map((h, i) => (
+              <div key={i} className="bg-card rounded-2xl border border-border shadow-card p-6 hover:shadow-elevated hover:-translate-y-1 transition-all h-full" data-animate="slideInUp" data-delay={`${0.1 + i * 0.1}s`}>
+                <div className="w-10 h-10 rounded-xl bg-accent/10 flex items-center justify-center text-accent mb-4 font-heading font-bold text-lg">
+                  {i + 1}
+                </div>
+                <h3 className="font-body text-base font-bold mb-2">{h.title}</h3>
+                <p className="text-muted-foreground text-sm leading-relaxed">{h.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
 
       {/* FAQ */}
-      <AnimatedSection>
-        <section className="py-16 md:py-20">
-          <div className="container mx-auto px-4 max-w-3xl">
-            <div className="text-center mb-12">
-              <span className="text-accent font-bold text-sm tracking-widest uppercase mb-3 block">FAQ</span>
-              <h2 className="font-heading text-2xl md:text-3xl font-bold">Frequently Asked Questions</h2>
-            </div>
-            <Accordion type="single" collapsible className="space-y-3">
-              {service.faqs.map((faq, i) => (
-                <AccordionItem key={i} value={`faq-${i}`} className="bg-card border border-border rounded-xl px-6 shadow-card">
-                  <AccordionTrigger className="text-left font-body font-semibold text-sm md:text-base py-5 hover:no-underline">
-                    {faq.question}
-                  </AccordionTrigger>
-                  <AccordionContent className="text-muted-foreground text-sm leading-relaxed pb-5">
-                    {faq.answer}
-                  </AccordionContent>
-                </AccordionItem>
-              ))}
-            </Accordion>
+      <section className="py-16 md:py-20">
+        <div className="container mx-auto px-4 max-w-3xl">
+          <div className="text-center mb-12">
+            <span className="text-accent font-bold text-sm tracking-widest uppercase mb-3 block" data-animate="fadeInDown">FAQ</span>
+            <h2 className="font-heading text-2xl md:text-3xl font-bold" data-animate="fadeInUp">Frequently Asked Questions</h2>
           </div>
-        </section>
-      </AnimatedSection>
+          <Accordion type="single" collapsible className="space-y-3">
+            {service.faqs.map((faq, i) => (
+              <AccordionItem key={i} value={`faq-${i}`} className="bg-card border border-border rounded-xl px-6 shadow-card" data-animate="fadeInUp" data-delay={`${0.1 + i * 0.1}s`}>
+                <AccordionTrigger className="text-left font-body font-semibold text-sm md:text-base py-5 hover:no-underline">
+                  {faq.question}
+                </AccordionTrigger>
+                <AccordionContent className="text-muted-foreground text-sm leading-relaxed pb-5">
+                  {faq.answer}
+                </AccordionContent>
+              </AccordionItem>
+            ))}
+          </Accordion>
+        </div>
+      </section>
 
       {/* CTA */}
       <section className="relative py-16 md:py-20 overflow-hidden">
         <img src={ctaBg} alt="" className="absolute inset-0 w-full h-full object-cover" />
         <div className="absolute inset-0 bg-primary/85" />
         <div className="relative container mx-auto px-4 text-center">
-          <h2 className="font-heading text-2xl md:text-3xl font-bold text-primary-foreground mb-4">
-            Ready to Get Started?
-          </h2>
-          <p className="text-primary-foreground/80 mb-8 max-w-xl mx-auto">
+          <h2 className="font-heading text-2xl md:text-3xl font-bold text-primary-foreground mb-4" data-animate="fadeInDown">Ready to Get Started?</h2>
+          <p className="text-primary-foreground/80 mb-8 max-w-xl mx-auto" data-animate="fadeInUp">
             Book a free consultation with our experts and take the first step toward your study abroad dream.
           </p>
           <Link
             to="/contact"
             className="inline-flex items-center gap-2 px-8 py-4 bg-hero-gradient text-primary-foreground font-semibold rounded-xl hover:opacity-90 transition-opacity text-lg"
+            data-animate="slideInUp" data-delay="0.2s"
           >
             Free Counselling <ArrowRight className="w-5 h-5" />
           </Link>
