@@ -56,6 +56,7 @@ const Navbar = () => {
           </div>
 
           <NavItem to="/services" active={isActive("/services")}>Services</NavItem>
+          <NavItem to="/careers" active={isActive("/careers")}>Careers</NavItem>
           <NavItem to="/contact" active={isActive("/contact")}>Contact</NavItem>
           <a
             href="/brochure.pdf"
